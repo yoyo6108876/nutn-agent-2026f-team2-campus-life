@@ -1,6 +1,6 @@
 # 基準執行紀錄
 
-執行日期：2026-09-23。資料全部來自 [合成案例](../../examples/assignment/normal.request.json)，沒有上傳真實學生作業。原始設計見 [Baseline Declaration](../week2-baseline-declaration.md)，執行方式見 [API 說明](../api-usage.md)。
+執行日期：2026-09-23。資料全部來自 [合成案例](../../examples/assignment/normal.request.json)，沒有上傳真實學生作業。整理後的提交文件見 [Baseline Declaration：實作與驗證版](../week2-baseline-declaration.md)，執行方式見 [API 說明](../api-usage.md)。本次文件更新沿用這些既有證據，未重新呼叫 API。
 
 ## 已執行結果
 
@@ -17,7 +17,7 @@ KF-01 是已重現的**驗證層限制**：引用真的存在，仍不保證語�
 ### 真實呼叫量測
 
 - 模型：`gpt-4.1-mini-2025-04-14`。
-- Prompt：`assignment-check-v1.1`，程式實際讀取 [prompt.txt](../../assignment_checker/prompt.txt)；初稿的 v1.0-draft 保留供歷史比較。
+- Prompt：`assignment-check-v1.1`，程式實際讀取 [prompt.txt](../../assignment_checker/prompt.txt)；初稿的 v1.0-draft 可從 Git 歷史查閱。
 - 呼叫時間：`2026-09-23T03:45:57Z` 左右；JSON 使用 UTC，台灣為上午 11:45。
 - Provider 延遲：5.966 秒；不是完整網頁互動或資料擷取的延遲。
 - 輸入 858 tokens、輸出 305 tokens，合計 1163 tokens。

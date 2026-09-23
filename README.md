@@ -12,7 +12,7 @@ LLM 的核心工作是理解範例與學生作業的語意對應，辨識「換�
 
 目前已完成文字 JSON 的 single LLM call 基準 API，包含輸入驗證、引用核對及雙方提醒；一份合成範例已成功呼叫真實 OpenAI API。PDF 上傳與教學平台整合尚未實作。操作方式見 [API 執行說明](docs/api-usage.md)，證據見 [執行紀錄](docs/execution/README.md)。
 
-依 0922 新版講義的 [Week 2 Baseline Declaration 初稿](docs/week2-baseline-declaration.md) 保留原始預期規格；後續實作與 200／422／502 的執行結果另記於執行紀錄，區分真實 LLM 與固定替身，不將它們混為同一種證據。
+依 0922 新版講義整理的 [Week 2 Baseline Declaration：實作與驗證版](docs/week2-baseline-declaration.md)，已整合本週範圍、實際 I/O、200／422／502 預期與實測結果、模型與指令版本、已知限制、重現指令及 Exit ticket，可作為本週提交入口。
 
 ## 啟動 API
 
@@ -50,7 +50,7 @@ LLM 的核心工作是理解範例與學生作業的語意對應，辨識「換�
 
 - [API 執行說明](docs/api-usage.md)：安裝、啟動、錯誤處理與證據產生。
 - [執行紀錄](docs/execution/README.md)：合成資料上的真實 API 及替身測試結果。
-- [Week 2 Baseline Declaration 初稿](docs/week2-baseline-declaration.md)：對應新版講義六項提交清單。
+- [Week 2 Baseline Declaration：實作與驗證版](docs/week2-baseline-declaration.md)：對應新版講義六項提交清單與實際證據。
 - [專案題目與範圍定義](docs/week2-proposal.md)：問題、使用者、LLM 必要性、輸入輸出、驗收條件與後續基準驗證規劃。
 - [環境驗證紀錄](environment_check.md)：實際偵測結果及待人工確認項目。
 - [三個候選問題](docs/candidate_problems.md)：對象、痛點、資料工具及 Agent Necessity Test。

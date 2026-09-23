@@ -6,6 +6,8 @@
 
 本文件依 Week 2 Project Studio 的問題定義、User Story、Success Criteria 與 Scope 架構整理。目前只完成選題與需求規劃，尚未串接 API、實作檢查程式或取得實測證據，不宣稱已完成可重現的 Baseline Declaration。
 
+0922 新版講義允許先提交初稿；其六項清單已另整理於 [Baseline Declaration 初稿](week2-baseline-declaration.md)。該文件進一步固定本週情境、I/O 與預期停止層；本文件保留較完整的產品範圍。兩份文件皆不代表實作或實測完成。
+
 ## Problem：問題定義
 
 老師提供一份作業範例，學生提交報告後，老師仍需逐份比對才能發現缺少的章節、說明或證據；學生也可能直到收到批改結果才知道漏做了什麼。本專案希望在學生提交後先進行一次完整性檢查，把缺漏同時整理給學生與老師。可能遇到的困難包括：

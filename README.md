@@ -12,6 +12,8 @@ LLM 的核心工作是理解範例與學生作業的語意對應，辨識「換�
 
 目前階段為題目與需求定義，尚未實作 LLM/API 或完成實際文件評測。完整內容見 [專案題目與範圍定義](docs/week2-proposal.md)。
 
+依 0922 新版講義補充的 [Week 2 Baseline Declaration 初稿](docs/week2-baseline-declaration.md)，已列固定合成資料、I/O 協定、200／422／502 三個預期案例、候選模型與指令版本、固定失敗候選及 Exit ticket。全部 API 案例均標示「預期／未執行」。
+
 ## 團隊
 
 | 欄位 | 內容 |
@@ -35,6 +37,7 @@ LLM 的核心工作是理解範例與學生作業的語意對應，辨識「換�
 
 ## 專案文件與既有工具
 
+- [Week 2 Baseline Declaration 初稿](docs/week2-baseline-declaration.md)：對應新版講義六項提交清單。
 - [專案題目與範圍定義](docs/week2-proposal.md)：問題、使用者、LLM 必要性、輸入輸出、驗收條件與後續基準驗證規劃。
 - [環境驗證紀錄](environment_check.md)：實際偵測結果及待人工確認項目。
 - [三個候選問題](docs/candidate_problems.md)：對象、痛點、資料工具及 Agent Necessity Test。

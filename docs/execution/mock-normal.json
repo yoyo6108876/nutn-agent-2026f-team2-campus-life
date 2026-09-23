@@ -1,0 +1,134 @@
+{
+  "captured_at": "2026-09-23T03:46:05.795801+00:00",
+  "case": "normal",
+  "data_source": "synthetic teaching fixture; no real student work",
+  "provider_kind": "fixture_test_double",
+  "command": "python -m scripts.run_assignment_evidence --case normal --output tmp/assignment-evidence/mock-normal.json",
+  "transport": "FastAPI TestClient (in-process HTTP); live provider uses HTTPS when enabled",
+  "request": {
+    "assignment_id": "HW-DEMO-01",
+    "submission_id": "SUB-DEMO-01",
+    "submission_version": 1,
+    "teacher_example": {
+      "sections": [
+        {
+          "id": "T1",
+          "text": "Target User：需要在提交後確認作業缺漏的南大學生。"
+        },
+        {
+          "id": "T2",
+          "text": "Known Failure：提供一個失敗案例，包含輸入、實際結果與原因。"
+        }
+      ]
+    },
+    "student_submission": {
+      "sections": [
+        {
+          "id": "S1",
+          "text": "誰會用：剛交完報告、想知道自己有沒有漏寫內容的南大同學。"
+        }
+      ]
+    },
+    "confirmed_requirements": [
+      {
+        "id": "R1",
+        "description": "描述目標使用者及使用情境。",
+        "teacher_section_id": "T1"
+      },
+      {
+        "id": "R2",
+        "description": "提供失敗案例，包含輸入、實際結果與原因。",
+        "teacher_section_id": "T2"
+      }
+    ]
+  },
+  "provider_attempts": 1,
+  "provider_output": {
+    "assignment_id": "HW-DEMO-01",
+    "submission_id": "SUB-DEMO-01",
+    "submission_version": 1,
+    "checks": [
+      {
+        "requirement_id": "R1",
+        "status": "met",
+        "teacher_evidence": {
+          "section_id": "T1",
+          "quote": "Target User：需要在提交後確認作業缺漏的南大學生。"
+        },
+        "student_evidence": [
+          {
+            "section_id": "S1",
+            "quote": "誰會用：剛交完報告、想知道自己有沒有漏寫內容的南大同學。"
+          }
+        ],
+        "reason": "使用者及提交後檢查情境皆已描述，標題寫法不同不影響對應。",
+        "suggestion": "此項不需補充。"
+      },
+      {
+        "requirement_id": "R2",
+        "status": "missing",
+        "teacher_evidence": {
+          "section_id": "T2",
+          "quote": "Known Failure：提供一個失敗案例，包含輸入、實際結果與原因。"
+        },
+        "student_evidence": [],
+        "reason": "完整提供的學生內容只有使用者描述，未找到失敗案例。",
+        "suggestion": "請補充一個失敗案例的輸入、實際結果與原因。"
+      }
+    ]
+  },
+  "provider_metadata": null,
+  "http_status": 200,
+  "response": {
+    "assignment_id": "HW-DEMO-01",
+    "submission_id": "SUB-DEMO-01",
+    "submission_version": 1,
+    "checks": [
+      {
+        "requirement_id": "R1",
+        "status": "met",
+        "teacher_evidence": {
+          "section_id": "T1",
+          "quote": "Target User：需要在提交後確認作業缺漏的南大學生。"
+        },
+        "student_evidence": [
+          {
+            "section_id": "S1",
+            "quote": "誰會用：剛交完報告、想知道自己有沒有漏寫內容的南大同學。"
+          }
+        ],
+        "reason": "使用者及提交後檢查情境皆已描述，標題寫法不同不影響對應。",
+        "suggestion": "此項不需補充。"
+      },
+      {
+        "requirement_id": "R2",
+        "status": "missing",
+        "teacher_evidence": {
+          "section_id": "T2",
+          "quote": "Known Failure：提供一個失敗案例，包含輸入、實際結果與原因。"
+        },
+        "student_evidence": [],
+        "reason": "完整提供的學生內容只有使用者描述，未找到失敗案例。",
+        "suggestion": "請補充一個失敗案例的輸入、實際結果與原因。"
+      }
+    ],
+    "student_notice": {
+      "needs_revision": [
+        "R2"
+      ],
+      "needs_confirmation": []
+    },
+    "teacher_notice": {
+      "needs_revision": [
+        "R2"
+      ],
+      "needs_confirmation": []
+    }
+  },
+  "expected_http_status": 200,
+  "expected_labels": {
+    "R1": "met",
+    "R2": "missing"
+  },
+  "matches_expected": true
+}

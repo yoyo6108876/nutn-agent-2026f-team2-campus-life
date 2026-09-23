@@ -1,0 +1,37 @@
+{
+  "assignment_id": "HW-DEMO-01",
+  "submission_id": "SUB-DEMO-01",
+  "submission_version": 1,
+  "teacher_example": {
+    "sections": [
+      {
+        "id": "T1",
+        "text": "Target User：需要在提交後確認作業缺漏的南大學生。"
+      },
+      {
+        "id": "T2",
+        "text": "Known Failure：提供一個失敗案例，包含輸入、實際結果與原因。"
+      }
+    ]
+  },
+  "student_submission": {
+    "sections": [
+      {
+        "id": "S1",
+        "text": "誰會用：剛交完報告、想知道自己有沒有漏寫內容的南大同學。"
+      }
+    ]
+  },
+  "confirmed_requirements": [
+    {
+      "id": "R1",
+      "description": "描述目標使用者及使用情境。",
+      "teacher_section_id": "T1"
+    },
+    {
+      "id": "R2",
+      "description": "提供失敗案例，包含輸入、實際結果與原因。",
+      "teacher_section_id": "T2"
+    }
+  ]
+}

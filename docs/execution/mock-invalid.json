@@ -1,0 +1,54 @@
+{
+  "captured_at": "2026-09-23T03:46:06.405178+00:00",
+  "case": "invalid",
+  "data_source": "synthetic teaching fixture; no real student work",
+  "provider_kind": "fixture_test_double",
+  "command": "python -m scripts.run_assignment_evidence --case invalid --output tmp/assignment-evidence/mock-invalid.json",
+  "transport": "FastAPI TestClient (in-process HTTP); live provider uses HTTPS when enabled",
+  "request": {
+    "assignment_id": "HW-DEMO-01",
+    "submission_id": "SUB-DEMO-01",
+    "submission_version": 1,
+    "teacher_example": {
+      "sections": [
+        {
+          "id": "T1",
+          "text": "Target User：需要在提交後確認作業缺漏的南大學生。"
+        },
+        {
+          "id": "T2",
+          "text": "Known Failure：提供一個失敗案例，包含輸入、實際結果與原因。"
+        }
+      ]
+    },
+    "student_submission": {
+      "sections": []
+    },
+    "confirmed_requirements": [
+      {
+        "id": "R1",
+        "description": "描述目標使用者及使用情境。",
+        "teacher_section_id": "T1"
+      },
+      {
+        "id": "R2",
+        "description": "提供失敗案例，包含輸入、實際結果與原因。",
+        "teacher_section_id": "T2"
+      }
+    ]
+  },
+  "provider_attempts": 0,
+  "provider_output": null,
+  "provider_metadata": null,
+  "http_status": 422,
+  "response": {
+    "error": {
+      "code": "INVALID_REQUEST",
+      "stage": "request_validation",
+      "message": "輸入未符合規格，請檢查必填欄位、型別、段落及要求的引用。"
+    }
+  },
+  "expected_http_status": 422,
+  "expected_labels": null,
+  "matches_expected": true
+}

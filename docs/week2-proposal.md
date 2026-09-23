@@ -4,9 +4,9 @@
 
 **以教師範例為參考的作業規格與完成度檢查助手**
 
-本文件依 Week 2 Project Studio 的問題定義、User Story、Success Criteria 與 Scope 架構整理。目前只完成選題與需求規劃，尚未串接 API、實作檢查程式或取得實測證據，不宣稱已完成可重現的 Baseline Declaration。
+本文件保留選題階段的問題定義、User Story、Success Criteria 與完整產品範圍。後續已實作文字 JSON 的 LLM 基準 API；實作範圍與證據見 [API 執行說明](api-usage.md) 與 [執行紀錄](execution/README.md)。下文的規劃與待完成項目是選題當時的紀錄，不代表所有功能均已完成。
 
-0922 新版講義允許先提交初稿；其六項清單已另整理於 [Baseline Declaration 初稿](week2-baseline-declaration.md)。該文件進一步固定本週情境、I/O 與預期停止層；本文件保留較完整的產品範圍。兩份文件皆不代表實作或實測完成。
+0922 新版講義允許先提交初稿；其六項清單已另整理於 [Baseline Declaration 初稿](week2-baseline-declaration.md)。該文件保存固定情境、I/O 與預期停止層；實測另附執行紀錄，本文件則保留較完整的產品範圍。
 
 ## Problem：問題定義
 

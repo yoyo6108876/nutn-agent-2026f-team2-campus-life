@@ -1,0 +1,34 @@
+{
+  "assignment_id": "HW-DEMO-01",
+  "submission_id": "SUB-DEMO-01",
+  "submission_version": 1,
+  "checks": [
+    {
+      "requirement_id": "R1",
+      "status": "met",
+      "teacher_evidence": {
+        "section_id": "T1",
+        "quote": "Target User：需要在提交後確認作業缺漏的南大學生。"
+      },
+      "student_evidence": [
+        {
+          "section_id": "S99",
+          "quote": "誰會用：剛交完報告、想知道自己有沒有漏寫內容的南大同學。"
+        }
+      ],
+      "reason": "使用者及提交後檢查情境皆已描述，標題寫法不同不影響對應。",
+      "suggestion": "此項不需補充。"
+    },
+    {
+      "requirement_id": "R2",
+      "status": "missing",
+      "teacher_evidence": {
+        "section_id": "T2",
+        "quote": "Known Failure：提供一個失敗案例，包含輸入、實際結果與原因。"
+      },
+      "student_evidence": [],
+      "reason": "完整提供的學生內容只有使用者描述，未找到失敗案例。",
+      "suggestion": "請補充一個失敗案例的輸入、實際結果與原因。"
+    }
+  ]
+}

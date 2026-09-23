@@ -10,9 +10,20 @@ LLM 的核心工作是理解範例與學生作業的語意對應，辨識「換�
 
 預定流程：**老師提供範例 → 學生提交作業 → LLM 比對 → 學生收到補件提醒／老師查看缺漏摘要 → 老師確認疑義，學生依規定補交**。初期以手動上傳模擬提交，結果呈現在系統內；教學平台整合與外部通知留待後續。
 
-目前階段為題目與需求定義，尚未實作 LLM/API 或完成實際文件評測。完整內容見 [專案題目與範圍定義](docs/week2-proposal.md)。
+目前已完成文字 JSON 的 single LLM call 基準 API，包含輸入驗證、引用核對及雙方提醒；一份合成範例已成功呼叫真實 OpenAI API。PDF 上傳與教學平台整合尚未實作。操作方式見 [API 執行說明](docs/api-usage.md)，證據見 [執行紀錄](docs/execution/README.md)。
 
-依 0922 新版講義補充的 [Week 2 Baseline Declaration 初稿](docs/week2-baseline-declaration.md)，已列固定合成資料、I/O 協定、200／422／502 三個預期案例、候選模型與指令版本、固定失敗候選及 Exit ticket。全部 API 案例均標示「預期／未執行」。
+依 0922 新版講義的 [Week 2 Baseline Declaration 初稿](docs/week2-baseline-declaration.md) 保留原始預期規格；後續實作與 200／422／502 的執行結果另記於執行紀錄，區分真實 LLM 與固定替身，不將它們混為同一種證據。
+
+## 啟動 API
+
+在根目錄 `.env` 填入 `OPENAI_API_KEY` 後執行：
+
+```sh
+.venv/bin/python -m pip install -r requirements-lock.txt
+.venv/bin/python -m uvicorn assignment_checker.api:app --host 127.0.0.1 --port 8000
+```
+
+開啟 `http://127.0.0.1:8000/docs` 查看介面規格；範例輸入見 [normal.request.json](examples/assignment/normal.request.json)。首次建立 Python 環境的步驟與 curl 呼叫指令見 [API 執行說明](docs/api-usage.md)。
 
 ## 團隊
 
@@ -37,6 +48,8 @@ LLM 的核心工作是理解範例與學生作業的語意對應，辨識「換�
 
 ## 專案文件與既有工具
 
+- [API 執行說明](docs/api-usage.md)：安裝、啟動、錯誤處理與證據產生。
+- [執行紀錄](docs/execution/README.md)：合成資料上的真實 API 及替身測試結果。
 - [Week 2 Baseline Declaration 初稿](docs/week2-baseline-declaration.md)：對應新版講義六項提交清單。
 - [專案題目與範圍定義](docs/week2-proposal.md)：問題、使用者、LLM 必要性、輸入輸出、驗收條件與後續基準驗證規劃。
 - [環境驗證紀錄](environment_check.md)：實際偵測結果及待人工確認項目。
@@ -79,4 +92,4 @@ VS Code 的 Codex 擴充套件登入、GitHub 存取與教師權限須人工確�
 - [ ] 建立符合命名規則的 GitHub Team Repo，將本機 main 推送上去。
 - [ ] 依講義邀請教師並確認存取權限，再提交 Repository URL。
 
-專案已從原本的課綱與作業要求理解方向，收斂為教師範例與學生作業的對照檢查。尚未進行學生訪談或實際 LLM 評測；需求假設與預期效果不代表已驗證的結果。
+專案已收斂為教師範例與學生作業的對照檢查。目前只完成合成案例的基準測試，尚未進行學生訪談、真實作業評測或大規模品質比較；需求假設與預期效果仍需驗證。

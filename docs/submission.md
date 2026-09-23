@@ -23,13 +23,13 @@ git commit -m "docs: add team members and week 2 driver"
 
 ## GitHub Team Repo
 
-團隊儲存庫原名為 `nutn`，目前已改名為 `nutn-agent-2026f-team01-campus-life`，符合講義命名格式。網址：https://github.com/yoyo6108876/nutn-agent-2026f-team01-campus-life 。本機 origin 已更新。以下建立步驟供課程核對，無須重複建立。
+團隊儲存庫原名為 `nutn`，目前已改名為 `nutn-agent-2026f-team2-campus-life`；講義要求兩位組別，對應名稱應為 `nutn-agent-2026f-team02-campus-life`。網址：https://github.com/yoyo6108876/nutn-agent-2026f-team2-campus-life 。本機 origin 已更新。以下建立步驟供課程核對，無須重複建立。
 
 ### 環境與提交紀錄
 
 - 已建立本機 `main`、環境報告、候選問題與初始 commit。
 - 已執行測試：5 項通過。
-- 已設定 `origin` 為 `https://github.com/yoyo6108876/nutn-agent-2026f-team01-campus-life.git`。
+- 已設定 `origin` 為 `https://github.com/yoyo6108876/nutn-agent-2026f-team2-campus-life.git`。
 - 初次推送曾因缺少 GitHub 登入憑證而失敗；目前已確認 GitHub 帳號 `yoyo6108876` 可用，且遠端 `main` 已包含初始 commit 與後續 README 更新。
 - 已將本次專案題目與需求定義推送到 GitHub 的 `main`。
 - 尚未代為邀請教師或提交課程 URL。
@@ -74,4 +74,4 @@ cd REPO
 - [ ] 教師已獲得存取權限，並確認可以開啟。
 - [ ] 將實際 URL 填回 README，再提交 `https://github.com/OWNER/REPO`。
 
-目前已提供兩位組員與 GitHub 擁有者，儲存庫名稱已包含 team01 並符合課程命名格式；Week 2 Driver 確認、教師權限與課程 URL 提交仍待團隊完成。
+目前已提供兩位組員與 GitHub 擁有者，組別為 02，目前遠端名稱使用 team2，與講義的兩位組別格式尚有差異；Week 2 Driver 確認、教師權限與課程 URL 提交仍待團隊完成。

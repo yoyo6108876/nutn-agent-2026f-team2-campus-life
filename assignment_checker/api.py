@@ -43,7 +43,7 @@ def create_app(provider=None, retrieval_provider=None):
 
     @app.get("/assistant/week3/queries")
     def week3_queries():
-        return {"data_source": "synthetic_only", "teacher_original_case": "not_supplied",
+        return {"data_source": "synthetic_only", "teacher_original_case": "pricing_contract_known_but_source_text_missing",
                 "queries": [{"query_id": key, "question": value["question"], "top_k": value["top_k"]}
                             for key, value in load_json("dataset.json")["queries"].items()]}
 

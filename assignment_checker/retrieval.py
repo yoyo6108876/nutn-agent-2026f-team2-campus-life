@@ -30,7 +30,7 @@ def digest(value):
 
 
 class QueryRequest(StrictModel):
-    query_id: Literal["Q1", "Q2", "Q3", "B1"]
+    query_id: Literal["Q1", "QP", "Q2", "Q3", "B1", "T1"]
     mode: Literal["fixture", "live"] = "fixture"
     top_k: Annotated[int, Field(ge=1, le=10)] | None = None
 
@@ -81,6 +81,7 @@ def prepare(query_id, top_k=None, dataset=None, today=None):
     words = tokens(query["question"])
     sources = {source["id"]: source for source in dataset["sources"]}
     candidates, excluded = [], []
+    eligible = []
     for chunk in dataset["chunks"]:
         if chunk["corpus"] != query["corpus"]:
             continue
@@ -97,6 +98,29 @@ def prepare(query_id, top_k=None, dataset=None, today=None):
         if reason:
             excluded.append({"chunk_id": chunk["id"], "reason": reason})
             continue
+        eligible.append(chunk)
+    active_sources = {chunk["source_id"] for chunk in eligible}
+    blocked_sources, conflicts = set(), []
+    # Explicitly curated conflicts only; this is not a semantic conflict detector.
+    checked_pairs = set()
+    for source_id in sorted(active_sources):
+        source = sources[source_id]
+        for other_id in source.get("conflicts_with", []):
+            pair = tuple(sorted((source_id, other_id)))
+            if other_id not in active_sources or pair in checked_pairs:
+                continue
+            checked_pairs.add(pair)
+            other = sources[other_id]
+            first_rank, second_rank = source.get("precedence", 0), other.get("precedence", 0)
+            if first_rank == second_rank:
+                conflicts.append(list(pair))
+            else:
+                blocked_sources.add(other_id if first_rank > second_rank else source_id)
+    for chunk in eligible:
+        source = sources[chunk["source_id"]]
+        if chunk["source_id"] in blocked_sources:
+            excluded.append({"chunk_id": chunk["id"], "reason": "lower_precedence_conflict"})
+            continue
         overlap = sorted(words & tokens(chunk["text"]))
         score = len(overlap) / len(words) if words else 0.0
         # Stable ties, and a positive score threshold; metadata is not a search term.
@@ -111,7 +135,9 @@ def prepare(query_id, top_k=None, dataset=None, today=None):
         for role in fact["required_roles"]:
             if not any(fact["id"] in chunk["fact_ids"] and chunk["role"] == role for chunk in selected):
                 missing.append({"fact_id": fact["id"], "role": role})
-    status = "no_answer" if not selected else "coverage_failure" if missing else "ready"
+    status = "source_conflict" if conflicts else "no_answer" if not selected else "coverage_failure" if missing else "ready"
+    refusal_code = {"source_conflict": "SOURCE_CONFLICT", "no_answer": "NO_EVIDENCE",
+                    "coverage_failure": "MISSING_REQUIRED_ASPECT", "ready": None}[status]
     evidence = [{key: chunk[key] for key in ("id", "source_id", "source_version", "role", "fact_ids", "text")}
                 for chunk in selected]
     bundle = FrozenInput(question=query["question"], facts=query["facts"],
@@ -121,6 +147,10 @@ def prepare(query_id, top_k=None, dataset=None, today=None):
         "dataset_version": dataset["version"], "dataset_hash": digest(dataset),
         "policy_date": today.isoformat(), "retriever_version": "unicode-bigram-overlap-v1",
         "top_k": top_k, "min_score_exclusive": 0, "gate": status,
+        "case_type": query["case_type"], "refusal_code": refusal_code,
+        "source_conflicts": conflicts,
+        "required_aspects": [fact["id"] for fact in query["facts"]],
+        "required_reference_chunk_ids": query.get("required_reference_chunk_ids", []),
         "missing_coverage": missing, "excluded": excluded,
         "required_facts": query["facts"],
         "ranked_candidates": [{"rank": i + 1, "chunk_id": chunk["id"],
@@ -215,21 +245,28 @@ def run_query(request, provider=None):
     bundle, trace = prepare(request.query_id, request.top_k)
     result = {"mode": request.mode, "status": trace["gate"], "trace": trace,
               "provider_attempts": 0, "provider_metadata": None,
+              "provider": None, "llm_actually_called": False,
+              "refusal_code": trace["refusal_code"],
               "answer": [], "student_notice": None, "teacher_notice": None}
     if trace["gate"] != "ready":
-        result["message"] = "找不到可用證據。" if trace["gate"] == "no_answer" else "檢索證據不完整，不能判定作業缺漏。"
+        result["message"] = {"no_answer": "找不到可用證據。",
+                             "coverage_failure": "檢索證據不完整，不能判定作業缺漏。",
+                             "source_conflict": "來源衝突且無明確優先順序，需人工確認。"}[trace["gate"]]
         return result
     if request.mode == "fixture":
-        # Q3 is the same question as Q1 with a smaller default retrieval budget.
-        fixture_id = "Q1" if request.query_id == "Q3" else request.query_id
+        fixture_id = load_json("dataset.json")["queries"][request.query_id]["fixture_id"]
         raw = load_json("generator-fixtures.json")[fixture_id]
         result["provider_kind"] = "authored_fixture_not_model_output"
+        result["provider"] = "gemini_fixture"
+        result["fixture_origin"] = "course-compatible authored fixture, not a recorded Gemini response"
     else:
         active = provider if provider is not None else RetrievalProvider()
         result["provider_attempts"] = 1
         raw = active.generate(generator_input(bundle))
         result["provider_metadata"] = active.metadata
         result["provider_kind"] = "live_openai"
+        result["provider"] = "openai"
+        result["llm_actually_called"] = True
     answer = validate_answer(bundle, raw)
     result.update(status="answered", answer=render(bundle, answer),
                   generator_output=answer.model_dump(), citation_gate="passed",

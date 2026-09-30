@@ -1,0 +1,249 @@
+{
+  "query_id": "QP",
+  "question": "同學交的報告裡，誰會用、出錯範例和附錄是否交代清楚，還缺哪些內容？",
+  "corpus": "assignment-demo",
+  "dataset_version": "week3-studio-v2",
+  "dataset_hash": "e60daabe40c7a7a9e27e98c19b8f2d4447d676e9edb52a71d328a3a09c385db8",
+  "policy_date": "2026-09-30",
+  "retriever_version": "unicode-bigram-overlap-v1",
+  "top_k": 6,
+  "min_score_exclusive": 0,
+  "gate": "ready",
+  "case_type": "paraphrase",
+  "refusal_code": null,
+  "source_conflicts": [],
+  "required_aspects": [
+    "target_user",
+    "failure_case",
+    "appendix"
+  ],
+  "required_reference_chunk_ids": [],
+  "missing_coverage": [],
+  "excluded": [],
+  "required_facts": [
+    {
+      "id": "target_user",
+      "label": "使用者與需求",
+      "required_roles": [
+        "teacher",
+        "student"
+      ],
+      "allowed_values": [
+        "met",
+        "partial",
+        "missing",
+        "uncertain"
+      ],
+      "literal_rules": [
+        {
+          "terms": [
+            "Target User",
+            "需求"
+          ],
+          "value": "met"
+        }
+      ]
+    },
+    {
+      "id": "failure_case",
+      "label": "失敗案例的輸入、結果、原因",
+      "required_roles": [
+        "teacher",
+        "student"
+      ],
+      "allowed_values": [
+        "met",
+        "partial",
+        "missing",
+        "uncertain"
+      ],
+      "literal_rules": [
+        {
+          "terms": [
+            "輸入",
+            "實際結果",
+            "原因"
+          ],
+          "value": "met"
+        }
+      ]
+    },
+    {
+      "id": "appendix",
+      "label": "可查看的附錄測試紀錄",
+      "required_roles": [
+        "teacher",
+        "student"
+      ],
+      "allowed_values": [
+        "met",
+        "partial",
+        "missing",
+        "uncertain"
+      ],
+      "literal_rules": [
+        {
+          "terms": [
+            "附錄 A"
+          ],
+          "value": "met"
+        }
+      ]
+    }
+  ],
+  "ranked_candidates": [
+    {
+      "rank": 1,
+      "chunk_id": "S1",
+      "source_id": "student-demo",
+      "score": 0.12,
+      "matched_terms": [
+        "內容",
+        "同學",
+        "報告"
+      ],
+      "selected": true
+    },
+    {
+      "rank": 2,
+      "chunk_id": "T3",
+      "source_id": "teacher-demo",
+      "score": 0.12,
+      "matched_terms": [
+        "內容",
+        "範例",
+        "附錄"
+      ],
+      "selected": true
+    },
+    {
+      "rank": 3,
+      "chunk_id": "S2",
+      "source_id": "student-demo",
+      "score": 0.08,
+      "matched_terms": [
+        "報告",
+        "的報"
+      ],
+      "selected": true
+    },
+    {
+      "rank": 4,
+      "chunk_id": "S3",
+      "source_id": "student-demo",
+      "score": 0.08,
+      "matched_terms": [
+        "內容",
+        "附錄"
+      ],
+      "selected": true
+    },
+    {
+      "rank": 5,
+      "chunk_id": "T1",
+      "source_id": "teacher-demo",
+      "score": 0.08,
+      "matched_terms": [
+        "範例",
+        "誰會"
+      ],
+      "selected": true
+    },
+    {
+      "rank": 6,
+      "chunk_id": "T2",
+      "source_id": "teacher-demo",
+      "score": 0.04,
+      "matched_terms": [
+        "範例"
+      ],
+      "selected": true
+    }
+  ],
+  "selected_evidence": [
+    {
+      "id": "S1",
+      "source_id": "student-demo",
+      "source_version": "synthetic-v1",
+      "role": "student",
+      "fact_ids": [
+        "target_user"
+      ],
+      "text": "學生作業的使用者：剛交完報告、擔心遺漏必寫內容的南大同學，希望提交後先收到補件提醒。"
+    },
+    {
+      "id": "T3",
+      "source_id": "teacher-demo",
+      "source_version": "synthetic-v1",
+      "role": "teacher",
+      "fact_ids": [
+        "appendix"
+      ],
+      "text": "老師範例的附錄證據要求：應提供可查看的測試紀錄內容；若只提及另附檔案，必須取得檔案後才能確認。"
+    },
+    {
+      "id": "S2",
+      "source_id": "student-demo",
+      "source_version": "synthetic-v1",
+      "role": "student",
+      "fact_ids": [
+        "failure_case"
+      ],
+      "text": "學生作業的失敗案例：輸入是一份只有封面、没有正文的報告；實際結果是助手顯示全部完成。本段沒有說明造成錯判的原因。"
+    },
+    {
+      "id": "S3",
+      "source_id": "student-demo",
+      "source_version": "synthetic-v1",
+      "role": "student",
+      "fact_ids": [
+        "appendix"
+      ],
+      "text": "學生作業的附錄證據：測試紀錄請見附錄 A，另外一個檔案繳交。本次可供檢查的資料不含附錄 A 內容。"
+    },
+    {
+      "id": "T1",
+      "source_id": "teacher-demo",
+      "source_version": "synthetic-v1",
+      "role": "teacher",
+      "fact_ids": [
+        "target_user"
+      ],
+      "text": "老師範例的使用者要求：說明誰會使用助手，以及他需要解決的問題。標題寫法不限定。"
+    },
+    {
+      "id": "T2",
+      "source_id": "teacher-demo",
+      "source_version": "synthetic-v1",
+      "role": "teacher",
+      "fact_ids": [
+        "failure_case"
+      ],
+      "text": "老師範例的失敗案例要求：必須包含輸入、實際結果與失敗原因三項。"
+    }
+  ],
+  "evidence_hash": "32159ab37772de679cbd562014f9b06412499a99a63cbd777fbaf77b9c2b62fd",
+  "evaluation_reference": {
+    "gold_chunk_ids": [
+      "S1",
+      "S2",
+      "S3",
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "acceptable_chunk_ids": [
+      "S1",
+      "S2",
+      "S3",
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "should_refuse": false,
+    "expected_status": "answered",
+    "annotation_origin": "Codex-authored expectations; teacher review pending"
+  },
+  "reproduce_command": "python -m scripts.run_studio_generator_lab --path auto",
+  "failure_observation": "same intent and expected evidence, different lexical ranking"
+}

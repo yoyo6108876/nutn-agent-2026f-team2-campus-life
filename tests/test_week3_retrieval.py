@@ -28,6 +28,7 @@ def fixed_policy_date(monkeypatch):
 
 
 @pytest.mark.parametrize('qid,status,calls', [('Q1','answered',0),('Q2','no_answer',0),
+                                            ('QP','answered',0),('T1','no_answer',0),
                                             ('Q3','coverage_failure',0),('B1','answered',0)])
 def test_fixed_queries(qid,status,calls):
     r = run_query(QueryRequest(query_id=qid))
@@ -125,7 +126,7 @@ def test_teacher_and_student_notices_agree():
         'needs_revision':['failure_case'],'needs_confirmation':['appendix']}
 
 
-@pytest.mark.parametrize('qid', ['Q2','Q3'])
+@pytest.mark.parametrize('qid', ['Q2','Q3','T1'])
 def test_no_provider_call_for_refused_live_requests(qid):
     provider=Mock()
     with TestClient(create_app(retrieval_provider=provider)) as client:
@@ -175,3 +176,71 @@ def test_unselected_citation_returns_safe_http_error():
         r=client.post('/assistant/week3/query',json={'query_id':'B1','mode':'live'})
     assert r.status_code==502
     assert r.json()['error']['code']=='UNGROUNDED_RESPONSE'
+
+
+def test_paraphrase_has_same_expected_evidence_despite_different_ranking():
+    normal, _ = prepare('Q1')
+    paraphrase, trace = prepare('QP')
+    assert normal.question != paraphrase.question
+    assert trace['gate'] == 'ready'
+    assert {c['id'] for c in normal.selected_evidence} == {c['id'] for c in paraphrase.selected_evidence}
+
+
+def test_missing_teacher_pricing_data_is_not_fabricated():
+    result = run_query(QueryRequest(query_id='T1'))
+    assert result['status'] == 'no_answer'
+    assert result['answer'] == []
+    assert result['trace']['required_aspects'] == ['eligibility','weekday_rate','holiday_exception']
+    assert result['trace']['required_reference_chunk_ids'] == [
+        'price-student-eligibility','price-student-weekday-rate','price-student-holiday-exception']
+
+
+@pytest.mark.parametrize('higher_precedence', [False, True])
+def test_declared_conflict_requires_precedence_or_refusal(higher_precedence):
+    dataset = load_json('dataset.json')
+    source = next(s for s in dataset['sources'] if s['id']=='court-hours-demo')
+    rival = deepcopy(source)
+    rival.update(id='rival', conflicts_with=['court-hours-demo'])
+    if higher_precedence:
+        source['precedence'] = rival['precedence'] + 1
+    dataset['sources'].append(rival)
+    chunk = deepcopy(next(c for c in dataset['chunks'] if c['id']=='B-hours'))
+    chunk.update(id='rival-hours',source_id='rival',text='合成羽球館週六開放時間 00:00–24:00。')
+    dataset['chunks'].append(chunk)
+    bundle, trace = prepare('B1', dataset=dataset)
+    if higher_precedence:
+        assert trace['gate'] == 'ready'
+        assert 'rival-hours' not in [c['id'] for c in bundle.selected_evidence]
+        assert {'chunk_id':'rival-hours','reason':'lower_precedence_conflict'} in trace['excluded']
+    else:
+        assert trace['gate'] == 'source_conflict'
+        assert trace['refusal_code'] == 'SOURCE_CONFLICT'
+
+
+def test_comparison_contract_and_gold_labels_are_saved(tmp_path):
+    from scripts.run_week3_evidence import run_lab
+    assert run_lab(tmp_path, command='test-fixture') == 0
+    comparison = json.loads((tmp_path/'generator-comparison.json').read_text())
+    assert comparison['canonical_fixed_query_ids'] == ['Q1','QP','Q2']
+    assert comparison['teacher_checkpoint_complete'] is False
+    cases = {c['query_id']:c for c in comparison['cases']}
+    for qid in ['Q1','QP','B1']:
+        checks = cases[qid]['comparison_checks']
+        assert checks == {'same_selected_evidence':True,'same_citations':True,'fact_coverage':'3/3',
+                          'unsupported_claims':0,'unsupported_numeric_claims':[]}
+        assert cases[qid]['generators'][1]['provider'] == 'gemini_fixture'
+        assert cases[qid]['generators'][1]['llm_actually_called'] is False
+    for qid in ['Q2','Q3','T1']:
+        assert cases[qid]['generators'] == []
+        assert cases[qid]['generator_invocations'] == 0
+        assert cases[qid]['comparison_checks'] is None
+    assert cases['Q3']['response']['refusal_code'] == 'MISSING_REQUIRED_ASPECT'
+    trace = json.loads((tmp_path/'QP-top-k-trace.json').read_text())
+    assert trace['evaluation_reference']['gold_chunk_ids'] == ['S1','S2','S3','T1','T2','T3']
+    assert trace['evaluation_reference']['should_refuse'] is False
+    assert trace['reproduce_command'] == 'test-fixture'
+
+
+def test_unsupported_numeric_claim_is_explicit():
+    observed=failures()['observations'][-1]['evaluation']
+    assert observed['unsupported_numeric_claims'] == [{'fact_id':'hours','value':'00:00–24:00'}]

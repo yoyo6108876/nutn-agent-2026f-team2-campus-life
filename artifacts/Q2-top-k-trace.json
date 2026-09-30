@@ -1,0 +1,51 @@
+{
+  "query_id": "Q2",
+  "question": "截止日期？",
+  "corpus": "assignment-demo",
+  "dataset_version": "week3-studio-v2",
+  "dataset_hash": "e60daabe40c7a7a9e27e98c19b8f2d4447d676e9edb52a71d328a3a09c385db8",
+  "policy_date": "2026-09-30",
+  "retriever_version": "unicode-bigram-overlap-v1",
+  "top_k": 6,
+  "min_score_exclusive": 0,
+  "gate": "no_answer",
+  "case_type": "no-answer",
+  "refusal_code": "NO_EVIDENCE",
+  "source_conflicts": [],
+  "required_aspects": [
+    "deadline"
+  ],
+  "required_reference_chunk_ids": [],
+  "missing_coverage": [
+    {
+      "fact_id": "deadline",
+      "role": "teacher"
+    }
+  ],
+  "excluded": [],
+  "required_facts": [
+    {
+      "id": "deadline",
+      "label": "截止日期",
+      "required_roles": [
+        "teacher"
+      ],
+      "allowed_values": [
+        "uncertain"
+      ],
+      "literal_rules": []
+    }
+  ],
+  "ranked_candidates": [],
+  "selected_evidence": [],
+  "evidence_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "evaluation_reference": {
+    "gold_chunk_ids": [],
+    "acceptable_chunk_ids": [],
+    "should_refuse": true,
+    "expected_status": "no_answer",
+    "annotation_origin": "Codex-authored expectations; teacher review pending"
+  },
+  "reproduce_command": "python -m scripts.run_studio_generator_lab --path auto",
+  "failure_observation": "no deadline in corpus; all generators skipped"
+}

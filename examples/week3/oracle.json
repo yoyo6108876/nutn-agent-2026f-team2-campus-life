@@ -23,7 +23,25 @@
           "S3"
         ]
       }
-    }
+    },
+    "gold_chunk_ids": [
+      "S1",
+      "S2",
+      "S3",
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "acceptable_chunk_ids": [
+      "S1",
+      "S2",
+      "S3",
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "should_refuse": false,
+    "annotation_origin": "Codex-authored expectations; teacher review pending"
   },
   "B1": {
     "expected_status": "answered",
@@ -46,14 +64,109 @@
           "B-shoes"
         ]
       }
-    }
+    },
+    "gold_chunk_ids": [
+      "B-booking",
+      "B-hours",
+      "B-shoes"
+    ],
+    "acceptable_chunk_ids": [
+      "B-booking",
+      "B-hours",
+      "B-shoes"
+    ],
+    "should_refuse": false,
+    "annotation_origin": "Codex-authored expectations; teacher review pending"
   },
   "Q2": {
     "expected_status": "no_answer",
-    "facts": {}
+    "facts": {},
+    "gold_chunk_ids": [],
+    "acceptable_chunk_ids": [],
+    "should_refuse": true,
+    "annotation_origin": "Codex-authored expectations; teacher review pending"
   },
   "Q3": {
     "expected_status": "coverage_failure",
-    "facts": {}
+    "facts": {},
+    "gold_chunk_ids": [
+      "S1",
+      "S2",
+      "S3",
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "acceptable_chunk_ids": [
+      "S1",
+      "S2",
+      "S3",
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "should_refuse": true,
+    "annotation_origin": "Codex-authored expectations; teacher review pending"
+  },
+  "QP": {
+    "expected_status": "answered",
+    "facts": {
+      "target_user": {
+        "value": "met",
+        "required_chunk_ids": [
+          "T1",
+          "S1"
+        ]
+      },
+      "failure_case": {
+        "value": "partial",
+        "required_chunk_ids": [
+          "T2",
+          "S2"
+        ]
+      },
+      "appendix": {
+        "value": "uncertain",
+        "required_chunk_ids": [
+          "T3",
+          "S3"
+        ]
+      }
+    },
+    "gold_chunk_ids": [
+      "S1",
+      "S2",
+      "S3",
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "acceptable_chunk_ids": [
+      "S1",
+      "S2",
+      "S3",
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "should_refuse": false,
+    "annotation_origin": "Codex-authored expectations; teacher review pending"
+  },
+  "T1": {
+    "expected_status": "no_answer",
+    "facts": {},
+    "acceptance_status": "pending_teacher_reference_data",
+    "gold_chunk_ids": [
+      "price-student-eligibility",
+      "price-student-weekday-rate",
+      "price-student-holiday-exception"
+    ],
+    "acceptable_chunk_ids": [
+      "price-student-eligibility",
+      "price-student-weekday-rate",
+      "price-student-holiday-exception"
+    ],
+    "should_refuse": true,
+    "annotation_origin": "Codex-authored expectations; teacher review pending"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "version": "week3-synthetic-v1",
+  "version": "week3-studio-v2",
   "sources": [
     {
       "id": "teacher-demo",
@@ -11,7 +11,15 @@
       "valid_until": "2026-12-31",
       "pii": "synthetic_no_pii",
       "withdrawn": false,
-      "withdrawal": "設 withdrawn=true 後下一次檢索排除；另清理公開 trace 與 Git 歷史。"
+      "withdrawal": "設 withdrawn=true 後下一次檢索排除；另清理公開 trace 與 Git 歷史。",
+      "owner": "本專案團隊（合成資料維護）",
+      "original_file": "examples/week3/dataset.json#sources/teacher-demo",
+      "license": "project-authored synthetic teaching fixture; no third-party source license implied",
+      "update_cadence": "每次變更教師要求或測試案例時檢閱，最遲於 valid_until 前複核",
+      "retention": "合成來源與去識別化證據保留供課程稽核；2027-01-31 檢閱是否刪除。無自動刪除排程。",
+      "precedence": 100,
+      "conflicts_with": [],
+      "delete_reindex": "withdrawn=true 排除後續請求；無持久索引；已公開 trace 與 Git 歷史另行清理"
     },
     {
       "id": "student-demo",
@@ -23,7 +31,15 @@
       "valid_until": "2026-12-31",
       "pii": "synthetic_no_pii",
       "withdrawn": false,
-      "withdrawal": "設 withdrawn=true 後下一次檢索排除；另清理公開 trace 與 Git 歷史。"
+      "withdrawal": "設 withdrawn=true 後下一次檢索排除；另清理公開 trace 與 Git 歷史。",
+      "owner": "本專案團隊（合成資料維護）",
+      "original_file": "examples/week3/dataset.json#sources/student-demo",
+      "license": "project-authored synthetic teaching fixture; no third-party source license implied",
+      "update_cadence": "每次變更教師要求或測試案例時檢閱，最遲於 valid_until 前複核",
+      "retention": "合成來源與去識別化證據保留供課程稽核；2027-01-31 檢閱是否刪除。無自動刪除排程。",
+      "precedence": 10,
+      "conflicts_with": [],
+      "delete_reindex": "withdrawn=true 排除後續請求；無持久索引；已公開 trace 與 Git 歷史另行清理"
     },
     {
       "id": "court-hours-demo",
@@ -35,7 +51,15 @@
       "valid_until": "2026-12-31",
       "pii": "synthetic_no_pii",
       "withdrawn": false,
-      "withdrawal": "設 withdrawn=true 後下一次檢索排除；另清理公開 trace 與 Git 歷史。"
+      "withdrawal": "設 withdrawn=true 後下一次檢索排除；另清理公開 trace 與 Git 歷史。",
+      "owner": "本專案團隊（合成資料維護）",
+      "original_file": "examples/week3/dataset.json#sources/court-hours-demo",
+      "license": "project-authored synthetic teaching fixture; no third-party source license implied",
+      "update_cadence": "每次變更教師要求或測試案例時檢閱，最遲於 valid_until 前複核",
+      "retention": "合成來源與去識別化證據保留供課程稽核；2027-01-31 檢閱是否刪除。無自動刪除排程。",
+      "precedence": 10,
+      "conflicts_with": [],
+      "delete_reindex": "withdrawn=true 排除後續請求；無持久索引；已公開 trace 與 Git 歷史另行清理"
     },
     {
       "id": "court-booking-demo",
@@ -47,7 +71,15 @@
       "valid_until": "2026-12-31",
       "pii": "synthetic_no_pii",
       "withdrawn": false,
-      "withdrawal": "設 withdrawn=true 後下一次檢索排除；另清理公開 trace 與 Git 歷史。"
+      "withdrawal": "設 withdrawn=true 後下一次檢索排除；另清理公開 trace 與 Git 歷史。",
+      "owner": "本專案團隊（合成資料維護）",
+      "original_file": "examples/week3/dataset.json#sources/court-booking-demo",
+      "license": "project-authored synthetic teaching fixture; no third-party source license implied",
+      "update_cadence": "每次變更教師要求或測試案例時檢閱，最遲於 valid_until 前複核",
+      "retention": "合成來源與去識別化證據保留供課程稽核；2027-01-31 檢閱是否刪除。無自動刪除排程。",
+      "precedence": 10,
+      "conflicts_with": [],
+      "delete_reindex": "withdrawn=true 排除後續請求；無持久索引；已公開 trace 與 Git 歷史另行清理"
     },
     {
       "id": "court-shoes-demo",
@@ -59,7 +91,15 @@
       "valid_until": "2026-12-31",
       "pii": "synthetic_no_pii",
       "withdrawn": false,
-      "withdrawal": "設 withdrawn=true 後下一次檢索排除；另清理公開 trace 與 Git 歷史。"
+      "withdrawal": "設 withdrawn=true 後下一次檢索排除；另清理公開 trace 與 Git 歷史。",
+      "owner": "本專案團隊（合成資料維護）",
+      "original_file": "examples/week3/dataset.json#sources/court-shoes-demo",
+      "license": "project-authored synthetic teaching fixture; no third-party source license implied",
+      "update_cadence": "每次變更教師要求或測試案例時檢閱，最遲於 valid_until 前複核",
+      "retention": "合成來源與去識別化證據保留供課程稽核；2027-01-31 檢閱是否刪除。無自動刪除排程。",
+      "precedence": 10,
+      "conflicts_with": [],
+      "delete_reindex": "withdrawn=true 排除後續請求；無持久索引；已公開 trace 與 Git 歷史另行清理"
     },
     {
       "id": "court-old-demo",
@@ -71,7 +111,15 @@
       "valid_until": "2026-12-31",
       "pii": "synthetic_no_pii",
       "withdrawn": true,
-      "withdrawal": "設 withdrawn=true 後下一次檢索排除；另清理公開 trace 與 Git 歷史。"
+      "withdrawal": "設 withdrawn=true 後下一次檢索排除；另清理公開 trace 與 Git 歷史。",
+      "owner": "本專案團隊（合成資料維護）",
+      "original_file": "examples/week3/dataset.json#sources/court-old-demo",
+      "license": "project-authored synthetic teaching fixture; no third-party source license implied",
+      "update_cadence": "每次變更教師要求或測試案例時檢閱，最遲於 valid_until 前複核",
+      "retention": "合成來源與去識別化證據保留供課程稽核；2027-01-31 檢閱是否刪除。無自動刪除排程。",
+      "precedence": 10,
+      "conflicts_with": [],
+      "delete_reindex": "withdrawn=true 排除後續請求；無持久索引；已公開 trace 與 Git 歷史另行清理"
     }
   ],
   "chunks": [
@@ -251,7 +299,9 @@
             }
           ]
         }
-      ]
+      ],
+      "fixture_id": "Q1",
+      "case_type": "normal"
     },
     "Q2": {
       "question": "截止日期？",
@@ -269,7 +319,9 @@
           ],
           "literal_rules": []
         }
-      ]
+      ],
+      "fixture_id": "Q2",
+      "case_type": "no-answer"
     },
     "Q3": {
       "question": "學生作業的使用者、失敗案例與附錄證據符合老師範例嗎？哪些要補件或確認？",
@@ -345,7 +397,9 @@
             }
           ]
         }
-      ]
+      ],
+      "fixture_id": "Q1",
+      "case_type": "coverage-failure"
     },
     "B1": {
       "question": "羽球館週六開放時間、預約方式與入場鞋款限制？",
@@ -413,7 +467,162 @@
             }
           ]
         }
+      ],
+      "fixture_id": "B1",
+      "case_type": "legacy-supplemental"
+    },
+    "QP": {
+      "question": "同學交的報告裡，誰會用、出錯範例和附錄是否交代清楚，還缺哪些內容？",
+      "corpus": "assignment-demo",
+      "top_k": 6,
+      "facts": [
+        {
+          "id": "target_user",
+          "label": "使用者與需求",
+          "required_roles": [
+            "teacher",
+            "student"
+          ],
+          "allowed_values": [
+            "met",
+            "partial",
+            "missing",
+            "uncertain"
+          ],
+          "literal_rules": [
+            {
+              "terms": [
+                "Target User",
+                "需求"
+              ],
+              "value": "met"
+            }
+          ]
+        },
+        {
+          "id": "failure_case",
+          "label": "失敗案例的輸入、結果、原因",
+          "required_roles": [
+            "teacher",
+            "student"
+          ],
+          "allowed_values": [
+            "met",
+            "partial",
+            "missing",
+            "uncertain"
+          ],
+          "literal_rules": [
+            {
+              "terms": [
+                "輸入",
+                "實際結果",
+                "原因"
+              ],
+              "value": "met"
+            }
+          ]
+        },
+        {
+          "id": "appendix",
+          "label": "可查看的附錄測試紀錄",
+          "required_roles": [
+            "teacher",
+            "student"
+          ],
+          "allowed_values": [
+            "met",
+            "partial",
+            "missing",
+            "uncertain"
+          ],
+          "literal_rules": [
+            {
+              "terms": [
+                "附錄 A"
+              ],
+              "value": "met"
+            }
+          ]
+        }
+      ],
+      "fixture_id": "Q1",
+      "case_type": "paraphrase"
+    },
+    "T1": {
+      "question": "持學生證的學生，週五 16:00 平日每小時場租多少？遇假日是否適用？",
+      "corpus": "teacher-pricing-pending",
+      "top_k": 3,
+      "case_type": "teacher-multi-evidence-pending",
+      "fixture_id": null,
+      "facts": [
+        {
+          "id": "eligibility",
+          "label": "學生資格",
+          "required_roles": [
+            "reference"
+          ],
+          "allowed_values": [
+            "uncertain"
+          ],
+          "literal_rules": []
+        },
+        {
+          "id": "weekday_rate",
+          "label": "平日 17:00 前每小時場租",
+          "required_roles": [
+            "reference"
+          ],
+          "allowed_values": [
+            "uncertain"
+          ],
+          "literal_rules": []
+        },
+        {
+          "id": "holiday_exception",
+          "label": "假日例外",
+          "required_roles": [
+            "reference"
+          ],
+          "allowed_values": [
+            "uncertain"
+          ],
+          "literal_rules": []
+        }
+      ],
+      "required_reference_chunk_ids": [
+        "price-student-eligibility",
+        "price-student-weekday-rate",
+        "price-student-holiday-exception"
       ]
     }
+  },
+  "teacher_reference": {
+    "lecture_filename": "Lecture03_Agentic_AI_Engineering_RAG (1).pdf",
+    "pdf_pages": [
+      3,
+      4,
+      5,
+      6
+    ],
+    "slide_pages": [
+      49,
+      50,
+      51,
+      52
+    ],
+    "source_id": "mock-pricing-2026-fall",
+    "status": "chunk_text_and_rate_not_in_supplied_pdf",
+    "required_chunk_ids": [
+      "price-student-eligibility",
+      "price-student-weekday-rate",
+      "price-student-holiday-exception"
+    ],
+    "fixed_queries": {
+      "normal": "學生平日場租",
+      "paraphrase": "學生證＋星期四下午",
+      "no_answer": "今天晚上哪面場可訂"
+    },
+    "note": "原文、數額、版本／授權資料尚缺；不可把合成 B1 開放時間案例當成教師費率案例。"
   }
 }

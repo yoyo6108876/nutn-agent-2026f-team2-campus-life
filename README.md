@@ -14,7 +14,9 @@ LLM 的核心工作是理解範例與學生作業的語意對應，辨識「換�
 
 依 0922 新版講義整理的 [Week 2 Baseline Declaration：實作與驗證版](docs/week2-baseline-declaration.md)，已整合本週範圍、實際 I/O、200／422／502 預期與實測結果、模型與指令版本、已知限制、重現指令及 Exit ticket，可作為本週提交入口。
 
-**Week 3 提交入口：[Retrieval + Generator Comparison](docs/week3/README.md)。** 已完成來源卡、三個固定查詢、top-k trace、證據固定、規則與 LLM 比較、引用 gate 與失敗觀察。合成作業案例與合成羽球館案例各完成一次真實 API 測試，均為 fact coverage 3/3、unsupported claims 0；這是封閉測試結果，並非普遍正確率。教師原始多證據案例尚未提供，仍需後續 checkpoint 驗收。
+**Week 3 提交入口：[Retrieval + Generator Comparison](docs/week3/README.md)。** 已依 Lecture03 PDF 的投影片 47–54 修正：normal／paraphrase／no-answer 三題、額外 coverage failure、完整 source card、top-k trace 與 Offline／Fixture 比較。執行 `.venv/bin/python -m scripts.run_studio_generator_lab --path auto` 產生 [正式比較 JSON](artifacts/week03-generator-comparison.json)，不使用 API key。
+
+教師案例指定「學生資格、平日費率、假日例外」，PDF 沒有附三段 pricing 原文或金額，因此目前安全拒答並標記 checkpoint 未完成。先前真實 API 測試保留為歷史補充；舊開放時間 B1 案例不能替代教師費率案例。詳見 [講義核對與修正](docs/week3/requirements-audit.md)。
 
 Week 3 新增 `/assistant/week3/queries` 與 `/assistant/week3/query`；預設 `fixture` 不呼叫 API，指定 `live` 才使用 LLM。此端點目前使用固定合成資料；任意文字作業仍使用 Week 2 的 `/assistant/check-submission`。
 

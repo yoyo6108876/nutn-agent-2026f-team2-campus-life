@@ -32,6 +32,10 @@ def local_settings():
 
 
 class OpenAIProvider:
+    prompt = PROMPT
+    prompt_version = PROMPT_VERSION
+    response_type = ModelReport
+
     def __init__(self, client=None, model=None):
         self.client = client
         self.model = model
@@ -51,9 +55,9 @@ class OpenAIProvider:
         try:
             response = client.responses.parse(
                 model=model,
-                input=[{"role": "system", "content": PROMPT},
+                input=[{"role": "system", "content": self.prompt},
                        {"role": "user", "content": request.model_dump_json()}],
-                text_format=ModelReport,
+                text_format=self.response_type,
                 temperature=0,
                 max_output_tokens=3000,
                 store=False,
@@ -75,7 +79,7 @@ class OpenAIProvider:
             raise CheckFailure("INVALID_RESPONSE", "response_schema", "模型輸出不符合回覆結構。") from None
         self.metadata = {
             "model": response.model,
-            "prompt_version": PROMPT_VERSION,
+            "prompt_version": self.prompt_version,
             "latency_seconds": round(perf_counter() - start, 3),
             "usage": response.usage.model_dump() if response.usage else None,
         }

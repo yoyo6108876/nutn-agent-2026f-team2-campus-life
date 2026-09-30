@@ -1,0 +1,1278 @@
+{
+  "schema_version": "week3-comparison-v1",
+  "captured_at": "2026-09-30T01:29:39.594050+00:00",
+  "command": "python -m scripts.run_week3_evidence --output-dir docs/week3/evidence/fixture",
+  "data_source": "synthetic authored fixture; no real student records",
+  "teacher_original_case": "not_supplied; B1 is a clearly labeled synthetic substitute",
+  "oracle_hash": "a09c4d4a8d0a3da20d26627ec3a09376f61ab9e356b649bc841ed9335fc7c980",
+  "all_expected_checks_passed": true,
+  "cases": [
+    {
+      "query_id": "Q1",
+      "request": {
+        "query_id": "Q1",
+        "mode": "fixture",
+        "top_k": null
+      },
+      "generators": [
+        {
+          "kind": "literal_rule_baseline",
+          "evidence_hash": "2bb0fd672501cde20cbdd481a3d381713d3540651be84ca8cf081bcf976d7dfa",
+          "raw_output": {
+            "facts": [
+              {
+                "fact_id": "target_user",
+                "value": "uncertain",
+                "evidence": [
+                  {
+                    "chunk_id": "S1",
+                    "quote": "學生作業的使用者：剛交完報告、擔心遺漏必寫內容的南大同學，希望提交後先收到補件提醒。"
+                  },
+                  {
+                    "chunk_id": "T1",
+                    "quote": "老師範例的使用者要求：說明誰會使用助手，以及他需要解決的問題。標題寫法不限定。"
+                  }
+                ]
+              },
+              {
+                "fact_id": "failure_case",
+                "value": "met",
+                "evidence": [
+                  {
+                    "chunk_id": "S2",
+                    "quote": "學生作業的失敗案例：輸入是一份只有封面、没有正文的報告；實際結果是助手顯示全部完成。本段沒有說明造成錯判的原因。"
+                  },
+                  {
+                    "chunk_id": "T2",
+                    "quote": "老師範例的失敗案例要求：必須包含輸入、實際結果與失敗原因三項。"
+                  }
+                ]
+              },
+              {
+                "fact_id": "appendix",
+                "value": "met",
+                "evidence": [
+                  {
+                    "chunk_id": "S3",
+                    "quote": "學生作業的附錄證據：測試紀錄請見附錄 A，另外一個檔案繳交。本次可供檢查的資料不含附錄 A 內容。"
+                  },
+                  {
+                    "chunk_id": "T3",
+                    "quote": "老師範例的附錄證據要求：應提供可查看的測試紀錄內容；若只提及另附檔案，必須取得檔案後才能確認。"
+                  }
+                ]
+              }
+            ]
+          },
+          "evaluation": {
+            "evaluator": "authored-oracle-v1; closed synthetic benchmark only",
+            "citation_gate": "passed",
+            "citation_error": null,
+            "fact_coverage": "0/3",
+            "correct_supported_facts": 0,
+            "required_facts": 3,
+            "unsupported_claims": 2,
+            "unnecessary_abstentions": 1,
+            "details": [
+              {
+                "fact_id": "target_user",
+                "expected_value": "met",
+                "actual_values": [
+                  "uncertain"
+                ],
+                "supported_correct": false
+              },
+              {
+                "fact_id": "failure_case",
+                "expected_value": "partial",
+                "actual_values": [
+                  "met"
+                ],
+                "supported_correct": false
+              },
+              {
+                "fact_id": "appendix",
+                "expected_value": "uncertain",
+                "actual_values": [
+                  "met"
+                ],
+                "supported_correct": false
+              }
+            ],
+            "benchmark_pass": false
+          }
+        },
+        {
+          "kind": "authored_fixture_not_model_output",
+          "evidence_hash": "2bb0fd672501cde20cbdd481a3d381713d3540651be84ca8cf081bcf976d7dfa",
+          "raw_output": {
+            "facts": [
+              {
+                "fact_id": "target_user",
+                "value": "met",
+                "evidence": [
+                  {
+                    "chunk_id": "T1",
+                    "quote": "老師範例的使用者要求：說明誰會使用助手，以及他需要解決的問題。標題寫法不限定。"
+                  },
+                  {
+                    "chunk_id": "S1",
+                    "quote": "學生作業的使用者：剛交完報告、擔心遺漏必寫內容的南大同學，希望提交後先收到補件提醒。"
+                  }
+                ]
+              },
+              {
+                "fact_id": "failure_case",
+                "value": "partial",
+                "evidence": [
+                  {
+                    "chunk_id": "T2",
+                    "quote": "老師範例的失敗案例要求：必須包含輸入、實際結果與失敗原因三項。"
+                  },
+                  {
+                    "chunk_id": "S2",
+                    "quote": "學生作業的失敗案例：輸入是一份只有封面、没有正文的報告；實際結果是助手顯示全部完成。本段沒有說明造成錯判的原因。"
+                  }
+                ]
+              },
+              {
+                "fact_id": "appendix",
+                "value": "uncertain",
+                "evidence": [
+                  {
+                    "chunk_id": "T3",
+                    "quote": "老師範例的附錄證據要求：應提供可查看的測試紀錄內容；若只提及另附檔案，必須取得檔案後才能確認。"
+                  },
+                  {
+                    "chunk_id": "S3",
+                    "quote": "學生作業的附錄證據：測試紀錄請見附錄 A，另外一個檔案繳交。本次可供檢查的資料不含附錄 A 內容。"
+                  }
+                ]
+              }
+            ]
+          },
+          "evaluation": {
+            "evaluator": "authored-oracle-v1; closed synthetic benchmark only",
+            "citation_gate": "passed",
+            "citation_error": null,
+            "fact_coverage": "3/3",
+            "correct_supported_facts": 3,
+            "required_facts": 3,
+            "unsupported_claims": 0,
+            "unnecessary_abstentions": 0,
+            "details": [
+              {
+                "fact_id": "target_user",
+                "expected_value": "met",
+                "actual_values": [
+                  "met"
+                ],
+                "supported_correct": true
+              },
+              {
+                "fact_id": "failure_case",
+                "expected_value": "partial",
+                "actual_values": [
+                  "partial"
+                ],
+                "supported_correct": true
+              },
+              {
+                "fact_id": "appendix",
+                "expected_value": "uncertain",
+                "actual_values": [
+                  "uncertain"
+                ],
+                "supported_correct": true
+              }
+            ],
+            "benchmark_pass": true
+          }
+        }
+      ],
+      "response": {
+        "mode": "fixture",
+        "status": "answered",
+        "trace": {
+          "query_id": "Q1",
+          "question": "學生作業的使用者、失敗案例與附錄證據符合老師範例嗎？哪些要補件或確認？",
+          "corpus": "assignment-demo",
+          "dataset_version": "week3-synthetic-v1",
+          "dataset_hash": "28b0c4d3f8a9c3c03dbfe2ca359c9e579d299d8c1db84ab684d3d8e83632dcce",
+          "policy_date": "2026-09-30",
+          "retriever_version": "unicode-bigram-overlap-v1",
+          "top_k": 6,
+          "min_score_exclusive": 0,
+          "gate": "ready",
+          "missing_coverage": [],
+          "excluded": [],
+          "required_facts": [
+            {
+              "id": "target_user",
+              "label": "使用者與需求",
+              "required_roles": [
+                "teacher",
+                "student"
+              ],
+              "allowed_values": [
+                "met",
+                "partial",
+                "missing",
+                "uncertain"
+              ],
+              "literal_rules": [
+                {
+                  "terms": [
+                    "Target User",
+                    "需求"
+                  ],
+                  "value": "met"
+                }
+              ]
+            },
+            {
+              "id": "failure_case",
+              "label": "失敗案例的輸入、結果、原因",
+              "required_roles": [
+                "teacher",
+                "student"
+              ],
+              "allowed_values": [
+                "met",
+                "partial",
+                "missing",
+                "uncertain"
+              ],
+              "literal_rules": [
+                {
+                  "terms": [
+                    "輸入",
+                    "實際結果",
+                    "原因"
+                  ],
+                  "value": "met"
+                }
+              ]
+            },
+            {
+              "id": "appendix",
+              "label": "可查看的附錄測試紀錄",
+              "required_roles": [
+                "teacher",
+                "student"
+              ],
+              "allowed_values": [
+                "met",
+                "partial",
+                "missing",
+                "uncertain"
+              ],
+              "literal_rules": [
+                {
+                  "terms": [
+                    "附錄 A"
+                  ],
+                  "value": "met"
+                }
+              ]
+            }
+          ],
+          "ranked_candidates": [
+            {
+              "rank": 1,
+              "chunk_id": "S1",
+              "source_id": "student-demo",
+              "score": 0.275862,
+              "matched_terms": [
+                "作業",
+                "使用",
+                "學生",
+                "業的",
+                "生作",
+                "用者",
+                "的使",
+                "補件"
+              ],
+              "selected": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "S2",
+              "source_id": "student-demo",
+              "score": 0.241379,
+              "matched_terms": [
+                "作業",
+                "失敗",
+                "學生",
+                "敗案",
+                "案例",
+                "業的",
+                "生作"
+              ],
+              "selected": true
+            },
+            {
+              "rank": 3,
+              "chunk_id": "S3",
+              "source_id": "student-demo",
+              "score": 0.241379,
+              "matched_terms": [
+                "作業",
+                "學生",
+                "業的",
+                "生作",
+                "證據",
+                "錄證",
+                "附錄"
+              ],
+              "selected": true
+            },
+            {
+              "rank": 4,
+              "chunk_id": "T3",
+              "source_id": "teacher-demo",
+              "score": 0.241379,
+              "matched_terms": [
+                "師範",
+                "確認",
+                "範例",
+                "老師",
+                "證據",
+                "錄證",
+                "附錄"
+              ],
+              "selected": true
+            },
+            {
+              "rank": 5,
+              "chunk_id": "T1",
+              "source_id": "teacher-demo",
+              "score": 0.206897,
+              "matched_terms": [
+                "使用",
+                "師範",
+                "用者",
+                "的使",
+                "範例",
+                "老師"
+              ],
+              "selected": true
+            },
+            {
+              "rank": 6,
+              "chunk_id": "T2",
+              "source_id": "teacher-demo",
+              "score": 0.206897,
+              "matched_terms": [
+                "失敗",
+                "師範",
+                "敗案",
+                "案例",
+                "範例",
+                "老師"
+              ],
+              "selected": true
+            }
+          ],
+          "selected_evidence": [
+            {
+              "id": "S1",
+              "source_id": "student-demo",
+              "source_version": "synthetic-v1",
+              "role": "student",
+              "fact_ids": [
+                "target_user"
+              ],
+              "text": "學生作業的使用者：剛交完報告、擔心遺漏必寫內容的南大同學，希望提交後先收到補件提醒。"
+            },
+            {
+              "id": "S2",
+              "source_id": "student-demo",
+              "source_version": "synthetic-v1",
+              "role": "student",
+              "fact_ids": [
+                "failure_case"
+              ],
+              "text": "學生作業的失敗案例：輸入是一份只有封面、没有正文的報告；實際結果是助手顯示全部完成。本段沒有說明造成錯判的原因。"
+            },
+            {
+              "id": "S3",
+              "source_id": "student-demo",
+              "source_version": "synthetic-v1",
+              "role": "student",
+              "fact_ids": [
+                "appendix"
+              ],
+              "text": "學生作業的附錄證據：測試紀錄請見附錄 A，另外一個檔案繳交。本次可供檢查的資料不含附錄 A 內容。"
+            },
+            {
+              "id": "T3",
+              "source_id": "teacher-demo",
+              "source_version": "synthetic-v1",
+              "role": "teacher",
+              "fact_ids": [
+                "appendix"
+              ],
+              "text": "老師範例的附錄證據要求：應提供可查看的測試紀錄內容；若只提及另附檔案，必須取得檔案後才能確認。"
+            },
+            {
+              "id": "T1",
+              "source_id": "teacher-demo",
+              "source_version": "synthetic-v1",
+              "role": "teacher",
+              "fact_ids": [
+                "target_user"
+              ],
+              "text": "老師範例的使用者要求：說明誰會使用助手，以及他需要解決的問題。標題寫法不限定。"
+            },
+            {
+              "id": "T2",
+              "source_id": "teacher-demo",
+              "source_version": "synthetic-v1",
+              "role": "teacher",
+              "fact_ids": [
+                "failure_case"
+              ],
+              "text": "老師範例的失敗案例要求：必須包含輸入、實際結果與失敗原因三項。"
+            }
+          ],
+          "evidence_hash": "2bb0fd672501cde20cbdd481a3d381713d3540651be84ca8cf081bcf976d7dfa"
+        },
+        "provider_attempts": 0,
+        "provider_metadata": null,
+        "answer": [
+          {
+            "fact_id": "target_user",
+            "label": "使用者與需求",
+            "value": "met",
+            "citations": [
+              {
+                "chunk_id": "T1",
+                "source_id": "teacher-demo",
+                "source_version": "synthetic-v1",
+                "quote": "老師範例的使用者要求：說明誰會使用助手，以及他需要解決的問題。標題寫法不限定。"
+              },
+              {
+                "chunk_id": "S1",
+                "source_id": "student-demo",
+                "source_version": "synthetic-v1",
+                "quote": "學生作業的使用者：剛交完報告、擔心遺漏必寫內容的南大同學，希望提交後先收到補件提醒。"
+              }
+            ]
+          },
+          {
+            "fact_id": "failure_case",
+            "label": "失敗案例的輸入、結果、原因",
+            "value": "partial",
+            "citations": [
+              {
+                "chunk_id": "T2",
+                "source_id": "teacher-demo",
+                "source_version": "synthetic-v1",
+                "quote": "老師範例的失敗案例要求：必須包含輸入、實際結果與失敗原因三項。"
+              },
+              {
+                "chunk_id": "S2",
+                "source_id": "student-demo",
+                "source_version": "synthetic-v1",
+                "quote": "學生作業的失敗案例：輸入是一份只有封面、没有正文的報告；實際結果是助手顯示全部完成。本段沒有說明造成錯判的原因。"
+              }
+            ]
+          },
+          {
+            "fact_id": "appendix",
+            "label": "可查看的附錄測試紀錄",
+            "value": "uncertain",
+            "citations": [
+              {
+                "chunk_id": "T3",
+                "source_id": "teacher-demo",
+                "source_version": "synthetic-v1",
+                "quote": "老師範例的附錄證據要求：應提供可查看的測試紀錄內容；若只提及另附檔案，必須取得檔案後才能確認。"
+              },
+              {
+                "chunk_id": "S3",
+                "source_id": "student-demo",
+                "source_version": "synthetic-v1",
+                "quote": "學生作業的附錄證據：測試紀錄請見附錄 A，另外一個檔案繳交。本次可供檢查的資料不含附錄 A 內容。"
+              }
+            ]
+          }
+        ],
+        "student_notice": {
+          "needs_revision": [
+            "failure_case"
+          ],
+          "needs_confirmation": [
+            "appendix"
+          ]
+        },
+        "teacher_notice": {
+          "needs_revision": [
+            "failure_case"
+          ],
+          "needs_confirmation": [
+            "appendix"
+          ]
+        },
+        "provider_kind": "authored_fixture_not_model_output",
+        "generator_output": {
+          "facts": [
+            {
+              "fact_id": "target_user",
+              "value": "met",
+              "evidence": [
+                {
+                  "chunk_id": "T1",
+                  "quote": "老師範例的使用者要求：說明誰會使用助手，以及他需要解決的問題。標題寫法不限定。"
+                },
+                {
+                  "chunk_id": "S1",
+                  "quote": "學生作業的使用者：剛交完報告、擔心遺漏必寫內容的南大同學，希望提交後先收到補件提醒。"
+                }
+              ]
+            },
+            {
+              "fact_id": "failure_case",
+              "value": "partial",
+              "evidence": [
+                {
+                  "chunk_id": "T2",
+                  "quote": "老師範例的失敗案例要求：必須包含輸入、實際結果與失敗原因三項。"
+                },
+                {
+                  "chunk_id": "S2",
+                  "quote": "學生作業的失敗案例：輸入是一份只有封面、没有正文的報告；實際結果是助手顯示全部完成。本段沒有說明造成錯判的原因。"
+                }
+              ]
+            },
+            {
+              "fact_id": "appendix",
+              "value": "uncertain",
+              "evidence": [
+                {
+                  "chunk_id": "T3",
+                  "quote": "老師範例的附錄證據要求：應提供可查看的測試紀錄內容；若只提及另附檔案，必須取得檔案後才能確認。"
+                },
+                {
+                  "chunk_id": "S3",
+                  "quote": "學生作業的附錄證據：測試紀錄請見附錄 A，另外一個檔案繳交。本次可供檢查的資料不含附錄 A 內容。"
+                }
+              ]
+            }
+          ]
+        },
+        "citation_gate": "passed",
+        "semantic_verification": "not_proven_by_citation_gate"
+      },
+      "benchmark_pass": true
+    },
+    {
+      "query_id": "Q2",
+      "request": {
+        "query_id": "Q2",
+        "mode": "fixture",
+        "top_k": null
+      },
+      "generators": [],
+      "response": {
+        "mode": "fixture",
+        "status": "no_answer",
+        "trace": {
+          "query_id": "Q2",
+          "question": "截止日期？",
+          "corpus": "assignment-demo",
+          "dataset_version": "week3-synthetic-v1",
+          "dataset_hash": "28b0c4d3f8a9c3c03dbfe2ca359c9e579d299d8c1db84ab684d3d8e83632dcce",
+          "policy_date": "2026-09-30",
+          "retriever_version": "unicode-bigram-overlap-v1",
+          "top_k": 6,
+          "min_score_exclusive": 0,
+          "gate": "no_answer",
+          "missing_coverage": [
+            {
+              "fact_id": "deadline",
+              "role": "teacher"
+            }
+          ],
+          "excluded": [],
+          "required_facts": [
+            {
+              "id": "deadline",
+              "label": "截止日期",
+              "required_roles": [
+                "teacher"
+              ],
+              "allowed_values": [
+                "uncertain"
+              ],
+              "literal_rules": []
+            }
+          ],
+          "ranked_candidates": [],
+          "selected_evidence": [],
+          "evidence_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "provider_attempts": 0,
+        "provider_metadata": null,
+        "answer": [],
+        "student_notice": null,
+        "teacher_notice": null,
+        "message": "找不到可用證據。"
+      },
+      "benchmark_pass": true
+    },
+    {
+      "query_id": "Q3",
+      "request": {
+        "query_id": "Q3",
+        "mode": "fixture",
+        "top_k": null
+      },
+      "generators": [],
+      "response": {
+        "mode": "fixture",
+        "status": "coverage_failure",
+        "trace": {
+          "query_id": "Q3",
+          "question": "學生作業的使用者、失敗案例與附錄證據符合老師範例嗎？哪些要補件或確認？",
+          "corpus": "assignment-demo",
+          "dataset_version": "week3-synthetic-v1",
+          "dataset_hash": "28b0c4d3f8a9c3c03dbfe2ca359c9e579d299d8c1db84ab684d3d8e83632dcce",
+          "policy_date": "2026-09-30",
+          "retriever_version": "unicode-bigram-overlap-v1",
+          "top_k": 2,
+          "min_score_exclusive": 0,
+          "gate": "coverage_failure",
+          "missing_coverage": [
+            {
+              "fact_id": "target_user",
+              "role": "teacher"
+            },
+            {
+              "fact_id": "failure_case",
+              "role": "teacher"
+            },
+            {
+              "fact_id": "appendix",
+              "role": "teacher"
+            },
+            {
+              "fact_id": "appendix",
+              "role": "student"
+            }
+          ],
+          "excluded": [],
+          "required_facts": [
+            {
+              "id": "target_user",
+              "label": "使用者與需求",
+              "required_roles": [
+                "teacher",
+                "student"
+              ],
+              "allowed_values": [
+                "met",
+                "partial",
+                "missing",
+                "uncertain"
+              ],
+              "literal_rules": [
+                {
+                  "terms": [
+                    "Target User",
+                    "需求"
+                  ],
+                  "value": "met"
+                }
+              ]
+            },
+            {
+              "id": "failure_case",
+              "label": "失敗案例的輸入、結果、原因",
+              "required_roles": [
+                "teacher",
+                "student"
+              ],
+              "allowed_values": [
+                "met",
+                "partial",
+                "missing",
+                "uncertain"
+              ],
+              "literal_rules": [
+                {
+                  "terms": [
+                    "輸入",
+                    "實際結果",
+                    "原因"
+                  ],
+                  "value": "met"
+                }
+              ]
+            },
+            {
+              "id": "appendix",
+              "label": "可查看的附錄測試紀錄",
+              "required_roles": [
+                "teacher",
+                "student"
+              ],
+              "allowed_values": [
+                "met",
+                "partial",
+                "missing",
+                "uncertain"
+              ],
+              "literal_rules": [
+                {
+                  "terms": [
+                    "附錄 A"
+                  ],
+                  "value": "met"
+                }
+              ]
+            }
+          ],
+          "ranked_candidates": [
+            {
+              "rank": 1,
+              "chunk_id": "S1",
+              "source_id": "student-demo",
+              "score": 0.275862,
+              "matched_terms": [
+                "作業",
+                "使用",
+                "學生",
+                "業的",
+                "生作",
+                "用者",
+                "的使",
+                "補件"
+              ],
+              "selected": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "S2",
+              "source_id": "student-demo",
+              "score": 0.241379,
+              "matched_terms": [
+                "作業",
+                "失敗",
+                "學生",
+                "敗案",
+                "案例",
+                "業的",
+                "生作"
+              ],
+              "selected": true
+            },
+            {
+              "rank": 3,
+              "chunk_id": "S3",
+              "source_id": "student-demo",
+              "score": 0.241379,
+              "matched_terms": [
+                "作業",
+                "學生",
+                "業的",
+                "生作",
+                "證據",
+                "錄證",
+                "附錄"
+              ],
+              "selected": false
+            },
+            {
+              "rank": 4,
+              "chunk_id": "T3",
+              "source_id": "teacher-demo",
+              "score": 0.241379,
+              "matched_terms": [
+                "師範",
+                "確認",
+                "範例",
+                "老師",
+                "證據",
+                "錄證",
+                "附錄"
+              ],
+              "selected": false
+            },
+            {
+              "rank": 5,
+              "chunk_id": "T1",
+              "source_id": "teacher-demo",
+              "score": 0.206897,
+              "matched_terms": [
+                "使用",
+                "師範",
+                "用者",
+                "的使",
+                "範例",
+                "老師"
+              ],
+              "selected": false
+            },
+            {
+              "rank": 6,
+              "chunk_id": "T2",
+              "source_id": "teacher-demo",
+              "score": 0.206897,
+              "matched_terms": [
+                "失敗",
+                "師範",
+                "敗案",
+                "案例",
+                "範例",
+                "老師"
+              ],
+              "selected": false
+            }
+          ],
+          "selected_evidence": [
+            {
+              "id": "S1",
+              "source_id": "student-demo",
+              "source_version": "synthetic-v1",
+              "role": "student",
+              "fact_ids": [
+                "target_user"
+              ],
+              "text": "學生作業的使用者：剛交完報告、擔心遺漏必寫內容的南大同學，希望提交後先收到補件提醒。"
+            },
+            {
+              "id": "S2",
+              "source_id": "student-demo",
+              "source_version": "synthetic-v1",
+              "role": "student",
+              "fact_ids": [
+                "failure_case"
+              ],
+              "text": "學生作業的失敗案例：輸入是一份只有封面、没有正文的報告；實際結果是助手顯示全部完成。本段沒有說明造成錯判的原因。"
+            }
+          ],
+          "evidence_hash": "593d07318a4038a06df9f51bc9a748ac3e6677754b2cc8fdaa1a5a942bea42ff"
+        },
+        "provider_attempts": 0,
+        "provider_metadata": null,
+        "answer": [],
+        "student_notice": null,
+        "teacher_notice": null,
+        "message": "檢索證據不完整，不能判定作業缺漏。"
+      },
+      "benchmark_pass": true
+    },
+    {
+      "query_id": "B1",
+      "request": {
+        "query_id": "B1",
+        "mode": "fixture",
+        "top_k": null
+      },
+      "generators": [
+        {
+          "kind": "literal_rule_baseline",
+          "evidence_hash": "155b9a44f9651836158467a8ca7702f93b76350ef94d8afd69cb5acf11d39dff",
+          "raw_output": {
+            "facts": [
+              {
+                "fact_id": "hours",
+                "value": "09:00–17:00",
+                "evidence": [
+                  {
+                    "chunk_id": "B-hours",
+                    "quote": "【合成羽球館公告】週六開放時間為 09:00–17:00。此為課堂測試資料，不代表南大場館規定。"
+                  }
+                ]
+              },
+              {
+                "fact_id": "booking",
+                "value": "提前一天線上預約",
+                "evidence": [
+                  {
+                    "chunk_id": "B-booking",
+                    "quote": "【合成羽球館公告】預約方式：須提前一天線上預約，現場不受理預約。"
+                  }
+                ]
+              },
+              {
+                "fact_id": "shoes",
+                "value": "室內運動鞋，禁止拖鞋",
+                "evidence": [
+                  {
+                    "chunk_id": "B-shoes",
+                    "quote": "【合成羽球館公告】入場鞋款限制：須穿室內運動鞋，禁止穿拖鞋入場。"
+                  }
+                ]
+              }
+            ]
+          },
+          "evaluation": {
+            "evaluator": "authored-oracle-v1; closed synthetic benchmark only",
+            "citation_gate": "passed",
+            "citation_error": null,
+            "fact_coverage": "3/3",
+            "correct_supported_facts": 3,
+            "required_facts": 3,
+            "unsupported_claims": 0,
+            "unnecessary_abstentions": 0,
+            "details": [
+              {
+                "fact_id": "hours",
+                "expected_value": "09:00–17:00",
+                "actual_values": [
+                  "09:00–17:00"
+                ],
+                "supported_correct": true
+              },
+              {
+                "fact_id": "booking",
+                "expected_value": "提前一天線上預約",
+                "actual_values": [
+                  "提前一天線上預約"
+                ],
+                "supported_correct": true
+              },
+              {
+                "fact_id": "shoes",
+                "expected_value": "室內運動鞋，禁止拖鞋",
+                "actual_values": [
+                  "室內運動鞋，禁止拖鞋"
+                ],
+                "supported_correct": true
+              }
+            ],
+            "benchmark_pass": true
+          }
+        },
+        {
+          "kind": "authored_fixture_not_model_output",
+          "evidence_hash": "155b9a44f9651836158467a8ca7702f93b76350ef94d8afd69cb5acf11d39dff",
+          "raw_output": {
+            "facts": [
+              {
+                "fact_id": "hours",
+                "value": "09:00–17:00",
+                "evidence": [
+                  {
+                    "chunk_id": "B-hours",
+                    "quote": "【合成羽球館公告】週六開放時間為 09:00–17:00。此為課堂測試資料，不代表南大場館規定。"
+                  }
+                ]
+              },
+              {
+                "fact_id": "booking",
+                "value": "提前一天線上預約",
+                "evidence": [
+                  {
+                    "chunk_id": "B-booking",
+                    "quote": "【合成羽球館公告】預約方式：須提前一天線上預約，現場不受理預約。"
+                  }
+                ]
+              },
+              {
+                "fact_id": "shoes",
+                "value": "室內運動鞋，禁止拖鞋",
+                "evidence": [
+                  {
+                    "chunk_id": "B-shoes",
+                    "quote": "【合成羽球館公告】入場鞋款限制：須穿室內運動鞋，禁止穿拖鞋入場。"
+                  }
+                ]
+              }
+            ]
+          },
+          "evaluation": {
+            "evaluator": "authored-oracle-v1; closed synthetic benchmark only",
+            "citation_gate": "passed",
+            "citation_error": null,
+            "fact_coverage": "3/3",
+            "correct_supported_facts": 3,
+            "required_facts": 3,
+            "unsupported_claims": 0,
+            "unnecessary_abstentions": 0,
+            "details": [
+              {
+                "fact_id": "hours",
+                "expected_value": "09:00–17:00",
+                "actual_values": [
+                  "09:00–17:00"
+                ],
+                "supported_correct": true
+              },
+              {
+                "fact_id": "booking",
+                "expected_value": "提前一天線上預約",
+                "actual_values": [
+                  "提前一天線上預約"
+                ],
+                "supported_correct": true
+              },
+              {
+                "fact_id": "shoes",
+                "expected_value": "室內運動鞋，禁止拖鞋",
+                "actual_values": [
+                  "室內運動鞋，禁止拖鞋"
+                ],
+                "supported_correct": true
+              }
+            ],
+            "benchmark_pass": true
+          }
+        }
+      ],
+      "response": {
+        "mode": "fixture",
+        "status": "answered",
+        "trace": {
+          "query_id": "B1",
+          "question": "羽球館週六開放時間、預約方式與入場鞋款限制？",
+          "corpus": "badminton-demo",
+          "dataset_version": "week3-synthetic-v1",
+          "dataset_hash": "28b0c4d3f8a9c3c03dbfe2ca359c9e579d299d8c1db84ab684d3d8e83632dcce",
+          "policy_date": "2026-09-30",
+          "retriever_version": "unicode-bigram-overlap-v1",
+          "top_k": 3,
+          "min_score_exclusive": 0,
+          "gate": "ready",
+          "missing_coverage": [],
+          "excluded": [
+            {
+              "chunk_id": "B-old",
+              "reason": "withdrawn"
+            }
+          ],
+          "required_facts": [
+            {
+              "id": "hours",
+              "label": "週六開放時間",
+              "required_roles": [
+                "reference"
+              ],
+              "allowed_values": [
+                "09:00–17:00",
+                "00:00–24:00",
+                "uncertain"
+              ],
+              "literal_rules": [
+                {
+                  "terms": [
+                    "09:00–17:00"
+                  ],
+                  "value": "09:00–17:00"
+                }
+              ]
+            },
+            {
+              "id": "booking",
+              "label": "預約方式",
+              "required_roles": [
+                "reference"
+              ],
+              "allowed_values": [
+                "提前一天線上預約",
+                "現場預約",
+                "uncertain"
+              ],
+              "literal_rules": [
+                {
+                  "terms": [
+                    "提前一天線上預約"
+                  ],
+                  "value": "提前一天線上預約"
+                }
+              ]
+            },
+            {
+              "id": "shoes",
+              "label": "入場鞋款",
+              "required_roles": [
+                "reference"
+              ],
+              "allowed_values": [
+                "室內運動鞋，禁止拖鞋",
+                "不限鞋款",
+                "uncertain"
+              ],
+              "literal_rules": [
+                {
+                  "terms": [
+                    "室內運動鞋",
+                    "禁止穿拖鞋"
+                  ],
+                  "value": "室內運動鞋，禁止拖鞋"
+                }
+              ]
+            }
+          ],
+          "ranked_candidates": [
+            {
+              "rank": 1,
+              "chunk_id": "B-hours",
+              "source_id": "court-hours-demo",
+              "score": 0.388889,
+              "matched_terms": [
+                "六開",
+                "放時",
+                "時間",
+                "球館",
+                "羽球",
+                "週六",
+                "開放"
+              ],
+              "selected": true
+            },
+            {
+              "rank": 2,
+              "chunk_id": "B-shoes",
+              "source_id": "court-shoes-demo",
+              "score": 0.388889,
+              "matched_terms": [
+                "入場",
+                "場鞋",
+                "款限",
+                "球館",
+                "羽球",
+                "限制",
+                "鞋款"
+              ],
+              "selected": true
+            },
+            {
+              "rank": 3,
+              "chunk_id": "B-booking",
+              "source_id": "court-booking-demo",
+              "score": 0.277778,
+              "matched_terms": [
+                "方式",
+                "球館",
+                "約方",
+                "羽球",
+                "預約"
+              ],
+              "selected": true
+            }
+          ],
+          "selected_evidence": [
+            {
+              "id": "B-hours",
+              "source_id": "court-hours-demo",
+              "source_version": "synthetic-v1",
+              "role": "reference",
+              "fact_ids": [
+                "hours"
+              ],
+              "text": "【合成羽球館公告】週六開放時間為 09:00–17:00。此為課堂測試資料，不代表南大場館規定。"
+            },
+            {
+              "id": "B-shoes",
+              "source_id": "court-shoes-demo",
+              "source_version": "synthetic-v1",
+              "role": "reference",
+              "fact_ids": [
+                "shoes"
+              ],
+              "text": "【合成羽球館公告】入場鞋款限制：須穿室內運動鞋，禁止穿拖鞋入場。"
+            },
+            {
+              "id": "B-booking",
+              "source_id": "court-booking-demo",
+              "source_version": "synthetic-v1",
+              "role": "reference",
+              "fact_ids": [
+                "booking"
+              ],
+              "text": "【合成羽球館公告】預約方式：須提前一天線上預約，現場不受理預約。"
+            }
+          ],
+          "evidence_hash": "155b9a44f9651836158467a8ca7702f93b76350ef94d8afd69cb5acf11d39dff"
+        },
+        "provider_attempts": 0,
+        "provider_metadata": null,
+        "answer": [
+          {
+            "fact_id": "hours",
+            "label": "週六開放時間",
+            "value": "09:00–17:00",
+            "citations": [
+              {
+                "chunk_id": "B-hours",
+                "source_id": "court-hours-demo",
+                "source_version": "synthetic-v1",
+                "quote": "【合成羽球館公告】週六開放時間為 09:00–17:00。此為課堂測試資料，不代表南大場館規定。"
+              }
+            ]
+          },
+          {
+            "fact_id": "booking",
+            "label": "預約方式",
+            "value": "提前一天線上預約",
+            "citations": [
+              {
+                "chunk_id": "B-booking",
+                "source_id": "court-booking-demo",
+                "source_version": "synthetic-v1",
+                "quote": "【合成羽球館公告】預約方式：須提前一天線上預約，現場不受理預約。"
+              }
+            ]
+          },
+          {
+            "fact_id": "shoes",
+            "label": "入場鞋款",
+            "value": "室內運動鞋，禁止拖鞋",
+            "citations": [
+              {
+                "chunk_id": "B-shoes",
+                "source_id": "court-shoes-demo",
+                "source_version": "synthetic-v1",
+                "quote": "【合成羽球館公告】入場鞋款限制：須穿室內運動鞋，禁止穿拖鞋入場。"
+              }
+            ]
+          }
+        ],
+        "student_notice": null,
+        "teacher_notice": null,
+        "provider_kind": "authored_fixture_not_model_output",
+        "generator_output": {
+          "facts": [
+            {
+              "fact_id": "hours",
+              "value": "09:00–17:00",
+              "evidence": [
+                {
+                  "chunk_id": "B-hours",
+                  "quote": "【合成羽球館公告】週六開放時間為 09:00–17:00。此為課堂測試資料，不代表南大場館規定。"
+                }
+              ]
+            },
+            {
+              "fact_id": "booking",
+              "value": "提前一天線上預約",
+              "evidence": [
+                {
+                  "chunk_id": "B-booking",
+                  "quote": "【合成羽球館公告】預約方式：須提前一天線上預約，現場不受理預約。"
+                }
+              ]
+            },
+            {
+              "fact_id": "shoes",
+              "value": "室內運動鞋，禁止拖鞋",
+              "evidence": [
+                {
+                  "chunk_id": "B-shoes",
+                  "quote": "【合成羽球館公告】入場鞋款限制：須穿室內運動鞋，禁止穿拖鞋入場。"
+                }
+              ]
+            }
+          ]
+        },
+        "citation_gate": "passed",
+        "semantic_verification": "not_proven_by_citation_gate"
+      },
+      "benchmark_pass": true
+    }
+  ]
+}

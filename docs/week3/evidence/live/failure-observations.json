@@ -1,0 +1,229 @@
+{
+  "provenance": "deliberately injected fixtures, not observed live LLM failures",
+  "evidence_hash": "155b9a44f9651836158467a8ca7702f93b76350ef94d8afd69cb5acf11d39dff",
+  "observations": [
+    {
+      "case": "unselected_withdrawn_citation",
+      "injected_output": {
+        "facts": [
+          {
+            "fact_id": "hours",
+            "value": "09:00–17:00",
+            "evidence": [
+              {
+                "chunk_id": "B-old",
+                "quote": "【合成羽球館公告】週六開放時間為 09:00–17:00。此為課堂測試資料，不代表南大場館規定。"
+              }
+            ]
+          },
+          {
+            "fact_id": "booking",
+            "value": "提前一天線上預約",
+            "evidence": [
+              {
+                "chunk_id": "B-booking",
+                "quote": "【合成羽球館公告】預約方式：須提前一天線上預約，現場不受理預約。"
+              }
+            ]
+          },
+          {
+            "fact_id": "shoes",
+            "value": "室內運動鞋，禁止拖鞋",
+            "evidence": [
+              {
+                "chunk_id": "B-shoes",
+                "quote": "【合成羽球館公告】入場鞋款限制：須穿室內運動鞋，禁止穿拖鞋入場。"
+              }
+            ]
+          }
+        ]
+      },
+      "evaluation": {
+        "evaluator": "authored-oracle-v1; closed synthetic benchmark only",
+        "citation_gate": "rejected",
+        "citation_error": {
+          "error": {
+            "code": "UNGROUNDED_RESPONSE",
+            "stage": "grounding",
+            "message": "citation_not_selected, citation_role_coverage_failure"
+          }
+        },
+        "fact_coverage": "2/3",
+        "correct_supported_facts": 2,
+        "required_facts": 3,
+        "unsupported_claims": 1,
+        "unnecessary_abstentions": 0,
+        "details": [
+          {
+            "fact_id": "hours",
+            "expected_value": "09:00–17:00",
+            "actual_values": [
+              "09:00–17:00"
+            ],
+            "supported_correct": false
+          },
+          {
+            "fact_id": "booking",
+            "expected_value": "提前一天線上預約",
+            "actual_values": [
+              "提前一天線上預約"
+            ],
+            "supported_correct": true
+          },
+          {
+            "fact_id": "shoes",
+            "expected_value": "室內運動鞋，禁止拖鞋",
+            "actual_values": [
+              "室內運動鞋，禁止拖鞋"
+            ],
+            "supported_correct": true
+          }
+        ],
+        "benchmark_pass": false
+      }
+    },
+    {
+      "case": "omitted_fact",
+      "injected_output": {
+        "facts": [
+          {
+            "fact_id": "hours",
+            "value": "09:00–17:00",
+            "evidence": [
+              {
+                "chunk_id": "B-hours",
+                "quote": "【合成羽球館公告】週六開放時間為 09:00–17:00。此為課堂測試資料，不代表南大場館規定。"
+              }
+            ]
+          },
+          {
+            "fact_id": "booking",
+            "value": "提前一天線上預約",
+            "evidence": [
+              {
+                "chunk_id": "B-booking",
+                "quote": "【合成羽球館公告】預約方式：須提前一天線上預約，現場不受理預約。"
+              }
+            ]
+          }
+        ]
+      },
+      "evaluation": {
+        "evaluator": "authored-oracle-v1; closed synthetic benchmark only",
+        "citation_gate": "rejected",
+        "citation_error": {
+          "error": {
+            "code": "UNGROUNDED_RESPONSE",
+            "stage": "grounding",
+            "message": "fact_set_mismatch"
+          }
+        },
+        "fact_coverage": "2/3",
+        "correct_supported_facts": 2,
+        "required_facts": 3,
+        "unsupported_claims": 0,
+        "unnecessary_abstentions": 0,
+        "details": [
+          {
+            "fact_id": "hours",
+            "expected_value": "09:00–17:00",
+            "actual_values": [
+              "09:00–17:00"
+            ],
+            "supported_correct": true
+          },
+          {
+            "fact_id": "booking",
+            "expected_value": "提前一天線上預約",
+            "actual_values": [
+              "提前一天線上預約"
+            ],
+            "supported_correct": true
+          },
+          {
+            "fact_id": "shoes",
+            "expected_value": "室內運動鞋，禁止拖鞋",
+            "actual_values": [],
+            "supported_correct": false
+          }
+        ],
+        "benchmark_pass": false
+      }
+    },
+    {
+      "case": "valid_quote_wrong_conclusion",
+      "injected_output": {
+        "facts": [
+          {
+            "fact_id": "hours",
+            "value": "00:00–24:00",
+            "evidence": [
+              {
+                "chunk_id": "B-hours",
+                "quote": "【合成羽球館公告】週六開放時間為 09:00–17:00。此為課堂測試資料，不代表南大場館規定。"
+              }
+            ]
+          },
+          {
+            "fact_id": "booking",
+            "value": "提前一天線上預約",
+            "evidence": [
+              {
+                "chunk_id": "B-booking",
+                "quote": "【合成羽球館公告】預約方式：須提前一天線上預約，現場不受理預約。"
+              }
+            ]
+          },
+          {
+            "fact_id": "shoes",
+            "value": "室內運動鞋，禁止拖鞋",
+            "evidence": [
+              {
+                "chunk_id": "B-shoes",
+                "quote": "【合成羽球館公告】入場鞋款限制：須穿室內運動鞋，禁止穿拖鞋入場。"
+              }
+            ]
+          }
+        ]
+      },
+      "evaluation": {
+        "evaluator": "authored-oracle-v1; closed synthetic benchmark only",
+        "citation_gate": "passed",
+        "citation_error": null,
+        "fact_coverage": "2/3",
+        "correct_supported_facts": 2,
+        "required_facts": 3,
+        "unsupported_claims": 1,
+        "unnecessary_abstentions": 0,
+        "details": [
+          {
+            "fact_id": "hours",
+            "expected_value": "09:00–17:00",
+            "actual_values": [
+              "00:00–24:00"
+            ],
+            "supported_correct": false
+          },
+          {
+            "fact_id": "booking",
+            "expected_value": "提前一天線上預約",
+            "actual_values": [
+              "提前一天線上預約"
+            ],
+            "supported_correct": true
+          },
+          {
+            "fact_id": "shoes",
+            "expected_value": "室內運動鞋，禁止拖鞋",
+            "actual_values": [
+              "室內運動鞋，禁止拖鞋"
+            ],
+            "supported_correct": true
+          }
+        ],
+        "benchmark_pass": false
+      }
+    }
+  ],
+  "matches_expected_limitations": true
+}

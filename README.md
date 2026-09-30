@@ -14,6 +14,10 @@ LLM 的核心工作是理解範例與學生作業的語意對應，辨識「換�
 
 依 0922 新版講義整理的 [Week 2 Baseline Declaration：實作與驗證版](docs/week2-baseline-declaration.md)，已整合本週範圍、實際 I/O、200／422／502 預期與實測結果、模型與指令版本、已知限制、重現指令及 Exit ticket，可作為本週提交入口。
 
+**Week 3 提交入口：[Retrieval + Generator Comparison](docs/week3/README.md)。** 已完成來源卡、三個固定查詢、top-k trace、證據固定、規則與 LLM 比較、引用 gate 與失敗觀察。合成作業案例與合成羽球館案例各完成一次真實 API 測試，均為 fact coverage 3/3、unsupported claims 0；這是封閉測試結果，並非普遍正確率。教師原始多證據案例尚未提供，仍需後續 checkpoint 驗收。
+
+Week 3 新增 `/assistant/week3/queries` 與 `/assistant/week3/query`；預設 `fixture` 不呼叫 API，指定 `live` 才使用 LLM。此端點目前使用固定合成資料；任意文字作業仍使用 Week 2 的 `/assistant/check-submission`。
+
 ## 啟動 API
 
 在根目錄 `.env` 填入 `OPENAI_API_KEY` 後執行：
@@ -48,6 +52,7 @@ LLM 的核心工作是理解範例與學生作業的語意對應，辨識「換�
 
 ## 專案文件與既有工具
 
+- [Week 3 提交與執行說明](docs/week3/README.md)：Proposal、Source card、固定查詢、檢索與生成比較的實測證據。
 - [API 執行說明](docs/api-usage.md)：安裝、啟動、錯誤處理與證據產生。
 - [執行紀錄](docs/execution/README.md)：合成資料上的真實 API 及替身測試結果。
 - [Week 2 Baseline Declaration：實作與驗證版](docs/week2-baseline-declaration.md)：對應新版講義六項提交清單與實際證據。

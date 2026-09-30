@@ -8,11 +8,12 @@ from pydantic import ValidationError
 from .models import CheckRequest, CheckResponse, ModelReport
 from .provider import OpenAIProvider
 from .service import CheckFailure, ground_report
+from .retrieval import QueryRequest, load_json, run_query
 
 
-def create_app(provider=None):
-    app = FastAPI(title="作業缺漏提醒助手", version="0.1.0",
-                  description="教師範例與已確認要求的單次 LLM 比對；本機教學基準版本。")
+def create_app(provider=None, retrieval_provider=None):
+    app = FastAPI(title="作業缺漏提醒助手", version="0.2.0",
+                  description="Week 2 作業比對與 Week 3 檢索證據示範；本機教學版本。")
 
     @app.exception_handler(RequestValidationError)
     async def invalid_request(request: Request, error):
@@ -39,6 +40,16 @@ def create_app(provider=None):
         except ValidationError:
             raise CheckFailure("INVALID_RESPONSE", "response_schema", "模型輸出不符合回覆結構。") from None
         return ground_report(payload, report)
+
+    @app.get("/assistant/week3/queries")
+    def week3_queries():
+        return {"data_source": "synthetic_only", "teacher_original_case": "not_supplied",
+                "queries": [{"query_id": key, "question": value["question"], "top_k": value["top_k"]}
+                            for key, value in load_json("dataset.json")["queries"].items()]}
+
+    @app.post("/assistant/week3/query")
+    def week3_query(payload: QueryRequest):
+        return run_query(payload, retrieval_provider)
 
     return app
 

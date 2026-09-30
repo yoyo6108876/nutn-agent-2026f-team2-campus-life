@@ -1,0 +1,59 @@
+{
+  "Q1": {
+    "expected_status": "answered",
+    "facts": {
+      "target_user": {
+        "value": "met",
+        "required_chunk_ids": [
+          "T1",
+          "S1"
+        ]
+      },
+      "failure_case": {
+        "value": "partial",
+        "required_chunk_ids": [
+          "T2",
+          "S2"
+        ]
+      },
+      "appendix": {
+        "value": "uncertain",
+        "required_chunk_ids": [
+          "T3",
+          "S3"
+        ]
+      }
+    }
+  },
+  "B1": {
+    "expected_status": "answered",
+    "facts": {
+      "hours": {
+        "value": "09:00–17:00",
+        "required_chunk_ids": [
+          "B-hours"
+        ]
+      },
+      "booking": {
+        "value": "提前一天線上預約",
+        "required_chunk_ids": [
+          "B-booking"
+        ]
+      },
+      "shoes": {
+        "value": "室內運動鞋，禁止拖鞋",
+        "required_chunk_ids": [
+          "B-shoes"
+        ]
+      }
+    }
+  },
+  "Q2": {
+    "expected_status": "no_answer",
+    "facts": {}
+  },
+  "Q3": {
+    "expected_status": "coverage_failure",
+    "facts": {}
+  }
+}

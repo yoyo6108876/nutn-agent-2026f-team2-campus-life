@@ -1,0 +1,419 @@
+{
+  "version": "week3-synthetic-v1",
+  "sources": [
+    {
+      "id": "teacher-demo",
+      "version": "synthetic-v1",
+      "authority": "本專案合成的教師要求；僅在此 fixture 內作為判定依據",
+      "permission": true,
+      "permission_basis": "本專案新撰合成教材，准許程式測試與公開教學展示；不包含原講義全文或真實學生作業。",
+      "updated_at": "2026-09-30",
+      "valid_until": "2026-12-31",
+      "pii": "synthetic_no_pii",
+      "withdrawn": false,
+      "withdrawal": "設 withdrawn=true 後下一次檢索排除；另清理公開 trace 與 Git 歷史。"
+    },
+    {
+      "id": "student-demo",
+      "version": "synthetic-v1",
+      "authority": "本專案合成學生提交；不可新增教師要求",
+      "permission": true,
+      "permission_basis": "本專案新撰合成教材，准許程式測試與公開教學展示；不包含原講義全文或真實學生作業。",
+      "updated_at": "2026-09-30",
+      "valid_until": "2026-12-31",
+      "pii": "synthetic_no_pii",
+      "withdrawn": false,
+      "withdrawal": "設 withdrawn=true 後下一次檢索排除；另清理公開 trace 與 Git 歷史。"
+    },
+    {
+      "id": "court-hours-demo",
+      "version": "synthetic-v1",
+      "authority": "本專案合成場館公告；非南大官方資料",
+      "permission": true,
+      "permission_basis": "本專案新撰合成教材，准許程式測試與公開教學展示；不包含原講義全文或真實學生作業。",
+      "updated_at": "2026-09-30",
+      "valid_until": "2026-12-31",
+      "pii": "synthetic_no_pii",
+      "withdrawn": false,
+      "withdrawal": "設 withdrawn=true 後下一次檢索排除；另清理公開 trace 與 Git 歷史。"
+    },
+    {
+      "id": "court-booking-demo",
+      "version": "synthetic-v1",
+      "authority": "本專案合成場館公告；非南大官方資料",
+      "permission": true,
+      "permission_basis": "本專案新撰合成教材，准許程式測試與公開教學展示；不包含原講義全文或真實學生作業。",
+      "updated_at": "2026-09-30",
+      "valid_until": "2026-12-31",
+      "pii": "synthetic_no_pii",
+      "withdrawn": false,
+      "withdrawal": "設 withdrawn=true 後下一次檢索排除；另清理公開 trace 與 Git 歷史。"
+    },
+    {
+      "id": "court-shoes-demo",
+      "version": "synthetic-v1",
+      "authority": "本專案合成場館公告；非南大官方資料",
+      "permission": true,
+      "permission_basis": "本專案新撰合成教材，准許程式測試與公開教學展示；不包含原講義全文或真實學生作業。",
+      "updated_at": "2026-09-30",
+      "valid_until": "2026-12-31",
+      "pii": "synthetic_no_pii",
+      "withdrawn": false,
+      "withdrawal": "設 withdrawn=true 後下一次檢索排除；另清理公開 trace 與 Git 歷史。"
+    },
+    {
+      "id": "court-old-demo",
+      "version": "synthetic-v1",
+      "authority": "本專案合成場館公告；非南大官方資料",
+      "permission": true,
+      "permission_basis": "本專案新撰合成教材，准許程式測試與公開教學展示；不包含原講義全文或真實學生作業。",
+      "updated_at": "2026-09-30",
+      "valid_until": "2026-12-31",
+      "pii": "synthetic_no_pii",
+      "withdrawn": true,
+      "withdrawal": "設 withdrawn=true 後下一次檢索排除；另清理公開 trace 與 Git 歷史。"
+    }
+  ],
+  "chunks": [
+    {
+      "id": "T1",
+      "source_id": "teacher-demo",
+      "corpus": "assignment-demo",
+      "role": "teacher",
+      "fact_ids": [
+        "target_user"
+      ],
+      "text": "老師範例的使用者要求：說明誰會使用助手，以及他需要解決的問題。標題寫法不限定。"
+    },
+    {
+      "id": "S1",
+      "source_id": "student-demo",
+      "corpus": "assignment-demo",
+      "role": "student",
+      "fact_ids": [
+        "target_user"
+      ],
+      "text": "學生作業的使用者：剛交完報告、擔心遺漏必寫內容的南大同學，希望提交後先收到補件提醒。"
+    },
+    {
+      "id": "T2",
+      "source_id": "teacher-demo",
+      "corpus": "assignment-demo",
+      "role": "teacher",
+      "fact_ids": [
+        "failure_case"
+      ],
+      "text": "老師範例的失敗案例要求：必須包含輸入、實際結果與失敗原因三項。"
+    },
+    {
+      "id": "S2",
+      "source_id": "student-demo",
+      "corpus": "assignment-demo",
+      "role": "student",
+      "fact_ids": [
+        "failure_case"
+      ],
+      "text": "學生作業的失敗案例：輸入是一份只有封面、没有正文的報告；實際結果是助手顯示全部完成。本段沒有說明造成錯判的原因。"
+    },
+    {
+      "id": "T3",
+      "source_id": "teacher-demo",
+      "corpus": "assignment-demo",
+      "role": "teacher",
+      "fact_ids": [
+        "appendix"
+      ],
+      "text": "老師範例的附錄證據要求：應提供可查看的測試紀錄內容；若只提及另附檔案，必須取得檔案後才能確認。"
+    },
+    {
+      "id": "S3",
+      "source_id": "student-demo",
+      "corpus": "assignment-demo",
+      "role": "student",
+      "fact_ids": [
+        "appendix"
+      ],
+      "text": "學生作業的附錄證據：測試紀錄請見附錄 A，另外一個檔案繳交。本次可供檢查的資料不含附錄 A 內容。"
+    },
+    {
+      "id": "B-hours",
+      "source_id": "court-hours-demo",
+      "corpus": "badminton-demo",
+      "role": "reference",
+      "fact_ids": [
+        "hours"
+      ],
+      "text": "【合成羽球館公告】週六開放時間為 09:00–17:00。此為課堂測試資料，不代表南大場館規定。"
+    },
+    {
+      "id": "B-booking",
+      "source_id": "court-booking-demo",
+      "corpus": "badminton-demo",
+      "role": "reference",
+      "fact_ids": [
+        "booking"
+      ],
+      "text": "【合成羽球館公告】預約方式：須提前一天線上預約，現場不受理預約。"
+    },
+    {
+      "id": "B-shoes",
+      "source_id": "court-shoes-demo",
+      "corpus": "badminton-demo",
+      "role": "reference",
+      "fact_ids": [
+        "shoes"
+      ],
+      "text": "【合成羽球館公告】入場鞋款限制：須穿室內運動鞋，禁止穿拖鞋入場。"
+    },
+    {
+      "id": "B-old",
+      "source_id": "court-old-demo",
+      "corpus": "badminton-demo",
+      "role": "reference",
+      "fact_ids": [
+        "hours"
+      ],
+      "text": "【已撤回的合成羽球館公告】週六開放時間 00:00–24:00；预約方式與入場鞋款限制均已取消。"
+    }
+  ],
+  "queries": {
+    "Q1": {
+      "question": "學生作業的使用者、失敗案例與附錄證據符合老師範例嗎？哪些要補件或確認？",
+      "corpus": "assignment-demo",
+      "top_k": 6,
+      "facts": [
+        {
+          "id": "target_user",
+          "label": "使用者與需求",
+          "required_roles": [
+            "teacher",
+            "student"
+          ],
+          "allowed_values": [
+            "met",
+            "partial",
+            "missing",
+            "uncertain"
+          ],
+          "literal_rules": [
+            {
+              "terms": [
+                "Target User",
+                "需求"
+              ],
+              "value": "met"
+            }
+          ]
+        },
+        {
+          "id": "failure_case",
+          "label": "失敗案例的輸入、結果、原因",
+          "required_roles": [
+            "teacher",
+            "student"
+          ],
+          "allowed_values": [
+            "met",
+            "partial",
+            "missing",
+            "uncertain"
+          ],
+          "literal_rules": [
+            {
+              "terms": [
+                "輸入",
+                "實際結果",
+                "原因"
+              ],
+              "value": "met"
+            }
+          ]
+        },
+        {
+          "id": "appendix",
+          "label": "可查看的附錄測試紀錄",
+          "required_roles": [
+            "teacher",
+            "student"
+          ],
+          "allowed_values": [
+            "met",
+            "partial",
+            "missing",
+            "uncertain"
+          ],
+          "literal_rules": [
+            {
+              "terms": [
+                "附錄 A"
+              ],
+              "value": "met"
+            }
+          ]
+        }
+      ]
+    },
+    "Q2": {
+      "question": "截止日期？",
+      "corpus": "assignment-demo",
+      "top_k": 6,
+      "facts": [
+        {
+          "id": "deadline",
+          "label": "截止日期",
+          "required_roles": [
+            "teacher"
+          ],
+          "allowed_values": [
+            "uncertain"
+          ],
+          "literal_rules": []
+        }
+      ]
+    },
+    "Q3": {
+      "question": "學生作業的使用者、失敗案例與附錄證據符合老師範例嗎？哪些要補件或確認？",
+      "corpus": "assignment-demo",
+      "top_k": 2,
+      "facts": [
+        {
+          "id": "target_user",
+          "label": "使用者與需求",
+          "required_roles": [
+            "teacher",
+            "student"
+          ],
+          "allowed_values": [
+            "met",
+            "partial",
+            "missing",
+            "uncertain"
+          ],
+          "literal_rules": [
+            {
+              "terms": [
+                "Target User",
+                "需求"
+              ],
+              "value": "met"
+            }
+          ]
+        },
+        {
+          "id": "failure_case",
+          "label": "失敗案例的輸入、結果、原因",
+          "required_roles": [
+            "teacher",
+            "student"
+          ],
+          "allowed_values": [
+            "met",
+            "partial",
+            "missing",
+            "uncertain"
+          ],
+          "literal_rules": [
+            {
+              "terms": [
+                "輸入",
+                "實際結果",
+                "原因"
+              ],
+              "value": "met"
+            }
+          ]
+        },
+        {
+          "id": "appendix",
+          "label": "可查看的附錄測試紀錄",
+          "required_roles": [
+            "teacher",
+            "student"
+          ],
+          "allowed_values": [
+            "met",
+            "partial",
+            "missing",
+            "uncertain"
+          ],
+          "literal_rules": [
+            {
+              "terms": [
+                "附錄 A"
+              ],
+              "value": "met"
+            }
+          ]
+        }
+      ]
+    },
+    "B1": {
+      "question": "羽球館週六開放時間、預約方式與入場鞋款限制？",
+      "corpus": "badminton-demo",
+      "top_k": 3,
+      "facts": [
+        {
+          "id": "hours",
+          "label": "週六開放時間",
+          "required_roles": [
+            "reference"
+          ],
+          "allowed_values": [
+            "09:00–17:00",
+            "00:00–24:00",
+            "uncertain"
+          ],
+          "literal_rules": [
+            {
+              "terms": [
+                "09:00–17:00"
+              ],
+              "value": "09:00–17:00"
+            }
+          ]
+        },
+        {
+          "id": "booking",
+          "label": "預約方式",
+          "required_roles": [
+            "reference"
+          ],
+          "allowed_values": [
+            "提前一天線上預約",
+            "現場預約",
+            "uncertain"
+          ],
+          "literal_rules": [
+            {
+              "terms": [
+                "提前一天線上預約"
+              ],
+              "value": "提前一天線上預約"
+            }
+          ]
+        },
+        {
+          "id": "shoes",
+          "label": "入場鞋款",
+          "required_roles": [
+            "reference"
+          ],
+          "allowed_values": [
+            "室內運動鞋，禁止拖鞋",
+            "不限鞋款",
+            "uncertain"
+          ],
+          "literal_rules": [
+            {
+              "terms": [
+                "室內運動鞋",
+                "禁止穿拖鞋"
+              ],
+              "value": "室內運動鞋，禁止拖鞋"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

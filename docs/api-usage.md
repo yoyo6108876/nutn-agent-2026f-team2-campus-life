@@ -2,6 +2,8 @@
 
 目前已實作 **single LLM call + 輸入驗證 + 引用核對 + 雙方提醒**。接收整理好的文字 JSON；本版本尚未提供教師 PDF 上傳、OCR、學生登入或教學平台自動收件。測試資料均為合成案例。
 
+Week 3 新增固定查詢檢索示範：GET `/assistant/week3/queries`、POST `/assistant/week3/query`。請參閱 [Week 3 操作與證據](week3/README.md)；預設 fixture，不會呼叫 API。以下原有 Week 2 的任意文字 JSON 比對流程仍可使用。
+
 ## 安裝
 
 在專案根目錄執行（macOS / Linux）：

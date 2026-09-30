@@ -1,0 +1,163 @@
+{
+  "query_id": "B1",
+  "question": "羽球館週六開放時間、預約方式與入場鞋款限制？",
+  "corpus": "badminton-demo",
+  "dataset_version": "week3-synthetic-v1",
+  "dataset_hash": "28b0c4d3f8a9c3c03dbfe2ca359c9e579d299d8c1db84ab684d3d8e83632dcce",
+  "policy_date": "2026-09-30",
+  "retriever_version": "unicode-bigram-overlap-v1",
+  "top_k": 3,
+  "min_score_exclusive": 0,
+  "gate": "ready",
+  "missing_coverage": [],
+  "excluded": [
+    {
+      "chunk_id": "B-old",
+      "reason": "withdrawn"
+    }
+  ],
+  "required_facts": [
+    {
+      "id": "hours",
+      "label": "週六開放時間",
+      "required_roles": [
+        "reference"
+      ],
+      "allowed_values": [
+        "09:00–17:00",
+        "00:00–24:00",
+        "uncertain"
+      ],
+      "literal_rules": [
+        {
+          "terms": [
+            "09:00–17:00"
+          ],
+          "value": "09:00–17:00"
+        }
+      ]
+    },
+    {
+      "id": "booking",
+      "label": "預約方式",
+      "required_roles": [
+        "reference"
+      ],
+      "allowed_values": [
+        "提前一天線上預約",
+        "現場預約",
+        "uncertain"
+      ],
+      "literal_rules": [
+        {
+          "terms": [
+            "提前一天線上預約"
+          ],
+          "value": "提前一天線上預約"
+        }
+      ]
+    },
+    {
+      "id": "shoes",
+      "label": "入場鞋款",
+      "required_roles": [
+        "reference"
+      ],
+      "allowed_values": [
+        "室內運動鞋，禁止拖鞋",
+        "不限鞋款",
+        "uncertain"
+      ],
+      "literal_rules": [
+        {
+          "terms": [
+            "室內運動鞋",
+            "禁止穿拖鞋"
+          ],
+          "value": "室內運動鞋，禁止拖鞋"
+        }
+      ]
+    }
+  ],
+  "ranked_candidates": [
+    {
+      "rank": 1,
+      "chunk_id": "B-hours",
+      "source_id": "court-hours-demo",
+      "score": 0.388889,
+      "matched_terms": [
+        "六開",
+        "放時",
+        "時間",
+        "球館",
+        "羽球",
+        "週六",
+        "開放"
+      ],
+      "selected": true
+    },
+    {
+      "rank": 2,
+      "chunk_id": "B-shoes",
+      "source_id": "court-shoes-demo",
+      "score": 0.388889,
+      "matched_terms": [
+        "入場",
+        "場鞋",
+        "款限",
+        "球館",
+        "羽球",
+        "限制",
+        "鞋款"
+      ],
+      "selected": true
+    },
+    {
+      "rank": 3,
+      "chunk_id": "B-booking",
+      "source_id": "court-booking-demo",
+      "score": 0.277778,
+      "matched_terms": [
+        "方式",
+        "球館",
+        "約方",
+        "羽球",
+        "預約"
+      ],
+      "selected": true
+    }
+  ],
+  "selected_evidence": [
+    {
+      "id": "B-hours",
+      "source_id": "court-hours-demo",
+      "source_version": "synthetic-v1",
+      "role": "reference",
+      "fact_ids": [
+        "hours"
+      ],
+      "text": "【合成羽球館公告】週六開放時間為 09:00–17:00。此為課堂測試資料，不代表南大場館規定。"
+    },
+    {
+      "id": "B-shoes",
+      "source_id": "court-shoes-demo",
+      "source_version": "synthetic-v1",
+      "role": "reference",
+      "fact_ids": [
+        "shoes"
+      ],
+      "text": "【合成羽球館公告】入場鞋款限制：須穿室內運動鞋，禁止穿拖鞋入場。"
+    },
+    {
+      "id": "B-booking",
+      "source_id": "court-booking-demo",
+      "source_version": "synthetic-v1",
+      "role": "reference",
+      "fact_ids": [
+        "booking"
+      ],
+      "text": "【合成羽球館公告】預約方式：須提前一天線上預約，現場不受理預約。"
+    }
+  ],
+  "evidence_hash": "155b9a44f9651836158467a8ca7702f93b76350ef94d8afd69cb5acf11d39dff"
+}

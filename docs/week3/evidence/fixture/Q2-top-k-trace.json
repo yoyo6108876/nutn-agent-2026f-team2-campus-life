@@ -1,0 +1,35 @@
+{
+  "query_id": "Q2",
+  "question": "截止日期？",
+  "corpus": "assignment-demo",
+  "dataset_version": "week3-synthetic-v1",
+  "dataset_hash": "28b0c4d3f8a9c3c03dbfe2ca359c9e579d299d8c1db84ab684d3d8e83632dcce",
+  "policy_date": "2026-09-30",
+  "retriever_version": "unicode-bigram-overlap-v1",
+  "top_k": 6,
+  "min_score_exclusive": 0,
+  "gate": "no_answer",
+  "missing_coverage": [
+    {
+      "fact_id": "deadline",
+      "role": "teacher"
+    }
+  ],
+  "excluded": [],
+  "required_facts": [
+    {
+      "id": "deadline",
+      "label": "截止日期",
+      "required_roles": [
+        "teacher"
+      ],
+      "allowed_values": [
+        "uncertain"
+      ],
+      "literal_rules": []
+    }
+  ],
+  "ranked_candidates": [],
+  "selected_evidence": [],
+  "evidence_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+}

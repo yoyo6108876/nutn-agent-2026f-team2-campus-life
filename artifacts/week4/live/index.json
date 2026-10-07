@@ -1,0 +1,15 @@
+{
+  "tested_commit_sha": "9b59df92db7d2f2c2803883ca3929aa501d57d0a",
+  "tracked_files_dirty": false,
+  "cases": [
+    {
+      "case": "live-success",
+      "matches_expected": true,
+      "run_id": "run-3df5baba98fd474cb60a0e7141412f30",
+      "state": "completed",
+      "live_status": "LIVE_PASS",
+      "draft_count": 1
+    }
+  ],
+  "all_passed": true
+}

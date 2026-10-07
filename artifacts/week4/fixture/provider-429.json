@@ -1,0 +1,346 @@
+{
+  "case": "provider-429",
+  "captured_at": "2026-10-07T02:55:43.741163+00:00",
+  "tested_commit_sha": "9b59df92db7d2f2c2803883ca3929aa501d57d0a",
+  "tracked_files_dirty": false,
+  "data_source": "synthetic only; no real student records",
+  "provider": "authored_fixture",
+  "failure_injection": "provider429",
+  "approval_source": "automated sandbox test decision, not an external user approval",
+  "before_decision": {
+    "state": "stopped",
+    "draft_count": 0
+  },
+  "draft_count": 0,
+  "replay": null,
+  "run": {
+    "run_id": "run-a17a601a12c14e218f13d1c178951265",
+    "created_at": "2026-10-07T02:55:43.538252+00:00",
+    "state": "stopped",
+    "request": {
+      "assignment_id": "HW-DEMO-01",
+      "submission_id": "SUB-DEMO-01",
+      "submission_version": 1,
+      "message": "請讀取這份作業的缺漏報告，整理補件與待確認項目；若需寫入，先讓我確認草稿。",
+      "intent": "draft",
+      "mode": "fixture"
+    },
+    "audit": [
+      {
+        "at": "2026-10-07T02:55:43.539104+00:00",
+        "event": "readiness_passed",
+        "evidence_hash": "2bb0fd672501cde20cbdd481a3d381713d3540651be84ca8cf081bcf976d7dfa",
+        "gate": "ready"
+      },
+      {
+        "at": "2026-10-07T02:55:43.539113+00:00",
+        "event": "model_attempt",
+        "phase": "proposal",
+        "attempt": 1
+      },
+      {
+        "at": "2026-10-07T02:55:43.539156+00:00",
+        "event": "model_error",
+        "phase": "proposal",
+        "attempt": 1,
+        "code": "PROVIDER_429",
+        "layer": "provider",
+        "retryable": true
+      },
+      {
+        "at": "2026-10-07T02:55:43.740274+00:00",
+        "event": "model_attempt",
+        "phase": "proposal",
+        "attempt": 2
+      },
+      {
+        "at": "2026-10-07T02:55:43.740313+00:00",
+        "event": "model_error",
+        "phase": "proposal",
+        "attempt": 2,
+        "code": "PROVIDER_429",
+        "layer": "provider",
+        "retryable": true
+      },
+      {
+        "at": "2026-10-07T02:55:43.740320+00:00",
+        "event": "stopped",
+        "code": "PROVIDER_429",
+        "layer": "provider",
+        "retryable": true,
+        "executed": false
+      }
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "{\"request\": {\"assignment_id\": \"HW-DEMO-01\", \"submission_id\": \"SUB-DEMO-01\", \"submission_version\": 1, \"message\": \"請讀取這份作業的缺漏報告，整理補件與待確認項目；若需寫入，先讓我確認草稿。\", \"intent\": \"draft\", \"mode\": \"fixture\"}}"
+      }
+    ],
+    "model_rounds": 1,
+    "provider_metadata": [],
+    "live_status": "LIVE_NOT_RUN",
+    "summary": null,
+    "rag_trace": {
+      "query_id": "Q1",
+      "question": "學生作業的使用者、失敗案例與附錄證據符合老師範例嗎？哪些要補件或確認？",
+      "corpus": "assignment-demo",
+      "dataset_version": "week3-studio-v2",
+      "dataset_hash": "e60daabe40c7a7a9e27e98c19b8f2d4447d676e9edb52a71d328a3a09c385db8",
+      "policy_date": "2026-10-07",
+      "retriever_version": "unicode-bigram-overlap-v1",
+      "top_k": 6,
+      "min_score_exclusive": 0,
+      "gate": "ready",
+      "case_type": "normal",
+      "refusal_code": null,
+      "source_conflicts": [],
+      "required_aspects": [
+        "target_user",
+        "failure_case",
+        "appendix"
+      ],
+      "required_reference_chunk_ids": [],
+      "missing_coverage": [],
+      "excluded": [],
+      "required_facts": [
+        {
+          "id": "target_user",
+          "label": "使用者與需求",
+          "required_roles": [
+            "teacher",
+            "student"
+          ],
+          "allowed_values": [
+            "met",
+            "partial",
+            "missing",
+            "uncertain"
+          ],
+          "literal_rules": [
+            {
+              "terms": [
+                "Target User",
+                "需求"
+              ],
+              "value": "met"
+            }
+          ]
+        },
+        {
+          "id": "failure_case",
+          "label": "失敗案例的輸入、結果、原因",
+          "required_roles": [
+            "teacher",
+            "student"
+          ],
+          "allowed_values": [
+            "met",
+            "partial",
+            "missing",
+            "uncertain"
+          ],
+          "literal_rules": [
+            {
+              "terms": [
+                "輸入",
+                "實際結果",
+                "原因"
+              ],
+              "value": "met"
+            }
+          ]
+        },
+        {
+          "id": "appendix",
+          "label": "可查看的附錄測試紀錄",
+          "required_roles": [
+            "teacher",
+            "student"
+          ],
+          "allowed_values": [
+            "met",
+            "partial",
+            "missing",
+            "uncertain"
+          ],
+          "literal_rules": [
+            {
+              "terms": [
+                "附錄 A"
+              ],
+              "value": "met"
+            }
+          ]
+        }
+      ],
+      "ranked_candidates": [
+        {
+          "rank": 1,
+          "chunk_id": "S1",
+          "source_id": "student-demo",
+          "score": 0.275862,
+          "matched_terms": [
+            "作業",
+            "使用",
+            "學生",
+            "業的",
+            "生作",
+            "用者",
+            "的使",
+            "補件"
+          ],
+          "selected": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "S2",
+          "source_id": "student-demo",
+          "score": 0.241379,
+          "matched_terms": [
+            "作業",
+            "失敗",
+            "學生",
+            "敗案",
+            "案例",
+            "業的",
+            "生作"
+          ],
+          "selected": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "S3",
+          "source_id": "student-demo",
+          "score": 0.241379,
+          "matched_terms": [
+            "作業",
+            "學生",
+            "業的",
+            "生作",
+            "證據",
+            "錄證",
+            "附錄"
+          ],
+          "selected": true
+        },
+        {
+          "rank": 4,
+          "chunk_id": "T3",
+          "source_id": "teacher-demo",
+          "score": 0.241379,
+          "matched_terms": [
+            "師範",
+            "確認",
+            "範例",
+            "老師",
+            "證據",
+            "錄證",
+            "附錄"
+          ],
+          "selected": true
+        },
+        {
+          "rank": 5,
+          "chunk_id": "T1",
+          "source_id": "teacher-demo",
+          "score": 0.206897,
+          "matched_terms": [
+            "使用",
+            "師範",
+            "用者",
+            "的使",
+            "範例",
+            "老師"
+          ],
+          "selected": true
+        },
+        {
+          "rank": 6,
+          "chunk_id": "T2",
+          "source_id": "teacher-demo",
+          "score": 0.206897,
+          "matched_terms": [
+            "失敗",
+            "師範",
+            "敗案",
+            "案例",
+            "範例",
+            "老師"
+          ],
+          "selected": true
+        }
+      ],
+      "selected_evidence": [
+        {
+          "id": "S1",
+          "source_id": "student-demo",
+          "source_version": "synthetic-v1",
+          "role": "student",
+          "fact_ids": [
+            "target_user"
+          ],
+          "text": "學生作業的使用者：剛交完報告、擔心遺漏必寫內容的南大同學，希望提交後先收到補件提醒。"
+        },
+        {
+          "id": "S2",
+          "source_id": "student-demo",
+          "source_version": "synthetic-v1",
+          "role": "student",
+          "fact_ids": [
+            "failure_case"
+          ],
+          "text": "學生作業的失敗案例：輸入是一份只有封面、没有正文的報告；實際結果是助手顯示全部完成。本段沒有說明造成錯判的原因。"
+        },
+        {
+          "id": "S3",
+          "source_id": "student-demo",
+          "source_version": "synthetic-v1",
+          "role": "student",
+          "fact_ids": [
+            "appendix"
+          ],
+          "text": "學生作業的附錄證據：測試紀錄請見附錄 A，另外一個檔案繳交。本次可供檢查的資料不含附錄 A 內容。"
+        },
+        {
+          "id": "T3",
+          "source_id": "teacher-demo",
+          "source_version": "synthetic-v1",
+          "role": "teacher",
+          "fact_ids": [
+            "appendix"
+          ],
+          "text": "老師範例的附錄證據要求：應提供可查看的測試紀錄內容；若只提及另附檔案，必須取得檔案後才能確認。"
+        },
+        {
+          "id": "T1",
+          "source_id": "teacher-demo",
+          "source_version": "synthetic-v1",
+          "role": "teacher",
+          "fact_ids": [
+            "target_user"
+          ],
+          "text": "老師範例的使用者要求：說明誰會使用助手，以及他需要解決的問題。標題寫法不限定。"
+        },
+        {
+          "id": "T2",
+          "source_id": "teacher-demo",
+          "source_version": "synthetic-v1",
+          "role": "teacher",
+          "fact_ids": [
+            "failure_case"
+          ],
+          "text": "老師範例的失敗案例要求：必須包含輸入、實際結果與失敗原因三項。"
+        }
+      ],
+      "evidence_hash": "2bb0fd672501cde20cbdd481a3d381713d3540651be84ca8cf081bcf976d7dfa"
+    },
+    "error": {
+      "code": "PROVIDER_429",
+      "layer": "provider",
+      "retryable": true
+    }
+  },
+  "matches_expected": true,
+  "gemini_requirement": "NOT_RUN: user explicitly selected project OpenAI provider"
+}

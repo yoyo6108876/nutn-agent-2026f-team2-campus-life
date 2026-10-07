@@ -1,0 +1,79 @@
+{
+  "tested_commit_sha": "9b59df92db7d2f2c2803883ca3929aa501d57d0a",
+  "tracked_files_dirty": false,
+  "cases": [
+    {
+      "case": "read-only",
+      "matches_expected": true,
+      "run_id": "run-61a761f77789478f9a6e97186e810154",
+      "state": "completed",
+      "live_status": "LIVE_NOT_RUN",
+      "draft_count": 0
+    },
+    {
+      "case": "confirm-and-replay",
+      "matches_expected": true,
+      "run_id": "run-ccafe648847841c5b75fd65f89083b56",
+      "state": "completed",
+      "live_status": "LIVE_NOT_RUN",
+      "draft_count": 1
+    },
+    {
+      "case": "declined",
+      "matches_expected": true,
+      "run_id": "run-12157184f83545589fae4582010ff932",
+      "state": "declined",
+      "live_status": "LIVE_NOT_RUN",
+      "draft_count": 0
+    },
+    {
+      "case": "invalid-arguments",
+      "matches_expected": true,
+      "run_id": "run-371e4ff080204a3588bfb77f81292a16",
+      "state": "stopped",
+      "live_status": "LIVE_NOT_RUN",
+      "draft_count": 0
+    },
+    {
+      "case": "model-forged-confirmation",
+      "matches_expected": true,
+      "run_id": "run-ac09632481aa44868dccacbccd1d09c5",
+      "state": "stopped",
+      "live_status": "LIVE_NOT_RUN",
+      "draft_count": 0
+    },
+    {
+      "case": "report-mismatch",
+      "matches_expected": true,
+      "run_id": "run-b5a6d34884cc4a908c7b60bb9b0400fc",
+      "state": "stopped",
+      "live_status": "LIVE_NOT_RUN",
+      "draft_count": 0
+    },
+    {
+      "case": "provider-429",
+      "matches_expected": true,
+      "run_id": "run-a17a601a12c14e218f13d1c178951265",
+      "state": "stopped",
+      "live_status": "LIVE_NOT_RUN",
+      "draft_count": 0
+    },
+    {
+      "case": "summary-failed-after-write",
+      "matches_expected": true,
+      "run_id": "run-4af57fdd741a45d19632cd13ca590d0c",
+      "state": "written",
+      "live_status": "LIVE_NOT_RUN",
+      "draft_count": 1
+    },
+    {
+      "case": "write-response-lost",
+      "matches_expected": true,
+      "run_id": "run-8d128fa57c46496897ebc0232b0aa88a",
+      "state": "written",
+      "live_status": "LIVE_NOT_RUN",
+      "draft_count": 1
+    }
+  ],
+  "all_passed": true
+}

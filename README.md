@@ -20,6 +20,8 @@ LLM 的核心工作是理解範例與學生作業的語意對應，辨識「換�
 
 Week 3 新增 `/assistant/week3/queries` 與 `/assistant/week3/query`；預設 `fixture` 不呼叫 API，指定 `live` 才使用 LLM。此端點目前使用固定合成資料；任意文字作業仍使用 Week 2 的 `/assistant/check-submission`。
 
+**Week 4 提交入口：[Tool Use 與 MCP](docs/week4/README.md)。** 沿用 OpenAI，完成 MCP 讀取缺漏、模型提出補件草稿、使用者確認後本機寫入及結果摘要；真實 API 迴圈 `LIVE_PASS`，107 項測試通過。介面位於 [本機 Week 4](http://127.0.0.1:8000/week4)，目前使用固定合成提交。講義指定 Gemini 的差異、故障注入及驗證紀錄均列於該週文件。
+
 ## 啟動 API
 
 在根目錄 `.env` 填入 `OPENAI_API_KEY` 後執行：

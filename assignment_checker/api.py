@@ -9,11 +9,13 @@ from .models import CheckRequest, CheckResponse, ModelReport
 from .provider import OpenAIProvider
 from .service import CheckFailure, ground_report
 from .retrieval import QueryRequest, load_json, run_query
+from .week4.routes import make_router
 
 
-def create_app(provider=None, retrieval_provider=None):
-    app = FastAPI(title="作業缺漏提醒助手", version="0.2.0",
-                  description="Week 2 作業比對與 Week 3 檢索證據示範；本機教學版本。")
+def create_app(provider=None, retrieval_provider=None, workflow=None):
+    app = FastAPI(title="作業缺漏提醒助手", version="0.3.0",
+                  description="作業比對、檢索證據與確認後建立補件草稿；本機教學版本。")
+    app.include_router(make_router(workflow))
 
     @app.exception_handler(RequestValidationError)
     async def invalid_request(request: Request, error):

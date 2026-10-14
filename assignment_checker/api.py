@@ -12,10 +12,10 @@ from .retrieval import QueryRequest, load_json, run_query
 from .week4.routes import make_router
 
 
-def create_app(provider=None, retrieval_provider=None, workflow=None):
-    app = FastAPI(title="作業缺漏提醒助手", version="0.3.0",
+def create_app(provider=None, retrieval_provider=None, workflow=None, graph_workflow=None):
+    app = FastAPI(title="作業缺漏提醒助手", version="0.4.0",
                   description="作業比對、檢索證據與確認後建立補件草稿；本機教學版本。")
-    app.include_router(make_router(workflow))
+    app.include_router(make_router(workflow, graph_workflow))
 
     @app.exception_handler(RequestValidationError)
     async def invalid_request(request: Request, error):

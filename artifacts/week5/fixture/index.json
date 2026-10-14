@@ -1,0 +1,98 @@
+{
+  "tested_commit_sha": "a572b7e8f579a370a1c7d7ebb6685973f3aac074",
+  "tracked_files_dirty": false,
+  "python_version": "3.14.2",
+  "installed_versions": {
+    "openai": "2.54.0",
+    "mcp": "1.30.0",
+    "langgraph": "1.2.15",
+    "langgraph-checkpoint-sqlite": "3.1.2",
+    "aiosqlite": "0.22.1"
+  },
+  "captured_at": "2026-10-14T03:10:41.912813+00:00",
+  "mode": "fixture",
+  "cases": [
+    {
+      "case": "read-only",
+      "group": "normal-read",
+      "matches_expected": true,
+      "canonical_facts_equal": true,
+      "execution_counts_equal": true,
+      "baseline_passed": true,
+      "langgraph_passed": true
+    },
+    {
+      "case": "restart-confirm-replay",
+      "group": "restart-confirm-replay",
+      "matches_expected": true,
+      "canonical_facts_equal": true,
+      "execution_counts_equal": true,
+      "baseline_passed": true,
+      "langgraph_passed": true
+    },
+    {
+      "case": "decline-replay",
+      "group": "decline-and-expiry",
+      "matches_expected": true,
+      "canonical_facts_equal": true,
+      "execution_counts_equal": true,
+      "baseline_passed": true,
+      "langgraph_passed": true
+    },
+    {
+      "case": "expired-confirmation",
+      "group": "decline-and-expiry",
+      "matches_expected": true,
+      "canonical_facts_equal": true,
+      "execution_counts_equal": true,
+      "baseline_passed": true,
+      "langgraph_passed": true
+    },
+    {
+      "case": "source-unavailable",
+      "group": "source-and-api-errors",
+      "matches_expected": true,
+      "canonical_facts_equal": true,
+      "execution_counts_equal": true,
+      "baseline_passed": true,
+      "langgraph_passed": true
+    },
+    {
+      "case": "provider-429",
+      "group": "source-and-api-errors",
+      "matches_expected": true,
+      "canonical_facts_equal": true,
+      "execution_counts_equal": true,
+      "baseline_passed": true,
+      "langgraph_passed": true
+    },
+    {
+      "case": "invalid-arguments",
+      "group": "source-and-api-errors",
+      "matches_expected": true,
+      "canonical_facts_equal": true,
+      "execution_counts_equal": true,
+      "baseline_passed": true,
+      "langgraph_passed": true
+    },
+    {
+      "case": "summary-failed-after-write",
+      "group": "write-recovery",
+      "matches_expected": true,
+      "canonical_facts_equal": true,
+      "execution_counts_equal": true,
+      "baseline_passed": true,
+      "langgraph_passed": true
+    },
+    {
+      "case": "write-response-lost",
+      "group": "write-recovery",
+      "matches_expected": true,
+      "canonical_facts_equal": true,
+      "execution_counts_equal": true,
+      "baseline_passed": true,
+      "langgraph_passed": true
+    }
+  ],
+  "all_passed": true
+}

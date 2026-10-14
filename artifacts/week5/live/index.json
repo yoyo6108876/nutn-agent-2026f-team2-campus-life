@@ -1,0 +1,35 @@
+{
+  "tested_commit_sha": "a572b7e8f579a370a1c7d7ebb6685973f3aac074",
+  "tracked_files_dirty": false,
+  "python_version": "3.14.2",
+  "installed_versions": {
+    "openai": "2.54.0",
+    "mcp": "1.30.0",
+    "langgraph": "1.2.15",
+    "langgraph-checkpoint-sqlite": "3.1.2",
+    "aiosqlite": "0.22.1"
+  },
+  "captured_at": "2026-10-14T03:10:39.702299+00:00",
+  "mode": "live",
+  "cases": [
+    {
+      "case": "read-only",
+      "group": "normal-read",
+      "matches_expected": true,
+      "canonical_facts_equal": true,
+      "execution_counts_equal": true,
+      "baseline_passed": true,
+      "langgraph_passed": true
+    },
+    {
+      "case": "restart-confirm-replay",
+      "group": "restart-confirm-replay",
+      "matches_expected": true,
+      "canonical_facts_equal": true,
+      "execution_counts_equal": true,
+      "baseline_passed": true,
+      "langgraph_passed": true
+    }
+  ],
+  "all_passed": true
+}

@@ -22,6 +22,8 @@ Week 3 新增 `/assistant/week3/queries` 與 `/assistant/week3/query`；預設 `
 
 **Week 4 提交入口：[Tool Use 與 MCP](docs/week4/README.md)。** 沿用 OpenAI，完成 MCP 讀取缺漏、模型提出補件草稿、使用者確認後本機寫入及結果摘要；真實 API 迴圈 `LIVE_PASS`，107 項測試通過。介面位於 [本機 Week 4](http://127.0.0.1:8000/week4)，目前使用固定合成提交。講義指定 Gemini 的差異、故障注入及驗證紀錄均列於該週文件。
 
+**Week 5 提交入口：[Frameworks & Orchestration](docs/week5/README.md)。** 以 LangGraph 局部替換等待確認與接續，原版／候選可從 [同一工作台](http://127.0.0.1:8000/week5) 切換。九個離線前後比較、兩個真實 OpenAI 前後比較與 131 項測試通過；[一頁決策](docs/week5/decision.md) 說明保留原版為預設的理由。
+
 ## 啟動 API
 
 在根目錄 `.env` 填入 `OPENAI_API_KEY` 後執行：

@@ -12,7 +12,7 @@ import pytest
 
 from assignment_checker.api import create_app
 from assignment_checker.pdf_review import (PDFInput, PDFPair, ParsedPDF, PDFModelReport,
-    PDFReviewProvider, PDFPrechecks, parse_pdf, validate_report)
+    PDFReviewProvider, PDFPrechecks, PDFDraftReport, parse_pdf, validate_report, resolve_draft, source_lines)
 from assignment_checker.service import CheckFailure
 from assignment_checker.week7.memory import SessionMemory
 from assignment_checker.week7.routes import SessionService
@@ -35,6 +35,39 @@ def raw_report():
           'student_evidence':[{'page':1,'kind':'text','quote_or_observation':'Input is empty.'}],
           'reason':'Only input described.','action':'Add actual result.','priority':'high'}],
         'summary':'Add the result.','limitations':['PDF only; not compiled.']}
+
+
+def draft_report():
+    value=raw_report()
+    for item,line in [(value['criteria'][0],1),(value['checks'][0],2)]:
+        item['teacher_evidence']={'start':f'T1L{line}','end':f'T1L{line}'}
+        item['student_evidence']=[{'kind':'text','text_reference':{'start':'S1L1','end':'S1L1'},
+                                  'visual_page':None,'observation':None}]
+    return PDFDraftReport.model_validate(value)
+
+
+def test_host_resolves_source_ids_to_actual_text_and_visual_observations():
+    teacher,student=documents();draft=draft_report()
+    assert source_lines(teacher,'T')[0]['lines'][1]['id']=='T1L2'
+    assert resolve_draft(draft,teacher,student).model_dump()==raw_report()
+    draft.checks[0].student_evidence[0].kind='visual'
+    draft.checks[0].student_evidence[0].text_reference=None
+    draft.checks[0].student_evidence[0].visual_page=1
+    draft.checks[0].student_evidence[0].observation='A chart is visible.'
+    result=resolve_draft(draft,teacher,student)
+    assert result.checks[0].student_evidence[0].kind=='visual'
+
+
+@pytest.mark.parametrize('start,end',[('S1L1','S1L1'),('T2L1','T2L1'),('T1L1','T2L1'),
+                                     ('T1L2','T1L1'),('T1L1','T1L99')])
+def test_invalid_source_ranges_reject_grade(start,end):
+    draft=draft_report();draft.criteria[0].teacher_evidence.start=start;draft.criteria[0].teacher_evidence.end=end
+    with pytest.raises(CheckFailure):resolve_draft(draft,*documents())
+
+
+def test_source_reference_cannot_mix_visual_and_text_fields():
+    draft=draft_report();draft.checks[0].student_evidence[0].observation='A paraphrase, not a quote.'
+    with pytest.raises(CheckFailure):resolve_draft(draft,*documents())
 
 
 def blank_pdf(pages=1,password=None):
@@ -149,7 +182,7 @@ def test_http_requires_login_origin_and_bounded_upload(tmp_path,monkeypatch):
 
 
 def test_pdf_provider_uses_both_pdf_images_one_call_and_sanitizes_metadata():
-    model=PDFModelReport.model_validate(raw_report())
+    model=draft_report()
     parse=Mock(return_value=SimpleNamespace(model='gpt-test',id='resp-test',usage=None,status='completed',output_parsed=model))
     provider=PDFReviewProvider(client=SimpleNamespace(responses=SimpleNamespace(parse=parse)))
     provider.generate(*documents())

@@ -1,13 +1,16 @@
 """Local synthetic identities and scoped sessions. Not a production login system."""
 from datetime import datetime, timezone
 import hashlib
+import json
 from pathlib import Path
 import secrets
 from typing import Annotated, Literal
 
 from fastapi import APIRouter, HTTPException, Request, Response
 from fastapi.responses import HTMLResponse
+from starlette.concurrency import run_in_threadpool
 from pydantic import Field, model_validator
+from pydantic import ValidationError
 
 from ..models import StrictModel, CheckRequest, Document, Section, Requirement
 from ..provider import OpenAIProvider
@@ -17,6 +20,8 @@ from ..week4.store import Store
 from ..week4.tools import get_review
 from .memory import SessionMemory
 from .workflow import SessionWorkflow
+from ..pdf_review import PDFPair, PDFPrechecks, MAX_BODY_BYTES
+from ..service import CheckFailure
 
 ROOT = Path(__file__).resolve().parents[2]
 COOKIE = 'assignment_demo_session'
@@ -29,6 +34,10 @@ class Login(StrictModel):
 class Reset(StrictModel):
     session_id: str
     confirmed: Literal[True]
+
+
+class ConfirmRubric(StrictModel):
+    confirmed: bool
 
 
 class ReviewInput(StrictModel):
@@ -55,11 +64,12 @@ class ReviewInput(StrictModel):
 
 
 class SessionService:
-    def __init__(self, root=None, provider=None, review_provider=None, reader=None):
+    def __init__(self, root=None, provider=None, review_provider=None, reader=None, pdf_provider=None):
         directory = Path(root or ROOT/'tmp/week7')
         self.store = Store(directory/'business.sqlite3')
         self.memory = SessionMemory(directory/'sessions.sqlite3')
         self.provider, self.review_provider, self.reader = provider, review_provider, reader
+        self.pdf_prechecks = PDFPrechecks(self.memory, pdf_provider)
         with self.memory.db() as db:
             db.execute('''CREATE TABLE IF NOT EXISTS browser_tokens
                 (digest TEXT PRIMARY KEY, owner_id TEXT NOT NULL, session_id TEXT NOT NULL, created_at REAL NOT NULL)''')
@@ -185,5 +195,32 @@ def make_router(service=None):
         return {'report': report.model_dump(), 'provider_metadata': provider.metadata,
                 'provider': 'openai', 'live_status': 'LIVE_PASS',
                 'scope': 'semantic_text_review_not_connected_to_demo_draft_snapshot'}
+
+    @router.post('/assistant/week7/pdf/precheck')
+    async def pdf_precheck(request: Request):
+        local(request)
+        who = principal(request)
+        chunks = bytearray()
+        async for chunk in request.stream():
+            if len(chunks)+len(chunk)>MAX_BODY_BYTES:
+                raise CheckFailure('UPLOAD_TOO_LARGE','pdf_input','兩份 PDF 上傳資料超過上限。',413)
+            chunks.extend(chunk)
+        try:
+            payload = PDFPair.model_validate_json(bytes(chunks))
+        except (ValidationError, ValueError):
+            raise CheckFailure('INVALID_PDF_UPLOAD','pdf_input','請選擇老師與學生兩份 PDF，每份不超過 6 MiB。',422) from None
+        return await run_in_threadpool(host().pdf_prechecks.start, who, payload)
+
+    @router.get('/assistant/week7/pdf/prechecks/{run_id}')
+    def get_pdf_precheck(run_id: str, request: Request):
+        return host().pdf_prechecks.public(host().pdf_prechecks.get(principal(request),run_id))
+
+    @router.post('/assistant/week7/pdf/prechecks/{run_id}/confirm')
+    def confirm_pdf_rubric(run_id: str, payload: ConfirmRubric, request: Request):
+        local(request)
+        who = principal(request)
+        if not payload.confirmed:
+            raise CheckFailure('RUBRIC_CONFIRMATION_REQUIRED','grading','請核對老師配分後再顯示預估分數。',409)
+        return host().pdf_prechecks.confirm(who,run_id)
 
     return router

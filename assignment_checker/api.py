@@ -15,7 +15,7 @@ from .week4.contracts import FlowError
 
 
 def create_app(provider=None, retrieval_provider=None, workflow=None, graph_workflow=None, session_service=None):
-    app = FastAPI(title="作業缺漏提醒助手", version="0.7.0",
+    app = FastAPI(title="作業缺漏提醒助手", version="0.8.0",
                   description="作業比對、檢索證據與確認後建立補件草稿；本機教學版本。")
     app.include_router(make_router(workflow, graph_workflow))
     app.include_router(memory_router(session_service))

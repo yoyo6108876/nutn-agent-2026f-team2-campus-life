@@ -26,6 +26,12 @@ Week 3 新增 `/assistant/week3/queries` 與 `/assistant/week3/query`；預設 `
 
 ## 啟動 API
 
+**階段成果報告：[簡報 PDF 與證據索引](reports/midterm/README.md)。** 第 02 組，受測程式版本 `6a5bc9b`，證據日期 2026-10-28。建議簡報與示範 14 分鐘、問答 5 分鐘，保留 1 分鐘緩衝。
+
+**Week 7 提交入口：[Session 清除與來源更新](docs/week7/README.md)。** 新增隔離的 Session、清除控制、來源版本排除與文字比對工作台。148 項測試通過；候選主流程、同 Session 續問、清除後查詢與文字比對均有 OpenAI `LIVE_PASS`。原版／候選的真實比較包含原版 `LIVE_FAIL`，保留失敗證據，不宣稱全面通過或提升成功率。
+
+依組員選擇繼續使用 GPT。課程要求的 **Google Cloud／ADC Gemini 為 `LIVE_NOT_RUN`，尚未符合該項規定**；Week 6 未提供教材或交付證據，未列為完成。分工為建議，實際貢獻待組員確認。
+
 在根目錄 `.env` 填入 `OPENAI_API_KEY` 後執行：
 
 ```sh
@@ -34,6 +40,8 @@ Week 3 新增 `/assistant/week3/queries` 與 `/assistant/week3/query`；預設 `
 ```
 
 開啟 `http://127.0.0.1:8000/docs` 查看介面規格；範例輸入見 [normal.request.json](examples/assignment/normal.request.json)。首次建立 Python 環境的步驟與 curl 呼叫指令見 [API 執行說明](docs/api-usage.md)。
+
+本次報告開啟 [Week 7 工作台](http://127.0.0.1:8000/week7)：選示範身分、按「切換／開始」，再選補件工具流程或文字語意比對。GPT 模式會使用 API 額度；離線模式明確標示固定回覆。完整操作與備用畫面見 [示範腳本](reports/midterm/demo-runbook.md)。本機沙盒僅綁定 `127.0.0.1`，使用合成資料，尚未提供正式登入或 PDF 上傳；Windows 請使用 WSL（Session 鎖使用 POSIX `fcntl`）。
 
 ## 團隊
 

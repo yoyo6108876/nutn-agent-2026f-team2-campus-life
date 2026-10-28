@@ -1,0 +1,69 @@
+{
+  "tested_commit_sha": "6a5bc9b5c3831a40620d4d38bb659899e269561c",
+  "tracked_files_dirty": false,
+  "captured_at": "2026-10-28T06:34:42.399852+00:00",
+  "provider": "openai",
+  "gemini_status": "LIVE_NOT_RUN",
+  "gemini_reason": "User explicitly selected the existing GPT API; course ADC/Gemini requirement remains unmet",
+  "data_source": "synthetic_only",
+  "approval_source": "automated sandbox confirmation, not teacher approval",
+  "mode": "fixture",
+  "cases": [
+    {
+      "case": "C01-normal-comparison",
+      "matches_expected": true,
+      "run_ids": [
+        "run-57b69550627049ac89686fdcc0a5e2a3",
+        "run-7980545500784c7397b6da071598119b"
+      ]
+    },
+    {
+      "case": "W01-W02-confirmation-replay",
+      "matches_expected": true,
+      "run_ids": [
+        "run-7980545500784c7397b6da071598119b"
+      ]
+    },
+    {
+      "case": "C03-same-session",
+      "matches_expected": true,
+      "run_ids": [
+        "run-5c52f26d43084c17b151845c6f20da4c"
+      ]
+    },
+    {
+      "case": "C02-cross-user",
+      "matches_expected": true,
+      "run_ids": []
+    },
+    {
+      "case": "C04-clear-context",
+      "matches_expected": true,
+      "run_ids": [
+        "run-36f2d32458b34b259b618c69c78267ed"
+      ]
+    },
+    {
+      "case": "C06-source-update",
+      "matches_expected": true,
+      "run_ids": [
+        "run-c4e8d5715d3c45ea9aa440daffddd34e"
+      ]
+    },
+    {
+      "case": "C07-invalid-arguments",
+      "matches_expected": true,
+      "run_ids": [
+        "run-87a09954838e4e06a265bdbd4ab23c2c"
+      ]
+    },
+    {
+      "case": "C08-provider-failure",
+      "matches_expected": true,
+      "run_ids": [
+        "run-d142b506af754d55a333bb1074a86e51"
+      ]
+    }
+  ],
+  "all_passed": true
+}

@@ -1,0 +1,30 @@
+{
+  "tested_commit_sha": "6a5bc9b5c3831a40620d4d38bb659899e269561c",
+  "tracked_files_dirty": false,
+  "captured_at": "2026-10-28T06:34:42.399852+00:00",
+  "provider": "openai",
+  "gemini_status": "LIVE_NOT_RUN",
+  "gemini_reason": "User explicitly selected the existing GPT API; course ADC/Gemini requirement remains unmet",
+  "data_source": "synthetic_only",
+  "approval_source": "automated sandbox confirmation, not teacher approval",
+  "case": "C02-cross-user",
+  "mode": "fixture",
+  "expected": {
+    "read_code": "RUN_NOT_FOUND",
+    "other_context": null
+  },
+  "actual": {
+    "read_code": "RUN_NOT_FOUND",
+    "other_context": null
+  },
+  "matches_expected": true,
+  "runs": [],
+  "metrics": {
+    "actual_llm_responses": 0,
+    "tokens": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "total_tokens": 0
+    }
+  }
+}

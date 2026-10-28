@@ -1,0 +1,122 @@
+{
+  "tested_commit_sha": "6a5bc9b5c3831a40620d4d38bb659899e269561c",
+  "tracked_files_dirty": false,
+  "captured_at": "2026-10-28T06:34:44.713420+00:00",
+  "provider": "openai",
+  "gemini_status": "LIVE_NOT_RUN",
+  "gemini_reason": "User explicitly selected the existing GPT API; course ADC/Gemini requirement remains unmet",
+  "data_source": "synthetic_only",
+  "approval_source": "automated sandbox confirmation, not teacher approval",
+  "case": "semantic-review",
+  "request": {
+    "assignment_id": "HW-TEXT-01",
+    "submission_id": "SUB-TEXT-01",
+    "submission_version": 1,
+    "teacher_example": {
+      "sections": [
+        {
+          "id": "T1",
+          "text": "作業應說明目標使用者與使用情境，並提供一個失敗案例，包含輸入、實際結果與失敗原因。"
+        }
+      ]
+    },
+    "student_submission": {
+      "sections": [
+        {
+          "id": "S1",
+          "text": "誰會用：剛交完報告、擔心漏寫內容的南大同學，希望先取得補件提醒。失敗案例：輸入只有封面的報告，系統卻顯示全部完成。"
+        }
+      ]
+    },
+    "confirmed_requirements": [
+      {
+        "id": "R1",
+        "description": "描述目標使用者及使用情境。",
+        "teacher_section_id": "T1"
+      },
+      {
+        "id": "R2",
+        "description": "提供失敗案例，包含輸入、實際結果與失敗原因。",
+        "teacher_section_id": "T1"
+      }
+    ]
+  },
+  "report": {
+    "assignment_id": "HW-TEXT-01",
+    "submission_id": "SUB-TEXT-01",
+    "submission_version": 1,
+    "checks": [
+      {
+        "requirement_id": "R1",
+        "status": "met",
+        "teacher_evidence": {
+          "section_id": "T1",
+          "quote": "作業應說明目標使用者與使用情境，並提供一個失敗案例，包含輸入、實際結果與失敗原因。"
+        },
+        "student_evidence": [
+          {
+            "section_id": "S1",
+            "quote": "誰會用：剛交完報告、擔心漏寫內容的南大同學，希望先取得補件提醒。"
+          }
+        ],
+        "reason": "學生明確描述了目標使用者（剛交完報告、擔心漏寫內容的南大同學）及使用情境（希望先取得補件提醒），符合要求。",
+        "suggestion": "無需補充，描述清楚完整。"
+      },
+      {
+        "requirement_id": "R2",
+        "status": "partial",
+        "teacher_evidence": {
+          "section_id": "T1",
+          "quote": "作業應說明目標使用者與使用情境，並提供一個失敗案例，包含輸入、實際結果與失敗原因。"
+        },
+        "student_evidence": [
+          {
+            "section_id": "S1",
+            "quote": "失敗案例：輸入只有封面的報告，系統卻顯示全部完成。"
+          }
+        ],
+        "reason": "學生提供了失敗案例的輸入（只有封面的報告）與實際結果（系統顯示全部完成），但未明確說明失敗原因。",
+        "suggestion": "請補充失敗原因的說明，例如系統判斷錯誤或未檢查內容完整性等。"
+      }
+    ],
+    "student_notice": {
+      "needs_revision": [
+        "R2"
+      ],
+      "needs_confirmation": []
+    },
+    "teacher_notice": {
+      "needs_revision": [
+        "R2"
+      ],
+      "needs_confirmation": []
+    }
+  },
+  "provider_metadata": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "prompt_version": "assignment-check-v1.1",
+    "latency_seconds": 3.282,
+    "usage": {
+      "input_tokens": 875,
+      "input_tokens_details": {
+        "cache_write_tokens": 0,
+        "cached_tokens": 0
+      },
+      "output_tokens": 365,
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "total_tokens": 1240
+    }
+  },
+  "live_status": "LIVE_PASS",
+  "expected": {
+    "R1": "met",
+    "R2": "partial"
+  },
+  "actual": {
+    "R1": "met",
+    "R2": "partial"
+  },
+  "matches_expected": true
+}

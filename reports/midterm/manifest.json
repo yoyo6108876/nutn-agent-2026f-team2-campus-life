@@ -1,0 +1,221 @@
+{
+  "generated_at": "2026-10-28T07:04:59.342408+00:00",
+  "team": "02",
+  "baseline_commit": "031d336922622056c619e41871b9c5cb9425aae0",
+  "tested_code_commit": "6a5bc9b5c3831a40620d4d38bb659899e269561c",
+  "report_version_tag": "report-week7-20261028",
+  "report_slides": 13,
+  "total_minutes": 20,
+  "presentation_and_demo_minutes": 14,
+  "qa_minutes": 5,
+  "buffer_minutes": 1,
+  "provider": "openai",
+  "gemini_status": "LIVE_NOT_RUN",
+  "fixture_cases_passed": 8,
+  "live_comparison_all_passed": false,
+  "live_baseline_status": "LIVE_FAIL",
+  "live_candidate_status": "LIVE_PASS",
+  "tests": {
+    "passed": 148,
+    "new_week7_tests": 17,
+    "warnings": 1,
+    "output": "artifacts/week7/pytest.txt"
+  },
+  "api_usage": {
+    "automated_runner_responses": 10,
+    "automated_runner_tokens": 12703,
+    "browser_responses": 4,
+    "browser_tokens": 5593,
+    "total_responses": 14,
+    "total_tokens": 18296
+  },
+  "repository_visibility_verified": "PUBLIC",
+  "pdf_export": {
+    "authoring": "Codex Artifact Session",
+    "method": "editable PPTX converted using bundled LibreOffice headless",
+    "fonts": "PingFang TC requested; PDF Fontconfig fallback Heiti TC; macOS system fonts not redistributed",
+    "config": "reports/midterm/pdf-fonts.conf",
+    "validation": "All 13 Artifact Session slides and all 13 PDF pages visually inspected. Chinese extraction verified.",
+    "native_pdf_export": "unavailable: missing registered embeddable PingFang TC font"
+  },
+  "screenshots": [
+    {
+      "path": "reports/midterm/screenshots/01-live-confirmation.jpg",
+      "captured_at": "2026-10-28T06:42:17.009872+00:00",
+      "tested_code_commit": "6a5bc9b5c3831a40620d4d38bb659899e269561c",
+      "source": "actual browser UI at localhost:8001; OpenAI live for 01-03, local context reset for 04",
+      "data": "synthetic_only"
+    },
+    {
+      "path": "reports/midterm/screenshots/02-live-completed.jpg",
+      "captured_at": "2026-10-28T06:43:01.774870+00:00",
+      "tested_code_commit": "6a5bc9b5c3831a40620d4d38bb659899e269561c",
+      "source": "actual browser UI at localhost:8001; OpenAI live for 01-03, local context reset for 04",
+      "data": "synthetic_only"
+    },
+    {
+      "path": "reports/midterm/screenshots/03-live-semantic.jpg",
+      "captured_at": "2026-10-28T06:44:34.091130+00:00",
+      "tested_code_commit": "6a5bc9b5c3831a40620d4d38bb659899e269561c",
+      "source": "actual browser UI at localhost:8001; OpenAI live for 01-03, local context reset for 04",
+      "data": "synthetic_only"
+    },
+    {
+      "path": "reports/midterm/screenshots/04-cleared-session.jpg",
+      "captured_at": "2026-10-28T06:44:46.449363+00:00",
+      "tested_code_commit": "6a5bc9b5c3831a40620d4d38bb659899e269561c",
+      "source": "actual browser UI at localhost:8001; OpenAI live for 01-03, local context reset for 04",
+      "data": "synthetic_only"
+    }
+  ],
+  "files": {
+    "README.md": {
+      "bytes": 5947,
+      "sha256": "27c326ae718ba937438d53de3496aa54755d2e22bb682022c2b3631ac3d2d012"
+    },
+    "artifacts/week7/fixture/C01-normal-comparison.json": {
+      "bytes": 146990,
+      "sha256": "f318ba85bac11c75890e91541bd50672434ab62d74cc3f03f0394407eb0f20b0"
+    },
+    "artifacts/week7/fixture/C02-cross-user.json": {
+      "bytes": 838,
+      "sha256": "3ee36dde27587c844a557b90c9e86fbde26ca27a07be16efbc9228697a4addd3"
+    },
+    "artifacts/week7/fixture/C03-same-session.json": {
+      "bytes": 34499,
+      "sha256": "f2dbd475fe441a7a7933f68803dde4a7451ddc4ce1bbb245914bf0fc3a2ebe12"
+    },
+    "artifacts/week7/fixture/C04-clear-context.json": {
+      "bytes": 33489,
+      "sha256": "f2ebaaed0582e9efe6dcb60b80a2c76b9e045a11185164271572df7b848a2f71"
+    },
+    "artifacts/week7/fixture/C06-source-update.json": {
+      "bytes": 24574,
+      "sha256": "e7e88f964b5d241b508bd416d6c16e0743a38d03ce1a658c12287e8289279d77"
+    },
+    "artifacts/week7/fixture/C07-invalid-arguments.json": {
+      "bytes": 13000,
+      "sha256": "e0cff4d10be89a1eb60c1fb831e82420e54571dbea0d03d5ae5c4c680d13eab7"
+    },
+    "artifacts/week7/fixture/C08-provider-failure.json": {
+      "bytes": 12675,
+      "sha256": "7abe3e21d52510a1718a0fe1b2dbcaa0426c4bd5386b118f7a1c53f146dfff5b"
+    },
+    "artifacts/week7/fixture/W01-W02-confirmation-replay.json": {
+      "bytes": 43567,
+      "sha256": "c77af0ce25681032921e12615481b22a0c8434d78a3f4881b00ddd5e1f627d03"
+    },
+    "artifacts/week7/fixture/index.json": {
+      "bytes": 1742,
+      "sha256": "877bb180a12fa79760cc3e808adfd5cb40804bc0aa545cfc37157cf8a75bac8e"
+    },
+    "artifacts/week7/live/C01-normal-comparison.json": {
+      "bytes": 144557,
+      "sha256": "74a7f8d14aeb4f8c502d5ad11873a36a79821b47d0eadab149622488c695ab1a"
+    },
+    "artifacts/week7/live/C02-cross-user.json": {
+      "bytes": 835,
+      "sha256": "12671577714b3108ce9c62e38d382e701bc507a097e7b1fd7e7959eb6935ce30"
+    },
+    "artifacts/week7/live/C03-same-session.json": {
+      "bytes": 36801,
+      "sha256": "f585c2e0bbb1092f0fd0165a8b1a3496220e5e22a70a878a4ca29d673deb7688"
+    },
+    "artifacts/week7/live/C04-clear-context.json": {
+      "bytes": 35789,
+      "sha256": "ec51f6546fcdad3d9bc6e69bc568d3c9ba09dcf40e547ed90fcac30344f2397a"
+    },
+    "artifacts/week7/live/W01-W02-confirmation-replay.json": {
+      "bytes": 46773,
+      "sha256": "6107aa2db0f070ad9024cee82e84953e5ec44e6942ec3497944f57ceee069640"
+    },
+    "artifacts/week7/live/index.json": {
+      "bytes": 1349,
+      "sha256": "e2d3e8ef5232bb494f234149ec01c0b8c3893df0e4c2f6161ebb26722a9b3ceb"
+    },
+    "artifacts/week7/live/semantic-review.json": {
+      "bytes": 3946,
+      "sha256": "8ba7b70a8c996e98ebc54568a51ccafbd4174d758abb162326526e83463ca7ce"
+    },
+    "artifacts/week7/live/ui-semantic-review.json": {
+      "bytes": 2669,
+      "sha256": "4d8b664b4f8494d5eaf80eb620aa8bf59713e52df3654ee0398970c4fda2557d"
+    },
+    "artifacts/week7/live/ui-tool-run.json": {
+      "bytes": 44155,
+      "sha256": "1c103d7d1feddad9dffc4637d94cc2f390dce7085d1e7b6bfab68f78b133efa6"
+    },
+    "artifacts/week7/pytest.txt": {
+      "bytes": 786,
+      "sha256": "026e5f898f46ce9a39f7e8238c7a4eb6cd53cd2a9f361e9c6eb121de26e920ab"
+    },
+    "docs/week7/README.md": {
+      "bytes": 4222,
+      "sha256": "f225139ccb8a469330f08309d66b8e8fbe674bb1eb60a4098728a8e3c65ea9e7"
+    },
+    "docs/week7/comparison.md": {
+      "bytes": 2890,
+      "sha256": "dce14d0d6afdaabf742bf80c2ced3da8c790a92d0d44c87db43671d3148eaf9c"
+    },
+    "docs/week7/memory-adr.md": {
+      "bytes": 2256,
+      "sha256": "bf208e120774d4ac4cd7f762edd2605b0721cab6c0ded6b3496eeb9605bde77d"
+    },
+    "reports/midterm/README.md": {
+      "bytes": 3764,
+      "sha256": "fcab3f522fd9c82a1781675831af2961038b2cdfce38d5a129a05bafe29b75d1"
+    },
+    "reports/midterm/build-slides.mjs": {
+      "bytes": 14915,
+      "sha256": "e26d4cc021ac37fbcc32547dc55a1abd29a1d2b959707a325faf9138c8016c77"
+    },
+    "reports/midterm/demo-runbook.md": {
+      "bytes": 3664,
+      "sha256": "e132fb9f7b3741ed7a3c3e58128f742649d9cdcfdc51317c081719846a32fe4d"
+    },
+    "reports/midterm/evidence-index.md": {
+      "bytes": 5724,
+      "sha256": "439a8c5f17b0898ce5201d56f12feb28286a634b39a69045808d206cd04f77f7"
+    },
+    "reports/midterm/overview.png": {
+      "bytes": 271662,
+      "sha256": "4a2e74c2d0a43e9a78b66c4def3bcd223798f816b5d3cd45f5d4e5c96998b2f9"
+    },
+    "reports/midterm/pdf-fonts.conf": {
+      "bytes": 375,
+      "sha256": "acb11f7844e19a0a6445019d147b3852404b726bd89d120cc74eacb849a86673"
+    },
+    "reports/midterm/phase-review.pdf": {
+      "bytes": 990197,
+      "sha256": "09898571557be455dc3c90bc89ce03fb3a662e93dc049340ececabb8a1d1464a"
+    },
+    "reports/midterm/phase-review.pptx": {
+      "bytes": 350112,
+      "sha256": "81d9f73e3d1bbd0f212c55cc8fc0e66789881cf73131bc2e51a68148f2a661a7"
+    },
+    "reports/midterm/screenshots/01-live-confirmation.jpg": {
+      "bytes": 139036,
+      "sha256": "c4aa513058b55a59f9a2e6b6e4e6c889f74760475cd2e5587d2cbf6fa9ee1bdf"
+    },
+    "reports/midterm/screenshots/02-live-completed.jpg": {
+      "bytes": 134027,
+      "sha256": "8799f6187c73f27d98340261d739302946930a515194c35dd1a03dd18cc54e07"
+    },
+    "reports/midterm/screenshots/03-live-semantic.jpg": {
+      "bytes": 186298,
+      "sha256": "ea7593f2ba222c682a8d8e907a7e382fb59d1e1ff7c8ce9ff7c31106b59c9c6a"
+    },
+    "reports/midterm/screenshots/04-cleared-session.jpg": {
+      "bytes": 106724,
+      "sha256": "05206ff205c00dfae731dd1074bf4e9aa9a80fdb4d53fb97488166522e4ca9f9"
+    },
+    "reports/midterm/speaker-notes.md": {
+      "bytes": 4368,
+      "sha256": "0301ee0ff155c1744c9b117b6b2e656b1083755fcb41a04c5aba5cba5299ae34"
+    },
+    "reports/midterm/team-progress.md": {
+      "bytes": 2828,
+      "sha256": "6a8307034d8d91e23dc5ce75739413e348a0007cb6291327c14e577968fd59ad"
+    }
+  }
+}

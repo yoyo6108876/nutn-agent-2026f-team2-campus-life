@@ -6,6 +6,7 @@ from dataclasses import dataclass
 import hashlib
 from io import BytesIO
 import json
+import os
 from pathlib import Path
 import re
 from time import perf_counter
@@ -17,7 +18,8 @@ from pydantic import Field, ValidationError, model_validator
 from pypdf import PdfReader
 
 from .models import StrictModel
-from .provider import local_settings, DEFAULT_MODEL
+from dotenv import dotenv_values
+from .provider import local_settings, ROOT
 from .service import CheckFailure
 from .week4.store import now
 from .week4.contracts import FlowError
@@ -25,6 +27,7 @@ from .week4.contracts import FlowError
 MAX_FILE_BYTES = 6 * 1024 * 1024
 MAX_BODY_BYTES = 17 * 1024 * 1024
 PROMPT_VERSION = 'pdf-precheck-v2-source-lines'
+DEFAULT_PDF_MODEL = 'gpt-5.4-2026-03-05'
 PROMPT = Path(__file__).with_name('pdf_review_prompt.txt').read_text(encoding='utf-8')
 ShortText = Annotated[str, Field(min_length=1, max_length=1500, pattern=r'\S')]
 
@@ -242,8 +245,10 @@ class PDFReviewProvider:
 
     def generate(self, teacher, student):
         if self.client:
-            return self._generate(self.client,self.model or DEFAULT_MODEL,teacher,student)
-        key, model = local_settings()
+            return self._generate(self.client,self.model or DEFAULT_PDF_MODEL,teacher,student)
+        key, _ = local_settings()
+        values=dotenv_values(ROOT/'.env',interpolate=False)
+        model=os.environ.get('OPENAI_PDF_MODEL') or values.get('OPENAI_PDF_MODEL') or DEFAULT_PDF_MODEL
         with OpenAI(api_key=key,base_url='https://api.openai.com/v1',max_retries=0,timeout=120) as client:
             return self._generate(client,self.model or model,teacher,student)
 
@@ -258,10 +263,11 @@ class PDFReviewProvider:
                             'file_data':'data:application/pdf;base64,'+base64.b64encode(pdf.data).decode(),
                             'detail':'high'})
         started=perf_counter()
+        generation={'reasoning':{'effort':'low'}} if model.startswith('gpt-5') else {'temperature':0}
         try:
             response=client.responses.parse(model=model,input=[{'role':'system','content':PROMPT},
-                {'role':'user','content':content}],text_format=PDFDraftReport,temperature=0,
-                max_output_tokens=10000,store=False)
+                {'role':'user','content':content}],text_format=PDFDraftReport,
+                max_output_tokens=10000,store=False,**generation)
         except AuthenticationError:
             raise CheckFailure('PROVIDER_AUTH_FAILED','provider','API 金鑰驗證失敗。') from None
         except RateLimitError as error:
@@ -275,7 +281,8 @@ class PDFReviewProvider:
         self.metadata={'model':response.model,'response_id':response.id,'prompt_version':PROMPT_VERSION,
                        'latency_seconds':round(perf_counter()-started,3),
                        'usage':response.usage.model_dump() if response.usage else None,
-                       'llm_actually_called':True,'input_type':'pdf_text_and_page_images'}
+                       'llm_actually_called':True,'input_type':'pdf_text_and_page_images',
+                       'generation_options':generation}
         if response.status!='completed' or response.output_parsed is None:
             raise CheckFailure('INCOMPLETE_PDF_REPORT','provider','模型未完成 PDF 檢查，未提供估分。')
         return resolve_draft(response.output_parsed,teacher,student)

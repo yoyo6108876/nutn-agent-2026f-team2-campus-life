@@ -89,11 +89,18 @@ class Workflow:
         self.store.save(run)
         return run
 
-    async def start(self,request:StartRequest):
+    def build_history(self,request,preflight,trace):
+        return [{'role':'user','content':json.dumps({'request':request.model_dump()},ensure_ascii=False)}]
+
+    def create_run(self,request):
         run={'run_id':'run-'+uuid.uuid4().hex,'created_at':now(),'state':'starting',
              'request':request.model_dump(),'audit':[],'history':[], 'model_rounds':0,
              'provider_metadata':[], 'live_status':'LIVE_NOT_RUN','summary':None}
         self.store.save(run)
+        return run
+
+    async def start(self,request:StartRequest):
+        run=self.create_run(request)
         try:
             # The UI target is verified independently of the model proposal.
             for name,prefix in [('submission_id','SUB'),('assignment_id','HW')]:
@@ -103,7 +110,7 @@ class Workflow:
             preflight,trace=get_review(identity(run['request']))
             run['rag_trace']=trace
             event(run,'readiness_passed',evidence_hash=preflight['evidence_hash'],gate=trace['gate'])
-            run['history']=[{'role':'user','content':json.dumps({'request':run['request']},ensure_ascii=False)}]
+            run['history']=self.build_history(request,preflight,trace)
             response=await self.model(run,'proposal')
             read_call,args=self.call(run,response,'get_submission_review')
             for attempt in range(1,3):

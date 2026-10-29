@@ -28,7 +28,7 @@ Week 3 新增 `/assistant/week3/queries` 與 `/assistant/week3/query`；預設 `
 
 ## 啟動 API
 
-**階段成果報告：[簡報 PDF 與證據索引](reports/midterm/README.md)。** 第 02 組，受測程式版本 `6a5bc9b`，證據日期 2026-10-28。建議簡報與示範 14 分鐘、問答 5 分鐘，保留 1 分鐘緩衝。
+**階段成果報告：[簡報 PDF 與證據索引](reports/midterm/README.md)。** 第 02 組，受測程式版本 `6a5bc9b`，證據日期 2026-10-28。建議簡報與示範 14 分鐘、問答 5 分鐘，保留 1 分鐘緩衝。更新版簡報與講稿（16 張，含 PDF 預檢與 Week 6）見 [reports/phase-review-v2](reports/phase-review-v2/README.md)。
 
 **Week 7 提交入口：[Session 清除與來源更新](docs/week7/README.md)。** 新增隔離的 Session、清除控制、來源版本排除與文字比對工作台。148 項測試通過；候選主流程、同 Session 續問、清除後查詢與文字比對均有 OpenAI `LIVE_PASS`。原版／候選的真實比較包含原版 `LIVE_FAIL`，保留失敗證據，不宣稱全面通過或提升成功率。
 
@@ -60,4 +60,4 @@ Week 3 新增 `/assistant/week3/queries` 與 `/assistant/week3/query`；預設 `
 | 姓名 | 學號 | 初步分工 |
 | --- | --- | --- |
 | 陳冠友 | S11259039 | 隊長；建議負責環境、程式與 Git 操作 |
-| 林崇偉 | S11259031 | 隊員；建議負責需求、資料來源、測試與文件審查 |
+| 林崇瑋 | S11259031 | 隊員；建議負責需求、資料來源、測試與文件審查 |

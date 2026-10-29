@@ -1,16 +1,16 @@
 # 階段成果檢視簡報（v2）
 
-第 02 組。這一版重新設計 [reports/midterm](../midterm/README.md) 的 13 張簡報，並補上 10/28 晚間新增的 PDF 預檢與估分（`13b2b1e`）。舊版仍保留為凍結的 `report-week7-20261028` 交付物。
+第 02 組，陳冠友 S11259039（隊長）、林崇瑋 S11259031（隊員）。這一版重新設計 [reports/midterm](../midterm/README.md) 的 13 張簡報，補上 10/28 晚間新增的 PDF 預檢與估分（`13b2b1e`），以及 10/30 補交的 Week 6 評估後修訂（候選 `327b7e2`）。舊版仍保留為凍結的 `report-week7-20261028` 交付物。
 
-- [phase-review-v2.pptx](phase-review-v2.pptx)：15 張可編輯簡報，講者備註裡附逐頁講稿
+- [phase-review-v2.pptx](phase-review-v2.pptx)：16 張可編輯簡報，講者備註裡附逐頁講稿
 - [phase-review-v2.pdf](phase-review-v2.pdf)：同內容的 PDF
-- [speaker-script.md](speaker-script.md)：逐頁講稿、時間分配與問答準備
+- [speaker-script.md](speaker-script.md)：逐頁講稿、時間分配與問答準備（約 13.9 分鐘，另留問答 5 分鐘、緩衝 1 分鐘）
 
 ## 與舊版的差異
 
 - 版面改為狀態標籤（已完成／需補件／待確認）貫穿全份，架構、流程、時程都改用原生圖形，測試數改用原生圖表。
-- 新增 PDF 預檢兩頁：處理流程與估分條件、兩次真實 `LIVE_FAIL` 與修正過程。
-- PDF 改用 gpt-5.4 之後的最終結果沒有公開的 `verification.json`，簡報標為「待記錄」。上台前若已有紀錄，再改第 3、11、14 頁與講稿。
+- PDF 預檢三頁：處理流程與估分條件；兩次真實 `LIVE_FAIL` 與改用 gpt-5.4 後的結果；Week 6 的 Evaluator–optimizer 與真實比較。
+- PDF 預檢的 gpt-5.4 結果取自 Week 6 的合成 PDF 實測（兩輪皆 `LIVE_PASS`，但 7 項業務預期只符合 6 項），只代表這組案例，不是準確率。Week 6 結論為尚未證明改善，見 [docs/week06](../../docs/week06/README.md)。
 
 ## 重新產生
 

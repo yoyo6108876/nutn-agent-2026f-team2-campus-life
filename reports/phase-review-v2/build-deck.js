@@ -177,8 +177,8 @@ async function build() {
   let cx = 0.6;
   for (const k of ['met', 'partial', 'unsure']) cx += (await chip(s, cx, 4.0, k, null, 16)) + 0.2;
   text(s, '第 02 組', 0.6, 5.15, 4, 0.4, { fontSize: 18, bold: true, color: C.accent1 });
-  text(s, '陳冠友 S11259039（隊長）　林崇偉 S11259031（隊員）', 0.6, 5.6, 7.4, 0.4, { fontSize: 16, color: C.background1 });
-  text(s, '證據日期 2026-10-28 · Week 7 程式 6a5bc9b · PDF 預檢程式 13b2b1e · 資料皆為合成', 0.6, 6.55, 7.6, 0.3, { fontSize: 12, color: C.background2 });
+  text(s, '陳冠友 S11259039（隊長）　林崇瑋 S11259031（隊員）', 0.6, 5.6, 7.4, 0.4, { fontSize: 16, color: C.background1 });
+  text(s, '證據 2026-10-28／30 · W7 6a5bc9b · PDF 13b2b1e · W6 327b7e2 · 資料皆為合成', 0.6, 6.55, 7.6, 0.3, { fontSize: 12, color: C.background2 });
   // product illustration: a result card like the real UI
   card(s, 8.55, 1.2, 4.18, 4.95, { radius: 0.1, line: false, name: 'mock-card' });
   await iconCircle(s, 'FileCheck', 8.85, 1.5, 0.58, C.text2);
@@ -232,9 +232,9 @@ async function build() {
     ['W3', '來源檢索\n與拒答 gate', '缺教師費率原文', 'done'],
     ['W4', 'MCP 讀取\n確認後才寫入', 'Gemini／ADC\n未驗證', 'done'],
     ['W5', 'LangGraph\n候選與比較', '原版仍為預設', 'done'],
-    ['W6', '未提供\n可核對材料', '不列為完成', 'none'],
+    ['W6', '評估後修訂\n（10/30 補交）', 'live 未證明改善', 'done'],
     ['W7', 'Session\n清除與隔離', '正式登入待做', 'done'],
-    ['v0.8', 'PDF 預檢\n與估分', 'live 結果待記錄', 'new'],
+    ['v0.8', 'PDF 預檢\n與估分', '語意仍有誤判', 'new'],
   ];
   const tx0 = 1.25, tstep = (12.1 - 1.25) / 6;
   s.addShape(pres.shapes.LINE, { x: tx0, y: 2.38, w: tstep * 6, h: 0, line: { color: C.background2, width: 3 }, objectName: nm('timeline') });
@@ -250,12 +250,12 @@ async function build() {
   const paths = [
     ['MessageSquareText', 'A　文字語意比對', '老師規格＋學生文字 → GPT 判讀是否符合，系統核對原文引用', 'pass', null],
     ['Wrench', 'B　補件工具流程', 'GPT 提出工具呼叫 → Host 驗證 → 使用者確認後寫入草稿', 'pass', null],
-    ['FileText', 'C　PDF 預檢與估分', '老師與學生 PDF 圖文比對，確認配分後才顯示估分區間', 'pending', '待真實驗證'],
+    ['FileText', 'C　PDF 預檢與估分', '老師與學生 PDF 圖文比對，確認配分後才顯示估分；實測用合成 PDF', 'pass', 'LIVE_PASS · 預期 6／7'],
   ];
   for (let i = 0; i < paths.length; i++) {
     const x = 0.6 + i * 4.15;
     card(s, x, 4.15, 3.85, 2.05, i === 2 ? { line: C.accent1, lineWidth: 2 } : {});
-    await iconCircle(s, paths[i][0], x + 0.25, 4.38, 0.56, i === 2 ? C.accent3 : C.text2);
+    await iconCircle(s, paths[i][0], x + 0.25, 4.38, 0.56, C.text2);
     text(s, paths[i][1], x + 0.95, 4.47, 2.8, 0.4, { fontSize: 17, bold: true });
     text(s, paths[i][2], x + 0.25, 5.07, 3.4, 0.6, { fontSize: 13, color: C.accent6 });
     await chip(s, x + 0.25, 5.72, paths[i][3], paths[i][4], 12);
@@ -467,12 +467,12 @@ async function build() {
   screenshot(s, 'pdf-upload.png', 9.3, 1.75, 3.4, 3.4 * 1086 / 745, '本機 /week7 PDF 預檢與估分的上傳畫面，尚未上傳檔案');
 
   // ===== 11. PDF failures =====
-  s = slide('CONTENT', 'PDF 預檢', 'PDF 預檢 · 真實呼叫紀錄', '兩次真實失敗都被 Host 擋下，沒有給出錯誤分數');
+  s = slide('CONTENT', 'PDF 預檢', 'PDF 預檢 · 真實呼叫紀錄', '兩次失敗被 Host 擋下；換模型後通過，判斷仍會錯');
   await chip(s, 10.9, 0.36, 'new', null, 12);
   const fails = [
     ['ae1a441', 'fail', null, 'gpt-4.1-mini 直接寫引文', '模型把摘要當成逐字引文，還混用頁碼。', 'UNGROUNDED_PDF_REPORT', 'Host 拒絕輸出成績'],
     ['a9010bf', 'fail', null, '改成模型選行號、Host 複製', '模型選了跨頁、過長的範圍；人工抽查也發現目錄被當成正文。', 'INVALID_SOURCE_REFERENCE', '引用被擋下，未給分'],
-    ['13b2b1e', 'pending', '結果待記錄', 'PDF 改用 gpt-5.4', '保留行號驗證。最終執行狀態尚未寫入公開的 verification.json。', 'gpt-5.4-2026-03-05', '不宣稱成功，不當作準確率'],
+    ['13b2b1e', 'pass', null, 'PDF 改用 gpt-5.4', 'Week 6（c0403a3、327b7e2）以合成 PDF 實測兩輪都通過核對；但 7 項業務預期只中 6 項。', 'gpt-5.4-2026-03-05', '引用過關，語意仍會錯'],
   ];
   for (let i = 0; i < 3; i++) {
     const x = 0.6 + i * 4.14;
@@ -484,7 +484,7 @@ async function build() {
     text(s, f[4], x + 0.28, 2.98, 3.35, 0.95, { fontSize: 14 });
     card(s, x + 0.28, 4.0, 3.29, 0.42, { fill: C.background2, line: false, shadow: false, radius: 0.05 });
     text(s, f[5], x + 0.4, 4.0, 3.1, 0.42, { fontSize: 12, bold: true, color: f[1] === 'fail' ? C.accent5 : C.text2, valign: 'middle', fontFace: 'Courier New' });
-    await bareIcon(s, f[1] === 'fail' ? 'ShieldCheck' : 'Clock', x + 0.28, 4.66, 0.3, f[1] === 'fail' ? HEX.accent2 : HEX.accent3);
+    await bareIcon(s, f[1] === 'fail' ? 'ShieldCheck' : 'TriangleAlert', x + 0.28, 4.66, 0.3, f[1] === 'fail' ? HEX.accent2 : HEX.accent3);
     text(s, f[6], x + 0.68, 4.62, 3.0, 0.38, { fontSize: 14, bold: true, valign: 'middle' });
     if (i < 2) arrow(s, x + 3.88, 3.55, x + 4.11, 3.55, C.accent6);
   }
@@ -495,20 +495,58 @@ async function build() {
     lx += tag(s, lx, 6.12, layers[i], C.text2, 14, i === 2) + 0.12;
     if (i < 2) { text(s, '≠', lx, 6.08, 0.35, 0.42, { fontSize: 20, bold: true, color: C.accent6, align: 'center', valign: 'middle' }); lx += 0.47; }
   }
-  text(s, 'schema 通過不代表判斷對，所以失敗也保留原始紀錄。', 6.9, 6.12, 5.8, 0.38, { fontSize: 13, color: C.accent6, valign: 'middle' });
+  text(s, '實測：模型說學生第 2 頁有終端機截圖，實際沒有，Host 核對仍放行。', 6.9, 6.12, 5.8, 0.38, { fontSize: 13, color: C.accent6, valign: 'middle' });
 
-  // ===== 12. Tests =====
+  // ===== 12. Week 6 evaluator–optimizer =====
+  s = slide('CONTENT', 'PDF 預檢', 'WEEK 06 · EVALUATOR–OPTIMIZER（10/30 補交）', 'Week 6：系統指出錯處，再請 GPT 修訂一次');
+  const loop = [
+    ['GPT', C.accent4, '草稿 A', '讀兩份 PDF，選證據行號'],
+    ['Host', C.text2, '逐項評估', '最終關卡同一套規則，列出問題與位置'],
+    ['GPT', C.accent4, '修訂得到 B', '帶著 A 與問題清單，只改被指出處'],
+    ['Host', C.text2, '同規則重評', '並禁止把推測改成明確要求'],
+    ['結果', C.accent2, '通過才採用', '仍未通過：第 2 份即停，不給分'],
+  ];
+  const lw = 2.2, lg = 0.28;
+  for (let i = 0; i < loop.length; i++) {
+    const x = 0.6 + i * (lw + lg);
+    card(s, x, 1.75, lw, 1.45, i === 4 ? { line: C.accent2, lineWidth: 1.5 } : {});
+    s.addShape(pres.shapes.OVAL, { x: x + 0.18, y: 1.92, w: 0.34, h: 0.34, fill: { color: loop[i][1] }, line: { type: 'none' }, objectName: nm('loop-dot') });
+    text(s, String(i + 1), x + 0.18, 1.92, 0.34, 0.34, { fontSize: 13, bold: true, color: C.background1, align: 'center', valign: 'middle' });
+    tag(s, x + lw - 0.18 - (textWidth(loop[i][0], 11) + 0.26), 1.95, loop[i][0], loop[i][1], 11);
+    text(s, loop[i][2], x + 0.18, 2.36, lw - 0.3, 0.34, { fontSize: 15, bold: true });
+    text(s, loop[i][3], x + 0.18, 2.7, lw - 0.3, 0.45, { fontSize: 11, color: C.accent6 });
+    if (i < loop.length - 1) arrow(s, x + lw + 0.03, 2.47, x + lw + lg - 0.03, 2.47, C.accent6);
+  }
+  text(s, '草稿 A 通過就直接採用，呼叫次數與原版相同；判斷檔案放反不修訂；模型服務錯誤不重試。', 0.6, 3.36, 12.1, 0.32, { fontSize: 13, color: C.accent6 });
+  text(s, '真實比較：同一組合成 PDF，每版每輪各跑一次', 0.6, 3.82, 8, 0.36, { fontSize: 15, bold: true });
+  const res = [
+    ['gpt-5.4 · 兩輪', [['pass', '原版 LIVE_PASS'], ['pass', '候選 LIVE_PASS']], '草稿 A 都直接通過，候選沒有多呼叫；但 7 項預期都只中 6 項。'],
+    ['gpt-4.1-mini · 兩輪', [['fail', '原版 LIVE_FAIL'], ['fail', '候選 LIVE_FAIL']], '候選的修訂稿兩次都與 A 逐字相同，到上限停止；tokens 約 2.3 倍。'],
+    ['離線 15 個案例', [['met', '15／15 符合預期']], '修訂後通過、到上限停止、檔案放反不修訂、改標推測被拒。'],
+  ];
+  for (let i = 0; i < res.length; i++) {
+    const x = 0.6 + i * 4.14;
+    card(s, x, 4.28, 3.85, 1.8);
+    text(s, res[i][0], x + 0.28, 4.43, 3.3, 0.36, { fontSize: 16, bold: true, valign: 'middle' });
+    let rx = x + 0.28;
+    for (const [kind, label] of res[i][1]) rx += (await chip(s, rx, 4.9, kind, label, 10)) + 0.12;
+    text(s, res[i][2], x + 0.28, 5.33, 3.35, 0.65, { fontSize: 13 });
+  }
+  const pw6 = await chip(s, 0.6, 6.3, 'pending', '尚未證明改善', 13);
+  text(s, '預設維持原版，候選可在工作台切換。下一步：把草稿 A 改放在 user 訊息再重測。', 0.6 + pw6 + 0.2, 6.27, 12.13 - pw6 - 0.2, 0.4, { fontSize: 14, bold: true, valign: 'middle' });
+
+  // ===== 13. Tests =====
   pres.addSection({ title: '驗證與限制' });
-  s = slide('CONTENT', '驗證與限制', '驗證', '回歸測試從 107 項成長到 178 項');
-  s.addChart(pres.charts.BAR, [{ name: '通過測試', labels: ['W4', 'W5', 'W7', 'v0.8'], values: [107, 131, 148, 178] }], {
+  s = slide('CONTENT', '驗證與限制', '驗證', '回歸測試從 107 項成長到 213 項');
+  s.addChart(pres.charts.BAR, [{ name: '通過測試', labels: ['W4', 'W5', 'W7', 'v0.8', 'W6'], values: [107, 131, 148, 178, 213] }], {
     x: 0.6, y: 1.7, w: 5.6, h: 4.35, barDir: 'col', barGapWidthPct: 55,
-    chartColors: [HEX.accent6, HEX.accent6, HEX.dk2, HEX.accent1],
+    chartColors: [HEX.accent6, HEX.accent6, HEX.dk2, HEX.accent1, HEX.accent4],
     showValue: true, dataLabelPosition: 'outEnd', dataLabelFontSize: 16, dataLabelFontBold: true, dataLabelColor: HEX.dk1, dataLabelFontFace: '+mn-lt',
     catAxisLabelFontSize: 14, catAxisLabelColor: HEX.accent6, catAxisLabelFontFace: '+mn-lt', catAxisLineShow: false,
-    valAxisHidden: true, valAxisMinVal: 0, valAxisMaxVal: 200, valGridLine: { style: 'none' }, catGridLine: { style: 'none' },
+    valAxisHidden: true, valAxisMinVal: 0, valAxisMaxVal: 240, valGridLine: { style: 'none' }, catGridLine: { style: 'none' },
     showLegend: false, showTitle: false, objectName: 'tests-chart',
   });
-  text(s, 'v0.8 新增 30 項 PDF 測試。\n全部是離線與故障注入，不等於真實模型準確率。', 0.6, 6.1, 5.6, 0.6, { fontSize: 13, color: C.accent6 });
+  text(s, 'v0.8 新增 30 項 PDF 測試，W6（10/30 補交）再加 35 項。\n全部是離線與故障注入，不等於真實模型準確率。', 0.6, 6.1, 5.6, 0.6, { fontSize: 13, color: C.accent6 });
   text(s, '關鍵案例：預期與實際一致', 6.75, 1.75, 6, 0.38, { fontSize: 17, bold: true });
   const cases = [
     ['同 Session 續問', '帶入該 Session 的摘要', 'GPT', C.accent4],
@@ -516,7 +554,7 @@ async function build() {
     ['跨使用者讀取', 'RUN_NOT_FOUND', 'HTTP', C.text2],
     ['同 ID 重送', '確認後與重送都是 1 份', 'GPT', C.accent4],
     ['非法參數、429', '有限停止，不新增草稿', '故障注入', C.accent3],
-    ['PDF 錯誤引用、無配分', '拒絕輸出、不估分', '離線', C.accent6],
+    ['PDF 錯誤引用、到上限', '不估分，第 2 份即停', '離線', C.accent6],
   ];
   for (let i = 0; i < cases.length; i++) {
     const y = 2.3 + i * 0.64;
@@ -527,9 +565,9 @@ async function build() {
     const tw = textWidth(cases[i][2], 11) + 0.26;
     tag(s, 12.63 - tw, y + 0.1, cases[i][2], cases[i][3], 11);
   }
-  text(s, 'Week 7 真實呼叫：14 次模型回覆、18,296 tokens（用量，不是帳單）', 6.75, 6.25, 5.98, 0.4, { fontSize: 13, color: C.accent6, valign: 'middle' });
+  text(s, '真實呼叫用量（不是帳單）：Week 7 共 14 次模型回覆、18,296 tokens；Week 6 共 10 次回覆、86,451 tokens。', 6.75, 6.18, 5.98, 0.55, { fontSize: 12, color: C.accent6, valign: 'middle' });
 
-  // ===== 13. C01 failure =====
+  // ===== 14. C01 failure =====
   s = slide('CONTENT', '驗證與限制', '原版 vs Session 候選 · 同輸入、同模型、同來源', '保留一個真實失敗：模型略過了草稿提案');
   text(s, '兩者的檢索與引用 gate 都是 ready，且使用同一個 evidence hash。', 0.6, 1.7, 12, 0.34, { fontSize: 14, color: C.accent6 });
   const cmp = [
@@ -553,11 +591,11 @@ async function build() {
   text(s, '只有一組樣本，而且兩者完成的終點不同：不能宣稱記憶提升了品質或降低成本。', 1.1, 5.7, 11.6, 0.4, { fontSize: 16, bold: true, color: C.accent3, valign: 'middle' });
   text(s, '課程指定的 Google Cloud／ADC Gemini：LIVE_NOT_RUN（依組員選擇使用 OpenAI，不能拿來替代）。', 1.1, 6.18, 11.6, 0.36, { fontSize: 14, color: C.accent6, valign: 'middle' });
 
-  // ===== 14. Next steps =====
-  s = slide('CONTENT', '驗證與限制', '已完成、待驗證與規劃', '下一步：把判讀結果接進草稿工具');
+  // ===== 15. Next steps =====
+  s = slide('CONTENT', '驗證與限制', '已完成、待證明與規劃', '下一步：把判讀結果接進草稿工具');
   const board = [
     ['CircleCheck', C.accent2, '已完成且已驗證', ['文字語意比對：LIVE_PASS', '補件工具流程：LIVE_PASS', 'Session 清除與跨人隔離']],
-    ['Clock', C.accent3, '已實作，待真實驗證', ['PDF 預檢：gpt-5.4 最終結果', '來源 v2 排除：只有離線測試', '估分區間：未與教師成績校準']],
+    ['Clock', C.accent3, '已實作，效果待證明', ['W6 評估後修訂：未證明改善', 'PDF 預檢：通過，業務預期 6／7', '來源 v2 僅離線；估分未校準']],
     ['Map', C.accent4, '規劃中（期末前）', ['P0　判讀結果接入草稿工具', 'P0　20 組教師標註案例', 'P1　掃描 PDF OCR、正式登入']],
   ];
   for (let i = 0; i < 3; i++) {
@@ -574,10 +612,10 @@ async function build() {
   await bareIcon(s, 'Target', 0.6, 6.3, 0.34, HEX.dk2);
   text(s, '驗收：20 組標註案例 · 跨人隔離 · 來源變更拒寫 · 可重現 trace，並分開報告正確率與拒答率。', 1.08, 6.28, 11.6, 0.4, { fontSize: 15, bold: true, valign: 'middle' });
 
-  // ===== 15. Team & Q&A =====
+  // ===== 16. Team & Q&A =====
   pres.addSection({ title: '結尾' });
   s = slide('CLOSING_DARK', '結尾', '團隊與後續', '分工與問答');
-  const team = [['陳冠友', 'S11259039 · 隊長', '後端、工具確認、Session 記憶與 PDF 預檢示範'], ['林崇偉', 'S11259031 · 隊員', '使用情境、來源引用、測試與失敗分析']];
+  const team = [['陳冠友', 'S11259039 · 隊長', '後端、工具確認、Session 記憶與 PDF 預檢示範'], ['林崇瑋', 'S11259031 · 隊員', '使用情境、來源引用、測試與失敗分析']];
   for (let i = 0; i < 2; i++) {
     const x = 0.6 + i * 6.23;
     s.addShape(pres.shapes.ROUNDED_RECTANGLE, { x, y: 1.8, w: 5.9, h: 2.25, rectRadius: 0.1, fill: { color: C.background1, transparency: 90 }, line: { color: C.background1, width: 1, transparency: 70 }, objectName: nm('member-card') });

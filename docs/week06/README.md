@@ -5,9 +5,10 @@
 > 我們在原專案的 **PDF 預檢**子流程，用 **Evaluator–optimizer** workflow 處理「Host 只回報第一個錯、模型無法依錯誤位置修正，整份預檢就作廢」的問題；離線案例可修訂後通過，真實環境**尚未證明改善**，預設維持原版。證據在本頁與 [artifacts/week6](../../artifacts/week6/)。
 
 - 原使用者故事：學生提交前上傳老師規格與自己的報告 PDF，先看缺漏、待確認與修改建議；老師配分明確時，核對配分後才看預估區間。業務終點維持 `POST /assistant/week7/pdf/precheck`（產生預檢）與 `.../confirm`（核對配分、顯示區間）。
-- Repository：https://github.com/yoyo6108876/nutn-agent-2026f-team2-campus-life，分支 `codex/week6-evaluator-optimizer`（目前只在本機，推送後才有提交連結）。
-- 基線：`33b948fc51066cdcf570184067f1a498ba313a28`（PDF 預檢 v0.8，單次呼叫）。
-- 候選：`327b7e2cb68c36dc0c327eaf02832ee80260907b`（第一輪真實比較用 `c0403a3024a849c7a3c0aa56a75792ede1f44e4c`，之後依失敗修正修訂回饋）。
+- Repository：https://github.com/yoyo6108876/nutn-agent-2026f-team2-campus-life，分支 [`codex/week6-evaluator-optimizer`](https://github.com/yoyo6108876/nutn-agent-2026f-team2-campus-life/tree/codex/week6-evaluator-optimizer)。
+- 基線：[`33b948fc51066cdcf570184067f1a498ba313a28`](https://github.com/yoyo6108876/nutn-agent-2026f-team2-campus-life/commit/33b948fc51066cdcf570184067f1a498ba313a28)（PDF 預檢 v0.8，單次呼叫）。
+- 候選：[`327b7e2cb68c36dc0c327eaf02832ee80260907b`](https://github.com/yoyo6108876/nutn-agent-2026f-team2-campus-life/commit/327b7e2cb68c36dc0c327eaf02832ee80260907b)（第一輪真實比較用 [`c0403a3024a849c7a3c0aa56a75792ede1f44e4c`](https://github.com/yoyo6108876/nutn-agent-2026f-team2-campus-life/commit/c0403a3024a849c7a3c0aa56a75792ede1f44e4c)，之後依失敗修正修訂回饋）。
+- 程式差異：[33b948f…327b7e2](https://github.com/yoyo6108876/nutn-agent-2026f-team2-campus-life/compare/33b948fc51066cdcf570184067f1a498ba313a28...327b7e2cb68c36dc0c327eaf02832ee80260907b)；文件與證據提交：[`5d3cfb6`](https://github.com/yoyo6108876/nutn-agent-2026f-team2-campus-life/commit/5d3cfb6)。
 - [ADR](adr.md) · [前後比較](comparison.md) · [固定輸入](../../examples/week6/README.md) · [證據](../../artifacts/week6/)
 
 | 項目 | 實際狀態 |
@@ -124,7 +125,7 @@ git diff 33b948f 327b7e2 -- assignment_checker tests scripts examples/week6
 | --- | --- |
 | 原題目延續 | 原使用者故事與 repo 見本頁開頭，PDF 預檢端點與確認流程不變。 |
 | Workflow 增量 | Evaluator–optimizer。真正改變執行的是 [`week6/workflow.py`](../../assignment_checker/week6/workflow.py) 與 [`pdf_review.py`](../../assignment_checker/pdf_review.py) 的 `evaluate_draft`／`PDFPrechecks.start`。 |
-| 證據足夠 | 四條案例與第 5 條見上表，比較表見 [comparison.md](comparison.md)，ADR 見 [adr.md](adr.md)，原始 JSON 見 [artifacts/week6](../../artifacts/week6/)。提交連結要等分支推送後補上。 |
+| 證據足夠 | 四條案例與第 5 條見上表，比較表見 [comparison.md](comparison.md)，ADR 見 [adr.md](adr.md)，原始 JSON 見 [artifacts/week6](../../artifacts/week6/)。提交連結：[分支](https://github.com/yoyo6108876/nutn-agent-2026f-team2-campus-life/tree/codex/week6-evaluator-optimizer)、[候選 commit](https://github.com/yoyo6108876/nutn-agent-2026f-team2-campus-life/commit/327b7e2cb68c36dc0c327eaf02832ee80260907b)、[程式差異](https://github.com/yoyo6108876/nutn-agent-2026f-team2-campus-life/compare/33b948fc51066cdcf570184067f1a498ba313a28...327b7e2cb68c36dc0c327eaf02832ee80260907b)。 |
 | 狀態誠實 | 離線案例一律 `LIVE_NOT_RUN`；真實失敗保留為 `LIVE_FAIL`，沒有重跑挑選結果；`LIVE_PASS` 一律附上業務預期 6／7。Gemini／ADC 為 `LIVE_NOT_RUN`。 |
 | 安全與後續 | 只用合成 PDF，證據中沒有金鑰、`.env`、真實學生資料或本機絕對路徑。補驗證步驟見上一節。 |
 

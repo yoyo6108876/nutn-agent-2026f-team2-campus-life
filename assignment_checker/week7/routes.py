@@ -22,6 +22,7 @@ from .memory import SessionMemory
 from .workflow import SessionWorkflow
 from ..pdf_review import PDFPair, PDFPrechecks, MAX_BODY_BYTES
 from ..service import CheckFailure
+from ..week6.workflow import revise_until_valid
 
 ROOT = Path(__file__).resolve().parents[2]
 COOKIE = 'assignment_demo_session'
@@ -69,7 +70,8 @@ class SessionService:
         self.store = Store(directory/'business.sqlite3')
         self.memory = SessionMemory(directory/'sessions.sqlite3')
         self.provider, self.review_provider, self.reader = provider, review_provider, reader
-        self.pdf_prechecks = PDFPrechecks(self.memory, pdf_provider)
+        self.pdf_prechecks = PDFPrechecks(self.memory, pdf_provider,
+                                          workflows={'evaluator_optimizer': revise_until_valid})
         with self.memory.db() as db:
             db.execute('''CREATE TABLE IF NOT EXISTS browser_tokens
                 (digest TEXT PRIMARY KEY, owner_id TEXT NOT NULL, session_id TEXT NOT NULL, created_at REAL NOT NULL)''')

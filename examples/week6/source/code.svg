@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="330" viewBox="0 0 720 330">
+  <rect width="720" height="330" rx="10" fill="#1e2430"/>
+  <rect width="720" height="34" rx="10" fill="#2b3240"/>
+  <circle cx="22" cy="17" r="6" fill="#e06c5f"/><circle cx="42" cy="17" r="6" fill="#e3b341"/><circle cx="62" cy="17" r="6" fill="#5fb36c"/>
+  <text x="96" y="22" font-family="Menlo, monospace" font-size="14" fill="#9aa4b2">stats.cpp</text>
+  <g font-family="Menlo, monospace" font-size="17" fill="#d7dde6">
+    <text x="24" y="70" fill="#7f8b99">// calcMean: 回傳成績平均</text>
+    <text x="24" y="96"><tspan fill="#c792ea">double</tspan> calcMean(<tspan fill="#c792ea">const</tspan> vector&lt;<tspan fill="#c792ea">double</tspan>&gt;&amp; s) {</text>
+    <text x="24" y="122">    <tspan fill="#c792ea">double</tspan> sum = 0;</text>
+    <text x="24" y="148">    <tspan fill="#c792ea">for</tspan> (<tspan fill="#c792ea">double</tspan> x : s) sum += x;</text>
+    <text x="24" y="174">    <tspan fill="#c792ea">return</tspan> sum / s.size();</text>
+    <text x="24" y="200">}</text>
+    <text x="24" y="236" fill="#7f8b99">// calcMedian: 排序後取中位數</text>
+    <text x="24" y="262"><tspan fill="#c792ea">double</tspan> calcMedian(vector&lt;<tspan fill="#c792ea">double</tspan>&gt; s) {</text>
+    <text x="24" y="288">    sort(s.begin(), s.end());</text>
+    <text x="24" y="314">    <tspan fill="#c792ea">return</tspan> (s[(s.size()-1)/2] + s[s.size()/2]) / 2;  }</text>
+  </g>
+</svg>

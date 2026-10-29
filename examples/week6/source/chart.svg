@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="340" viewBox="0 0 640 340">
+  <rect width="640" height="340" fill="#ffffff"/>
+  <text x="320" y="30" text-anchor="middle" font-family="PingFang TC, sans-serif" font-size="18" fill="#1a2233">成績分布（30 位學生）</text>
+  <line x1="70" y1="290" x2="610" y2="290" stroke="#66768c"/>
+  <line x1="70" y1="50" x2="70" y2="290" stroke="#66768c"/>
+  <g font-family="PingFang TC, sans-serif" font-size="14" fill="#66768c" text-anchor="end">
+    <text x="62" y="294">0</text><text x="62" y="194">5</text><text x="62" y="94">10</text>
+  </g>
+  <g fill="#3d6bb3">
+    <rect x="95" y="250" width="70" height="40"/>
+    <rect x="200" y="190" width="70" height="100"/>
+    <rect x="305" y="110" width="70" height="180"/>
+    <rect x="410" y="90" width="70" height="200"/>
+    <rect x="515" y="210" width="70" height="80"/>
+  </g>
+  <g font-family="PingFang TC, sans-serif" font-size="15" fill="#1a2233" text-anchor="middle">
+    <text x="130" y="244">2</text><text x="235" y="184">5</text><text x="340" y="104">9</text><text x="445" y="84">10</text><text x="550" y="204">4</text>
+    <text x="130" y="312">0–59</text><text x="235" y="312">60–69</text><text x="340" y="312">70–79</text><text x="445" y="312">80–89</text><text x="550" y="312">90–100</text>
+  </g>
+</svg>

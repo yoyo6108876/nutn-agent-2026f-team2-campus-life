@@ -1,0 +1,780 @@
+{
+ "_note": "Authored fixture drafts for examples/week6 PDFs. Not model output.",
+ "valid": {
+  "document_roles_match": true,
+  "rubric_status": "explicit_100_point_rubric",
+  "criteria": [
+   {
+    "id": "G1",
+    "name": "程式功能正確性",
+    "max_points": 40,
+    "teacher_evidence": {
+     "start": "T2L2",
+     "end": "T2L2"
+    },
+    "score_low": 20,
+    "score_high": 32,
+    "rationale": "報告列出平均與中位數，缺少規定的標準差；未提供原始碼，無法確認程式能執行。",
+    "student_evidence": [
+     {
+      "kind": "text",
+      "text_reference": {
+       "start": "S2L3",
+       "end": "S2L5"
+      },
+      "visual_page": null,
+      "observation": null
+     },
+     {
+      "kind": "visual",
+      "text_reference": null,
+      "visual_page": 2,
+      "observation": "本頁截圖可見 stats.cpp 的 calcMean 與 calcMedian 兩個函式，各有一行註解。"
+     }
+    ],
+    "verification": "needs_original_files_or_execution"
+   },
+   {
+    "id": "G2",
+    "name": "程式碼品質與註解",
+    "max_points": 20,
+    "teacher_evidence": {
+     "start": "T2L3",
+     "end": "T2L3"
+    },
+    "score_low": 8,
+    "score_high": 15,
+    "rationale": "截圖中的兩個主要函式有註解，但只看到部分程式碼。",
+    "student_evidence": [
+     {
+      "kind": "visual",
+      "text_reference": null,
+      "visual_page": 2,
+      "observation": "本頁截圖可見 stats.cpp 的 calcMean 與 calcMedian 兩個函式，各有一行註解。"
+     }
+    ],
+    "verification": "needs_original_files_or_execution"
+   },
+   {
+    "id": "G3",
+    "name": "執行結果與截圖",
+    "max_points": 20,
+    "teacher_evidence": {
+     "start": "T2L4",
+     "end": "T2L4"
+    },
+    "score_low": 8,
+    "score_high": 13,
+    "rationale": "有長條圖截圖；終端機輸出只以文字呈現，沒有截圖。",
+    "student_evidence": [
+     {
+      "kind": "visual",
+      "text_reference": null,
+      "visual_page": 3,
+      "observation": "本頁截圖可見成績分布長條圖，五個分數區間共 30 位學生。"
+     },
+     {
+      "kind": "text",
+      "text_reference": {
+       "start": "S2L2",
+       "end": "S2L5"
+      },
+      "visual_page": null,
+      "observation": null
+     }
+    ],
+    "verification": "pdf_evidence_only"
+   },
+   {
+    "id": "G4",
+    "name": "結果分析與改進方向",
+    "max_points": 20,
+    "teacher_evidence": {
+     "start": "T2L5",
+     "end": "T2L5"
+    },
+    "score_low": 6,
+    "score_high": 10,
+    "rationale": "有結果分析；目錄列出改進方向，但正文沒有這一節。",
+    "student_evidence": [
+     {
+      "kind": "text",
+      "text_reference": {
+       "start": "S3L2",
+       "end": "S3L3"
+      },
+      "visual_page": null,
+      "observation": null
+     }
+    ],
+    "verification": "pdf_evidence_only"
+   }
+  ],
+  "checks": [
+   {
+    "requirement": "使用 C++17 撰寫，不得使用第三方統計函式庫。",
+    "authority": "explicit_requirement",
+    "teacher_evidence": {
+     "start": "T1L6",
+     "end": "T1L6"
+    },
+    "status": "met",
+    "student_evidence": [
+     {
+      "kind": "text",
+      "text_reference": {
+       "start": "S1L9",
+       "end": "S1L9"
+      },
+      "visual_page": null,
+      "observation": null
+     }
+    ],
+    "reason": "報告說明以 C++17 撰寫且只用標準函式庫。",
+    "action": "上傳原始碼供老師確認。",
+    "priority": "low"
+   },
+   {
+    "requirement": "繳交完整原始碼 stats.cpp，主要函式須附註解。",
+    "authority": "explicit_requirement",
+    "teacher_evidence": {
+     "start": "T1L7",
+     "end": "T1L7"
+    },
+    "status": "uncertain",
+    "student_evidence": [
+     {
+      "kind": "visual",
+      "text_reference": null,
+      "visual_page": 2,
+      "observation": "本頁截圖可見 stats.cpp 的 calcMean 與 calcMedian 兩個函式，各有一行註解。"
+     }
+    ],
+    "reason": "只看到程式截圖，無法確認 stats.cpp 是否另外繳交且完整。",
+    "action": "另外上傳完整 stats.cpp。",
+    "priority": "high"
+   },
+   {
+    "requirement": "讀入 scores.csv，輸出平均、中位數與標準差。",
+    "authority": "explicit_requirement",
+    "teacher_evidence": {
+     "start": "T1L8",
+     "end": "T1L8"
+    },
+    "status": "partial",
+    "student_evidence": [
+     {
+      "kind": "text",
+      "text_reference": {
+       "start": "S2L3",
+       "end": "S2L5"
+      },
+      "visual_page": null,
+      "observation": null
+     }
+    ],
+    "reason": "輸出有平均與中位數，沒有標準差。",
+    "action": "補上標準差的計算與輸出。",
+    "priority": "high"
+   },
+   {
+    "requirement": "附至少 2 張執行截圖：終端機輸出與成績長條圖。",
+    "authority": "explicit_requirement",
+    "teacher_evidence": {
+     "start": "T1L9",
+     "end": "T1L9"
+    },
+    "status": "partial",
+    "student_evidence": [
+     {
+      "kind": "visual",
+      "text_reference": null,
+      "visual_page": 3,
+      "observation": "本頁截圖可見成績分布長條圖，五個分數區間共 30 位學生。"
+     },
+     {
+      "kind": "text",
+      "text_reference": {
+       "start": "S2L2",
+       "end": "S2L2"
+      },
+      "visual_page": null,
+      "observation": null
+     }
+    ],
+    "reason": "有長條圖截圖；終端機輸出只有文字，不是截圖。",
+    "action": "補上終端機執行畫面的截圖。",
+    "priority": "medium"
+   },
+   {
+    "requirement": "包含「結果分析」與「改進方向」兩節，共 3 至 5 頁。",
+    "authority": "explicit_requirement",
+    "teacher_evidence": {
+     "start": "T1L10",
+     "end": "T1L10"
+    },
+    "status": "partial",
+    "student_evidence": [
+     {
+      "kind": "text",
+      "text_reference": {
+       "start": "S3L1",
+       "end": "S3L3"
+      },
+      "visual_page": null,
+      "observation": null
+     },
+     {
+      "kind": "text",
+      "text_reference": {
+       "start": "S1L7",
+       "end": "S1L7"
+      },
+      "visual_page": null,
+      "observation": null
+     }
+    ],
+    "reason": "結果分析完整；目錄列出改進方向，但正文跳過這一節。",
+    "action": "補寫改進方向，提出具體可改做法。",
+    "priority": "high"
+   },
+   {
+    "requirement": "報告 PDF 與原始碼分開上傳。",
+    "authority": "explicit_requirement",
+    "teacher_evidence": {
+     "start": "T2L7",
+     "end": "T2L7"
+    },
+    "status": "uncertain",
+    "student_evidence": [],
+    "reason": "只提供 PDF，無法確認原始碼是否另外上傳。",
+    "action": "確認已另外上傳原始碼。",
+    "priority": "medium"
+   }
+  ],
+  "summary": "報告完成程式說明與結果分析；最優先補上標準差輸出與「改進方向」一節，並另交 stats.cpp。",
+  "limitations": [
+   "只檢查兩份 PDF，沒有編譯或執行程式。",
+   "圖像內容由模型判讀，可能有誤。",
+   "老師正式成績可能不同。"
+  ]
+ },
+ "invalid_refs": {
+  "document_roles_match": true,
+  "rubric_status": "explicit_100_point_rubric",
+  "criteria": [
+   {
+    "id": "G1",
+    "name": "程式功能正確性",
+    "max_points": 40,
+    "teacher_evidence": {
+     "start": "T2L2",
+     "end": "T2L2"
+    },
+    "score_low": 20,
+    "score_high": 32,
+    "rationale": "報告列出平均與中位數，缺少規定的標準差；未提供原始碼，無法確認程式能執行。",
+    "student_evidence": [
+     {
+      "kind": "text",
+      "text_reference": {
+       "start": "S2L3",
+       "end": "S2L5"
+      },
+      "visual_page": null,
+      "observation": null
+     },
+     {
+      "kind": "visual",
+      "text_reference": null,
+      "visual_page": 2,
+      "observation": "本頁截圖可見 stats.cpp 的 calcMean 與 calcMedian 兩個函式，各有一行註解。"
+     }
+    ],
+    "verification": "needs_original_files_or_execution"
+   },
+   {
+    "id": "G2",
+    "name": "程式碼品質與註解",
+    "max_points": 20,
+    "teacher_evidence": {
+     "start": "T2L3",
+     "end": "T2L3"
+    },
+    "score_low": 8,
+    "score_high": 15,
+    "rationale": "截圖中的兩個主要函式有註解，但只看到部分程式碼。",
+    "student_evidence": [
+     {
+      "kind": "visual",
+      "text_reference": null,
+      "visual_page": 2,
+      "observation": "本頁截圖可見 stats.cpp 的 calcMean 與 calcMedian 兩個函式，各有一行註解。"
+     }
+    ],
+    "verification": "needs_original_files_or_execution"
+   },
+   {
+    "id": "G3",
+    "name": "執行結果與截圖",
+    "max_points": 20,
+    "teacher_evidence": {
+     "start": "T2L4",
+     "end": "T2L4"
+    },
+    "score_low": 8,
+    "score_high": 13,
+    "rationale": "有長條圖截圖；終端機輸出只以文字呈現，沒有截圖。",
+    "student_evidence": [
+     {
+      "kind": "visual",
+      "text_reference": null,
+      "visual_page": 3,
+      "observation": "本頁截圖可見成績分布長條圖，五個分數區間共 30 位學生。"
+     },
+     {
+      "kind": "text",
+      "text_reference": {
+       "start": "S2L2",
+       "end": "S2L5"
+      },
+      "visual_page": null,
+      "observation": null
+     }
+    ],
+    "verification": "pdf_evidence_only"
+   },
+   {
+    "id": "G4",
+    "name": "結果分析與改進方向",
+    "max_points": 20,
+    "teacher_evidence": {
+     "start": "T1L10",
+     "end": "T2L5"
+    },
+    "score_low": 6,
+    "score_high": 10,
+    "rationale": "有結果分析；目錄列出改進方向，但正文沒有這一節。",
+    "student_evidence": [
+     {
+      "kind": "text",
+      "text_reference": {
+       "start": "S3L2",
+       "end": "S3L3"
+      },
+      "visual_page": null,
+      "observation": null
+     }
+    ],
+    "verification": "pdf_evidence_only"
+   }
+  ],
+  "checks": [
+   {
+    "requirement": "使用 C++17 撰寫，不得使用第三方統計函式庫。",
+    "authority": "explicit_requirement",
+    "teacher_evidence": {
+     "start": "T1L6",
+     "end": "T1L6"
+    },
+    "status": "met",
+    "student_evidence": [
+     {
+      "kind": "text",
+      "text_reference": {
+       "start": "S1L9",
+       "end": "S1L9"
+      },
+      "visual_page": null,
+      "observation": null
+     }
+    ],
+    "reason": "報告說明以 C++17 撰寫且只用標準函式庫。",
+    "action": "上傳原始碼供老師確認。",
+    "priority": "low"
+   },
+   {
+    "requirement": "繳交完整原始碼 stats.cpp，主要函式須附註解。",
+    "authority": "explicit_requirement",
+    "teacher_evidence": {
+     "start": "T1L7",
+     "end": "T1L7"
+    },
+    "status": "uncertain",
+    "student_evidence": [
+     {
+      "kind": "visual",
+      "text_reference": null,
+      "visual_page": 2,
+      "observation": "本頁截圖可見 stats.cpp 的 calcMean 與 calcMedian 兩個函式，各有一行註解。"
+     }
+    ],
+    "reason": "只看到程式截圖，無法確認 stats.cpp 是否另外繳交且完整。",
+    "action": "另外上傳完整 stats.cpp。",
+    "priority": "high"
+   },
+   {
+    "requirement": "讀入 scores.csv，輸出平均、中位數與標準差。",
+    "authority": "explicit_requirement",
+    "teacher_evidence": {
+     "start": "S1L1",
+     "end": "S1L1"
+    },
+    "status": "partial",
+    "student_evidence": [
+     {
+      "kind": "text",
+      "text_reference": {
+       "start": "S2L3",
+       "end": "S2L5"
+      },
+      "visual_page": null,
+      "observation": null
+     }
+    ],
+    "reason": "輸出有平均與中位數，沒有標準差。",
+    "action": "補上標準差的計算與輸出。",
+    "priority": "high"
+   },
+   {
+    "requirement": "附至少 2 張執行截圖：終端機輸出與成績長條圖。",
+    "authority": "explicit_requirement",
+    "teacher_evidence": {
+     "start": "T1L9",
+     "end": "T1L9"
+    },
+    "status": "partial",
+    "student_evidence": [
+     {
+      "kind": "visual",
+      "text_reference": null,
+      "visual_page": 3,
+      "observation": "本頁截圖可見成績分布長條圖，五個分數區間共 30 位學生。"
+     },
+     {
+      "kind": "text",
+      "text_reference": {
+       "start": "S2L2",
+       "end": "S2L2"
+      },
+      "visual_page": null,
+      "observation": null
+     }
+    ],
+    "reason": "有長條圖截圖；終端機輸出只有文字，不是截圖。",
+    "action": "補上終端機執行畫面的截圖。",
+    "priority": "medium"
+   },
+   {
+    "requirement": "包含「結果分析」與「改進方向」兩節，共 3 至 5 頁。",
+    "authority": "explicit_requirement",
+    "teacher_evidence": {
+     "start": "T1L10",
+     "end": "T1L10"
+    },
+    "status": "partial",
+    "student_evidence": [
+     {
+      "kind": "text",
+      "text_reference": {
+       "start": "S1L1",
+       "end": "S1L13"
+      },
+      "visual_page": null,
+      "observation": null
+     },
+     {
+      "kind": "text",
+      "text_reference": {
+       "start": "S1L7",
+       "end": "S1L7"
+      },
+      "visual_page": null,
+      "observation": null
+     }
+    ],
+    "reason": "結果分析完整；目錄列出改進方向，但正文跳過這一節。",
+    "action": "補寫改進方向，提出具體可改做法。",
+    "priority": "high"
+   },
+   {
+    "requirement": "報告 PDF 與原始碼分開上傳。",
+    "authority": "explicit_requirement",
+    "teacher_evidence": {
+     "start": "T2L7",
+     "end": "T2L7"
+    },
+    "status": "uncertain",
+    "student_evidence": [],
+    "reason": "只提供 PDF，無法確認原始碼是否另外上傳。",
+    "action": "確認已另外上傳原始碼。",
+    "priority": "medium"
+   }
+  ],
+  "summary": "報告完成程式說明與結果分析；最優先補上標準差輸出與「改進方向」一節，並另交 stats.cpp。",
+  "limitations": [
+   "只檢查兩份 PDF，沒有編譯或執行程式。",
+   "圖像內容由模型判讀，可能有誤。",
+   "老師正式成績可能不同。"
+  ]
+ },
+ "roles_mismatch": {
+  "document_roles_match": false,
+  "rubric_status": "explicit_100_point_rubric",
+  "criteria": [
+   {
+    "id": "G1",
+    "name": "程式功能正確性",
+    "max_points": 40,
+    "teacher_evidence": {
+     "start": "T2L2",
+     "end": "T2L2"
+    },
+    "score_low": 20,
+    "score_high": 32,
+    "rationale": "報告列出平均與中位數，缺少規定的標準差；未提供原始碼，無法確認程式能執行。",
+    "student_evidence": [
+     {
+      "kind": "text",
+      "text_reference": {
+       "start": "S2L3",
+       "end": "S2L5"
+      },
+      "visual_page": null,
+      "observation": null
+     },
+     {
+      "kind": "visual",
+      "text_reference": null,
+      "visual_page": 2,
+      "observation": "本頁截圖可見 stats.cpp 的 calcMean 與 calcMedian 兩個函式，各有一行註解。"
+     }
+    ],
+    "verification": "needs_original_files_or_execution"
+   },
+   {
+    "id": "G2",
+    "name": "程式碼品質與註解",
+    "max_points": 20,
+    "teacher_evidence": {
+     "start": "T2L3",
+     "end": "T2L3"
+    },
+    "score_low": 8,
+    "score_high": 15,
+    "rationale": "截圖中的兩個主要函式有註解，但只看到部分程式碼。",
+    "student_evidence": [
+     {
+      "kind": "visual",
+      "text_reference": null,
+      "visual_page": 2,
+      "observation": "本頁截圖可見 stats.cpp 的 calcMean 與 calcMedian 兩個函式，各有一行註解。"
+     }
+    ],
+    "verification": "needs_original_files_or_execution"
+   },
+   {
+    "id": "G3",
+    "name": "執行結果與截圖",
+    "max_points": 20,
+    "teacher_evidence": {
+     "start": "T2L4",
+     "end": "T2L4"
+    },
+    "score_low": 8,
+    "score_high": 13,
+    "rationale": "有長條圖截圖；終端機輸出只以文字呈現，沒有截圖。",
+    "student_evidence": [
+     {
+      "kind": "visual",
+      "text_reference": null,
+      "visual_page": 3,
+      "observation": "本頁截圖可見成績分布長條圖，五個分數區間共 30 位學生。"
+     },
+     {
+      "kind": "text",
+      "text_reference": {
+       "start": "S2L2",
+       "end": "S2L5"
+      },
+      "visual_page": null,
+      "observation": null
+     }
+    ],
+    "verification": "pdf_evidence_only"
+   },
+   {
+    "id": "G4",
+    "name": "結果分析與改進方向",
+    "max_points": 20,
+    "teacher_evidence": {
+     "start": "T2L5",
+     "end": "T2L5"
+    },
+    "score_low": 6,
+    "score_high": 10,
+    "rationale": "有結果分析；目錄列出改進方向，但正文沒有這一節。",
+    "student_evidence": [
+     {
+      "kind": "text",
+      "text_reference": {
+       "start": "S3L2",
+       "end": "S3L3"
+      },
+      "visual_page": null,
+      "observation": null
+     }
+    ],
+    "verification": "pdf_evidence_only"
+   }
+  ],
+  "checks": [
+   {
+    "requirement": "使用 C++17 撰寫，不得使用第三方統計函式庫。",
+    "authority": "explicit_requirement",
+    "teacher_evidence": {
+     "start": "T1L6",
+     "end": "T1L6"
+    },
+    "status": "met",
+    "student_evidence": [
+     {
+      "kind": "text",
+      "text_reference": {
+       "start": "S1L9",
+       "end": "S1L9"
+      },
+      "visual_page": null,
+      "observation": null
+     }
+    ],
+    "reason": "報告說明以 C++17 撰寫且只用標準函式庫。",
+    "action": "上傳原始碼供老師確認。",
+    "priority": "low"
+   },
+   {
+    "requirement": "繳交完整原始碼 stats.cpp，主要函式須附註解。",
+    "authority": "explicit_requirement",
+    "teacher_evidence": {
+     "start": "T1L7",
+     "end": "T1L7"
+    },
+    "status": "uncertain",
+    "student_evidence": [
+     {
+      "kind": "visual",
+      "text_reference": null,
+      "visual_page": 2,
+      "observation": "本頁截圖可見 stats.cpp 的 calcMean 與 calcMedian 兩個函式，各有一行註解。"
+     }
+    ],
+    "reason": "只看到程式截圖，無法確認 stats.cpp 是否另外繳交且完整。",
+    "action": "另外上傳完整 stats.cpp。",
+    "priority": "high"
+   },
+   {
+    "requirement": "讀入 scores.csv，輸出平均、中位數與標準差。",
+    "authority": "explicit_requirement",
+    "teacher_evidence": {
+     "start": "T1L8",
+     "end": "T1L8"
+    },
+    "status": "partial",
+    "student_evidence": [
+     {
+      "kind": "text",
+      "text_reference": {
+       "start": "S2L3",
+       "end": "S2L5"
+      },
+      "visual_page": null,
+      "observation": null
+     }
+    ],
+    "reason": "輸出有平均與中位數，沒有標準差。",
+    "action": "補上標準差的計算與輸出。",
+    "priority": "high"
+   },
+   {
+    "requirement": "附至少 2 張執行截圖：終端機輸出與成績長條圖。",
+    "authority": "explicit_requirement",
+    "teacher_evidence": {
+     "start": "T1L9",
+     "end": "T1L9"
+    },
+    "status": "partial",
+    "student_evidence": [
+     {
+      "kind": "visual",
+      "text_reference": null,
+      "visual_page": 3,
+      "observation": "本頁截圖可見成績分布長條圖，五個分數區間共 30 位學生。"
+     },
+     {
+      "kind": "text",
+      "text_reference": {
+       "start": "S2L2",
+       "end": "S2L2"
+      },
+      "visual_page": null,
+      "observation": null
+     }
+    ],
+    "reason": "有長條圖截圖；終端機輸出只有文字，不是截圖。",
+    "action": "補上終端機執行畫面的截圖。",
+    "priority": "medium"
+   },
+   {
+    "requirement": "包含「結果分析」與「改進方向」兩節，共 3 至 5 頁。",
+    "authority": "explicit_requirement",
+    "teacher_evidence": {
+     "start": "T1L10",
+     "end": "T1L10"
+    },
+    "status": "partial",
+    "student_evidence": [
+     {
+      "kind": "text",
+      "text_reference": {
+       "start": "S3L1",
+       "end": "S3L3"
+      },
+      "visual_page": null,
+      "observation": null
+     },
+     {
+      "kind": "text",
+      "text_reference": {
+       "start": "S1L7",
+       "end": "S1L7"
+      },
+      "visual_page": null,
+      "observation": null
+     }
+    ],
+    "reason": "結果分析完整；目錄列出改進方向，但正文跳過這一節。",
+    "action": "補寫改進方向，提出具體可改做法。",
+    "priority": "high"
+   },
+   {
+    "requirement": "報告 PDF 與原始碼分開上傳。",
+    "authority": "explicit_requirement",
+    "teacher_evidence": {
+     "start": "T2L7",
+     "end": "T2L7"
+    },
+    "status": "uncertain",
+    "student_evidence": [],
+    "reason": "只提供 PDF，無法確認原始碼是否另外上傳。",
+    "action": "確認已另外上傳原始碼。",
+    "priority": "medium"
+   }
+  ],
+  "summary": "報告完成程式說明與結果分析；最優先補上標準差輸出與「改進方向」一節，並另交 stats.cpp。",
+  "limitations": [
+   "只檢查兩份 PDF，沒有編譯或執行程式。",
+   "圖像內容由模型判讀，可能有誤。",
+   "老師正式成績可能不同。"
+  ]
+ }
+}

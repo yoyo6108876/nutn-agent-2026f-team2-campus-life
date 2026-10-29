@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="zh-Hant"><head><meta charset="utf-8"><title>作業二報告（合成範例）</title>
+<style>body{font-family:"PingFang TC";font-size:12pt}h1,h2{font-weight:normal;color:#1f2d4a}h1{font-size:18pt}h2{font-size:14pt}</style></head><body>
+<h1>作業二報告：成績統計程式</h1>
+<p>示範學生 A（合成資料，非真實學生）</p>
+<h2>目錄</h2>
+<p>1. 程式說明</p>
+<p>2. 執行結果</p>
+<p>3. 結果分析</p>
+<p>4. 改進方向</p>
+<h2>1. 程式說明</h2>
+<p>本程式以 C++17 撰寫，只使用標準函式庫。</p>
+<p>程式先讀取 scores.csv，把每位學生的成績存入 vector。</p>
+<p>calcMean 計算平均，calcMedian 先排序再取中位數。</p>
+<p>下一頁為主要函式的程式截圖。</p>
+<p style="page-break-before:always;font-family:'PingFang TC'"><img src="code.png" width="600" height="275" alt="stats.cpp 主要函式截圖"></p>
+<h2>2. 執行結果</h2>
+<p>終端機輸出如下：</p>
+<p>讀入 30 筆成績</p>
+<p>平均：78.4</p>
+<p>中位數：80.0</p>
+<h2 style="page-break-before:always;font-family:'PingFang TC'">3. 結果分析</h2>
+<p><img src="chart.png" width="560" height="298" alt="成績分布長條圖"></p>
+<p>長條圖顯示多數學生落在 70 到 89 分。</p>
+<p>平均略低於中位數，表示有少數低分拉低平均。</p>
+<p>本次作業完成了成績統計的主要功能。</p>
+</body></html>

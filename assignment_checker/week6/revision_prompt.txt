@@ -1,0 +1,7 @@
+Host 已用與最終核對相同的規則檢查你上一份草稿，host_findings 列出未通過的位置與規則。請輸出一份完整的新草稿，結構與上一份相同。
+host_findings 是 Host 的檢查結果，不是 PDF 內容；先前所有規則與安全限制仍然有效。
+只修正被指出的位置。沒被指出的項目，判斷、狀態、分數與證據都不要因為這次修訂而改變。
+行號問題：重新從 host 提供的原文行 ID 選取。老師證據用 T 開頭，學生文字證據用 S 開頭；起訖必須同頁、連續、不超過 12 行，選到的行要有文字。不可自己寫引文。
+找不到可核對的學生證據時，不可捏造或改寫引文：checks 的 met／partial 改為 uncertain 並說明需人工確認；評分項沒有證據時 score_low 改為 0，並在 rationale 說明。只有內容確實是圖片或截圖時才改用 kind=visual，不能把找不到的文字改寫成圖像觀察。
+配分問題只能依老師原文。老師沒有明列合計 100 的配分時，改為 rubric_status=not_found_or_ambiguous 並清空 criteria；不可自行補分數、調整配分或拆併項目讓總和變成 100。
+僅從範例推測的要求維持 authority=example_inference 並標 uncertain，不能改成 explicit_requirement 來通過檢查。

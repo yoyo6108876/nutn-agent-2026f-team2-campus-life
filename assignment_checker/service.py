@@ -4,15 +4,20 @@ from .models import CheckRequest, CheckResponse, ModelReport, Notice
 
 
 class CheckFailure(Exception):
-    def __init__(self, code, stage, message, status_code=502):
+    def __init__(self, code, stage, message, status_code=502, workflow=None):
         super().__init__(message)
         self.code = code
         self.stage = stage
         self.message = message
         self.status_code = status_code
+        # Week 6: why a revision loop stopped, without model text or scores.
+        self.workflow = workflow
 
     def body(self):
-        return {"error": {"code": self.code, "stage": self.stage, "message": self.message}}
+        error = {"code": self.code, "stage": self.stage, "message": self.message}
+        if self.workflow is not None:
+            error["workflow"] = self.workflow
+        return {"error": error}
 
 
 def require(condition, message):

@@ -141,21 +141,34 @@ def resolve_reference(ref, pdf, prefix):
 
 def copy_sources(draft, teacher, student, issues=None):
     """Host copies source lines. Without `issues` the first bad reference raises; with it, every one is listed."""
-    def attempt(where, ref, resolve):
+    def attempt(where, ref, resolve, fix=None):
         try:
             return resolve()
         except CheckFailure as error:
             if issues is None:
                 raise
             issues.append({'code':error.code,'where':where,'rule':'source_reference',
-                           'reference':f"{ref['start']}–{ref['end']}" if ref else None,'message':error.message})
+                           'reference':f"{ref['start']}–{ref['end']}" if ref else None,'message':error.message,
+                           'fix':fix() if fix else None})
+    def field_fix(e):
+        # Revision feedback only; the gate keeps its generic message. A live gpt-4.1-mini draft wrote a
+        # paraphrase into `observation` of text evidence and, told only "do not mix", resent it unchanged.
+        if e['kind']=='text':
+            wrong=[f'{k} 必須為 null' for k in ('visual_page','observation') if e[k] is not None]
+            return '；'.join(wrong+([] if e['text_reference'] else ['text_reference 必須填 S 開頭行號']))+'。說明文字寫在 reason 或 rationale。'
+        wrong=([] if e['text_reference'] is None else ['text_reference 必須為 null'])
+        return '；'.join(wrong+[f'{k} 必須填寫' for k in ('visual_page','observation') if not e[k]])+'。'
+    def well_formed(e):
+        if e['kind']=='text':
+            return bool(e['text_reference']) and e['visual_page'] is None and e['observation'] is None
+        return e['text_reference'] is None and bool(e['visual_page']) and bool(e['observation'])
     def student_reference(e):
-        if e['kind']=='text' and e['text_reference'] and e['visual_page'] is None and e['observation'] is None:
+        if not well_formed(e):
+            raise CheckFailure('INVALID_SOURCE_REFERENCE','grounding','文字引用與圖像觀察的欄位不可混用。')
+        if e['kind']=='text':
             q=resolve_reference(e['text_reference'],student,'S')
             return {'kind':'text','page':q['page'],'quote_or_observation':q['quote']}
-        if e['kind']=='visual' and e['text_reference'] is None and e['visual_page'] and e['observation']:
-            return {'kind':'visual','page':e['visual_page'],'quote_or_observation':e['observation']}
-        raise CheckFailure('INVALID_SOURCE_REFERENCE','grounding','文字引用與圖像觀察的欄位不可混用。')
+        return {'kind':'visual','page':e['visual_page'],'quote_or_observation':e['observation']}
     value=draft.model_dump()
     for group in ('criteria','checks'):
         for i,item in enumerate(value[group]):
@@ -163,7 +176,8 @@ def copy_sources(draft, teacher, student, issues=None):
             item['teacher_evidence']=attempt(where+'.teacher_evidence',item['teacher_evidence'],
                 lambda: resolve_reference(item['teacher_evidence'],teacher,'T'))
             item['student_evidence']=[attempt(f'{where}.student_evidence[{j}]',e['text_reference'],
-                                              lambda: student_reference(e))
+                                              lambda: student_reference(e),
+                                              None if well_formed(e) else lambda: field_fix(e))
                                       for j,e in enumerate(item['student_evidence'])]
     return value
 

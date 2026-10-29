@@ -155,7 +155,8 @@ class Bench:
             'live_status': body.get('live_status'), 'error_code': error.get('code'),
             'error_stage': error.get('stage'), 'stop_reason': flow.get('stop_reason'),
             'draft_results': [{'draft': d['draft'], 'passed': d['passed'], 'issues': len(d['issues']),
-                               'rules': sorted({i.get('rule') for i in d['issues']}), 'profile': d['profile']}
+                               'rules': sorted({i.get('rule') for i in d['issues']}), 'profile': d['profile'],
+                               'same_as_previous': d.get('same_as_previous')}
                               for d in flow.get('drafts', [])],
             'records_added': self.stored() - before, 'grade_before_confirm': body.get('grade'),
             'check_status': {s: sum(c['status'] == s for c in report.get('checks', []))
@@ -296,7 +297,7 @@ def diagnose(drafts):
     return [evaluate_draft(PDFDraftReport.model_validate(d), teacher, student)[1] for d in drafts]
 
 
-def live_cases(root, emit):
+def live_cases(root, emit, models):
     try:
         local_settings()
     except CheckFailure as error:
@@ -305,7 +306,7 @@ def live_cases(root, emit):
                   'note': f'{error.code}: no request sent', 'expected': EXPECTED_LIVE, 'actual': None,
                   'passed': False, 'details': {}})
         return
-    for model in (DEFAULT_PDF_MODEL, LIGHT_MODEL):
+    for model in models:
         for workflow in WORKFLOWS:
             bench = Bench(root / f'{workflow}-{model}', Recorder(PDFReviewProvider(model=model), live=True))
             body, actual = bench.precheck(workflow)
@@ -337,6 +338,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--live', action='store_true', help='call OpenAI (spends quota)')
     parser.add_argument('--allow-uncommitted', action='store_true', help='live run on uncommitted inputs')
+    parser.add_argument('--model', action='append', dest='models', help='live models (default: both)')
     parser.add_argument('--output-dir', type=Path, default=ROOT / 'tmp/week6')
     args = parser.parse_args()
     meta = provenance()
@@ -354,7 +356,7 @@ def main():
 
     with tempfile.TemporaryDirectory() as directory:
         if args.live:
-            live_cases(Path(directory), emit)
+            live_cases(Path(directory), emit, args.models or [DEFAULT_PDF_MODEL, LIGHT_MODEL])
         else:
             for case in fixture_cases(Path(directory)):
                 emit(case)

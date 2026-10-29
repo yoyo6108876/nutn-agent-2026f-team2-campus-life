@@ -14,7 +14,7 @@ from ..pdf_review import evaluate_draft
 from ..service import CheckFailure
 
 MAX_DRAFTS = 2
-REVISION_PROMPT_VERSION = 'pdf-revision-v1'
+REVISION_PROMPT_VERSION = 'pdf-revision-v2'
 REVISION_PROMPT = Path(__file__).with_name('revision_prompt.txt').read_text(encoding='utf-8')
 # A wrong-files verdict is a judgement about the upload, not a citation error; asking again only pressures it.
 NOT_REVISABLE = {'document_roles'}
@@ -56,7 +56,7 @@ def revision_issues(previous, draft):
 
 
 def revision_turns(draft, issues):
-    findings = [{key: issue[key] for key in ('code', 'rule', 'where', 'reference', 'message')
+    findings = [{key: issue[key] for key in ('code', 'rule', 'where', 'reference', 'message', 'fix')
                  if issue.get(key) is not None} for issue in issues]
     return [{'role': 'assistant', 'content': draft.model_dump_json()},
             {'role': 'user', 'content': REVISION_PROMPT + '\n'
@@ -91,10 +91,11 @@ def revise_until_valid(provider, teacher, student, max_drafts=MAX_DRAFTS):
         if previous is not None and (guard := revision_issues(previous, draft)):
             report, issues = None, issues + guard
         content = draft.model_dump()
+        digest = hashlib.sha256(json.dumps(content, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
         trace['drafts'].append({
             'draft': number, 'call': call_record(provider.metadata), 'passed': report is not None,
-            'issues': issues, 'profile': profile(draft), 'content': content,
-            'sha256': hashlib.sha256(json.dumps(content, sort_keys=True, ensure_ascii=False).encode()).hexdigest(),
+            'issues': issues, 'profile': profile(draft), 'content': content, 'sha256': digest,
+            'same_as_previous': bool(trace['drafts']) and trace['drafts'][-1]['sha256'] == digest,
         })
         if report is not None:
             trace['stop_reason'] = 'PASSED_FIRST_DRAFT' if number == 1 else 'PASSED_AFTER_REVISION'

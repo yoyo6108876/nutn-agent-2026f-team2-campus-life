@@ -115,12 +115,26 @@ def test_revision_keeps_A_sends_located_findings_and_same_inputs():
     assert trace['drafts'][0]['sha256'] != trace['drafts'][1]['sha256']
 
 
+def test_mixed_evidence_fields_get_a_field_level_fix_while_the_gate_message_stays():
+    # The live gpt-4.1-mini shape: text evidence with a paraphrase in `observation`.
+    value = draft()
+    value['checks'][0]['student_evidence'][0]['observation'] = '學生說明以 C++17 撰寫。'
+    sdk, provider = loop(value, 'valid')
+    _, trace = revise_until_valid(provider, *documents())
+    issue = trace['drafts'][0]['issues'][0]
+    assert issue['message'] == '文字引用與圖像觀察的欄位不可混用。'
+    assert issue['fix'].startswith('observation 必須為 null')
+    sent = json.loads(sdk.requests[1]['input'][3]['content'].split('\n')[-1])['host_findings']
+    assert sent[0]['fix'] == issue['fix']
+
+
 def test_limit_stops_without_grade_even_when_another_draft_would_pass():
     sdk, provider = loop('invalid_refs', 'invalid_refs', 'valid')
     with pytest.raises(CheckFailure) as error:
         revise_until_valid(provider, *documents())
     assert MAX_DRAFTS == 2 and len(sdk.requests) == 2 and sdk.steps == ['valid']
     flow = error.value.workflow
+    assert [d['same_as_previous'] for d in flow['drafts']] == [False, True]
     assert flow['stop_reason'] == 'MAX_DRAFTS_UNRESOLVED' and error.value.code == 'INVALID_SOURCE_REFERENCE'
     assert error.value.status_code == 502
     body = json.dumps(error.value.body(), ensure_ascii=False)

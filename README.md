@@ -24,13 +24,15 @@ Week 3 新增 `/assistant/week3/queries` 與 `/assistant/week3/query`；預設 `
 
 **Week 5 提交入口：[Frameworks & Orchestration](docs/week5/README.md)。** 以 LangGraph 局部替換等待確認與接續，原版／候選可從 [同一工作台](http://127.0.0.1:8000/week5) 切換。九個離線前後比較、兩個真實 OpenAI 前後比較與 131 項測試通過；[一頁決策](docs/week5/decision.md) 說明保留原版為預設的理由。
 
+**Week 6 提交入口：[PDF 預檢評估後修訂](docs/week06/README.md)。** 以 Evaluator–optimizer 重構 PDF 預檢的「草稿 → Host 核對」：Host 用同一套規則逐項列出草稿 A 的問題（先行號，行號全部正確後再列配分與證據），模型修訂一次，B 重評，未通過且到 2 份上限就停止、不給分。工作台 PDF 面板可切換原版／候選。15 個離線案例與 213 項測試通過。真實比較中 gpt-5.4 兩版皆 `LIVE_PASS`、候選未多呼叫，但預先寫定的 7 項業務預期都只符合 6 項；gpt-4.1-mini 兩版皆 `LIVE_FAIL`，候選修訂稿兩次都與 A 相同。結論為尚未證明改善，預設維持原版，見 [ADR](docs/week06/adr.md) 與 [前後比較](docs/week06/comparison.md)。
+
 ## 啟動 API
 
 **階段成果報告：[簡報 PDF 與證據索引](reports/midterm/README.md)。** 第 02 組，受測程式版本 `6a5bc9b`，證據日期 2026-10-28。建議簡報與示範 14 分鐘、問答 5 分鐘，保留 1 分鐘緩衝。
 
 **Week 7 提交入口：[Session 清除與來源更新](docs/week7/README.md)。** 新增隔離的 Session、清除控制、來源版本排除與文字比對工作台。148 項測試通過；候選主流程、同 Session 續問、清除後查詢與文字比對均有 OpenAI `LIVE_PASS`。原版／候選的真實比較包含原版 `LIVE_FAIL`，保留失敗證據，不宣稱全面通過或提升成功率。
 
-依組員選擇繼續使用 GPT。課程要求的 **Google Cloud／ADC Gemini 為 `LIVE_NOT_RUN`，尚未符合該項規定**；Week 6 未提供教材或交付證據，未列為完成。分工為建議，實際貢獻待組員確認。
+依組員選擇繼續使用 GPT。課程要求的 **Google Cloud／ADC Gemini 為 `LIVE_NOT_RUN`，尚未符合該項規定**；Week 6 已於 Week 7 之後補交，見上方入口。分工為建議，實際貢獻待組員確認。
 
 在根目錄 `.env` 填入 `OPENAI_API_KEY` 後執行：
 

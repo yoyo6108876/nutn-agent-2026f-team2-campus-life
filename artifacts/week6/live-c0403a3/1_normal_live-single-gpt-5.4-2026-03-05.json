@@ -1,0 +1,836 @@
+{
+  "tested_commit_sha": "c0403a3024a849c7a3c0aa56a75792ede1f44e4c",
+  "inputs_uncommitted": [],
+  "input_sha256": {
+    "assignment_checker/pdf_review.py": "41552a013ed76397bc9ba4aa86ed424844a56b7410de3d0228dd2eebf24aac45",
+    "assignment_checker/pdf_review_prompt.txt": "5e18d87f5c51e6339647e5c9fb5458664b15c7430b1875d4dc4d4042562d49f2",
+    "assignment_checker/week6/workflow.py": "07f4a09e7d39ca0a0644c6f17f19846621ce06c46b1f58ba65d0ce768548827f",
+    "assignment_checker/week6/revision_prompt.txt": "f8556d59ebadbd037295adf226c1ee1e35a6e4eefa4abf66a3be4dbc9702bb89",
+    "assignment_checker/week7/routes.py": "0d1418fa8d000748927399ab34224044391fa5c4bbbb5629433698ba3e1ef665",
+    "assignment_checker/service.py": "175d0211ded17fdfae1844c89fe06432d3d86ceded85e053d57074b6bb5d05f3",
+    "examples/week6/teacher.pdf": "e344d40c5afe5b1f5a7359724735c8eb72736b1ff536088360492a89326527ee",
+    "examples/week6/student.pdf": "9afa83c125342feb9d7f733892107ab8c1bb43000d54a69cf025f813d860b181",
+    "examples/week6/fixture-drafts.json": "50dee43a37cb0c8320962fcd0e521c542378f1dffbf0a2623b870f015dbbd586",
+    "scripts/run_week6_comparison.py": "1d7d0bc6e442653eb18ca0a9b56dddad8cfabbdf1aa7d8c38ed1ece53c0ab93f"
+  },
+  "captured_at": "2026-10-29T17:18:40.842969+00:00",
+  "provider": "openai",
+  "gemini_status": "LIVE_NOT_RUN",
+  "gemini_reason": "Team chose the existing GPT API; the course Gemini/ADC requirement remains unmet",
+  "data_source": "synthetic_only",
+  "case": "1_normal_live",
+  "workflow": "single",
+  "model": "gpt-5.4-2026-03-05",
+  "mode": "live",
+  "live_status": "LIVE_PASS",
+  "expected": {
+    "http_status": 200,
+    "rubric_status": "explicit_100_point_rubric",
+    "max_points": [
+      20,
+      20,
+      20,
+      40
+    ],
+    "gap_std_dev_flagged": true,
+    "gap_improvement_section_flagged": true,
+    "gap_terminal_screenshot_flagged": true,
+    "grade_after_confirm": true
+  },
+  "actual": {
+    "http_status": 200,
+    "rubric_status": "explicit_100_point_rubric",
+    "max_points": [
+      20,
+      20,
+      20,
+      40
+    ],
+    "gap_std_dev_flagged": true,
+    "gap_improvement_section_flagged": true,
+    "gap_terminal_screenshot_flagged": false,
+    "grade_after_confirm": true
+  },
+  "passed": false,
+  "details": {
+    "http_status": 200,
+    "run_id": "pdf-25c814aca36740b8a8f2682b7c861e3f",
+    "live_status": "LIVE_PASS",
+    "error_code": null,
+    "error_stage": null,
+    "stop_reason": "PASSED",
+    "draft_results": [],
+    "records_added": 1,
+    "grade_before_confirm": null,
+    "check_status": {
+      "met": 3,
+      "partial": 2,
+      "missing": 0,
+      "uncertain": 2
+    },
+    "criteria": 4,
+    "provider_calls": 1,
+    "responded_calls": 1,
+    "unmeasured_calls": 0,
+    "latency_seconds": 32.098,
+    "input_tokens": 5420,
+    "output_tokens": 3160,
+    "reasoning_tokens": 243,
+    "total_tokens": 8580,
+    "grade_after_confirm": {
+      "low": 46,
+      "high": 70,
+      "out_of": 100,
+      "label": "依目前 PDF 證據的預估區間，非教師正式成績或統計信賴區間"
+    },
+    "confirm_provider_calls_added": 0
+  },
+  "calls": [
+    {
+      "call": 1,
+      "revision_turns": 0,
+      "responded": true,
+      "error_code": null,
+      "wall_seconds": 32.098,
+      "model": "gpt-5.4-2026-03-05",
+      "response_id": "resp_0cc6423a32f24568016ae37ff258e887d0b9043d4371e91d71",
+      "usage": {
+        "input_tokens": 5420,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 3160,
+        "output_tokens_details": {
+          "reasoning_tokens": 243
+        },
+        "total_tokens": 8580
+      }
+    }
+  ],
+  "drafts": [
+    {
+      "document_roles_match": true,
+      "rubric_status": "explicit_100_point_rubric",
+      "criteria": [
+        {
+          "id": "G1",
+          "name": "程式功能正確性",
+          "max_points": 40,
+          "teacher_evidence": {
+            "start": "T2L2",
+            "end": "T2L2"
+          },
+          "score_low": 18,
+          "score_high": 28,
+          "rationale": "依 PDF 可見學生說明程式以 C++17 撰寫，會讀取 scores.csv，並在執行結果中列出平均與中位數；但老師要求輸出「平均、中位數與標準差」，目前報告正文與截圖都未見標準差。且僅有 PDF，未實際編譯與執行，無法驗證功能正確性全貌。",
+          "student_evidence": [
+            {
+              "kind": "text",
+              "text_reference": {
+                "start": "S1L9",
+                "end": "S1L11"
+              },
+              "visual_page": null,
+              "observation": null
+            },
+            {
+              "kind": "text",
+              "text_reference": {
+                "start": "S2L2",
+                "end": "S2L5"
+              },
+              "visual_page": null,
+              "observation": null
+            },
+            {
+              "kind": "visual",
+              "text_reference": null,
+              "visual_page": 2,
+              "observation": "本頁截圖可見終端機輸出包含「讀入 30 筆成績」、「平均：78.4」、「中位數：80.0」，但未見標準差輸出。"
+            }
+          ],
+          "verification": "needs_original_files_or_execution"
+        },
+        {
+          "id": "G2",
+          "name": "程式碼品質與註解",
+          "max_points": 20,
+          "teacher_evidence": {
+            "start": "T2L3",
+            "end": "T2L3"
+          },
+          "score_low": 6,
+          "score_high": 12,
+          "rationale": "PDF 中可見部分程式碼截圖，且主要函式前有註解；但老師要求另交完整原始碼 stats.cpp，且報告中的截圖不能取代原始碼檔案。由於目前只看 PDF，無法確認是否有完整原始碼、整體程式結構與所有主要函式註解是否齊全。",
+          "student_evidence": [
+            {
+              "kind": "text",
+              "text_reference": {
+                "start": "S1L12",
+                "end": "S1L12"
+              },
+              "visual_page": null,
+              "observation": null
+            },
+            {
+              "kind": "visual",
+              "text_reference": null,
+              "visual_page": 2,
+              "observation": "本頁截圖可見 stats.cpp 的部分程式碼，包含 calcMean、calcMedian，且上方有中文註解說明函式用途。"
+            }
+          ],
+          "verification": "needs_original_files_or_execution"
+        },
+        {
+          "id": "G3",
+          "name": "執行結果與截圖",
+          "max_points": 20,
+          "teacher_evidence": {
+            "start": "T2L4",
+            "end": "T2L4"
+          },
+          "score_low": 16,
+          "score_high": 20,
+          "rationale": "老師要求至少 2 張執行截圖：終端機輸出與成績長條圖。PDF 可見終端機輸出內容與長條圖，基本符合截圖項目要求。但仍只能確認報告內嵌截圖存在，不能據此推定其他原始輸出檔另已繳交。",
+          "student_evidence": [
+            {
+              "kind": "text",
+              "text_reference": {
+                "start": "S2L1",
+                "end": "S2L5"
+              },
+              "visual_page": null,
+              "observation": null
+            },
+            {
+              "kind": "visual",
+              "text_reference": null,
+              "visual_page": 2,
+              "observation": "本頁截圖可見終端機輸出畫面，包含讀入筆數、平均與中位數。"
+            },
+            {
+              "kind": "visual",
+              "text_reference": null,
+              "visual_page": 3,
+              "observation": "本頁截圖可見成績長條圖，標題為「成績分布（30 位學生）」並顯示各分數區間柱狀分布。"
+            }
+          ],
+          "verification": "pdf_evidence_only"
+        },
+        {
+          "id": "G4",
+          "name": "結果分析與改進方向",
+          "max_points": 20,
+          "teacher_evidence": {
+            "start": "T2L5",
+            "end": "T2L5"
+          },
+          "score_low": 6,
+          "score_high": 10,
+          "rationale": "結果分析已有具體文字，能解讀長條圖與平均/中位數差異；但老師明確要求報告須包含「結果分析」與「改進方向」兩節，目前目錄雖列出改進方向，正文頁面中未見該節內容，僅有成果總結，不足以視為改進方向完整達成。",
+          "student_evidence": [
+            {
+              "kind": "text",
+              "text_reference": {
+                "start": "S1L6",
+                "end": "S1L7"
+              },
+              "visual_page": null,
+              "observation": null
+            },
+            {
+              "kind": "text",
+              "text_reference": {
+                "start": "S3L1",
+                "end": "S3L4"
+              },
+              "visual_page": null,
+              "observation": null
+            },
+            {
+              "kind": "visual",
+              "text_reference": null,
+              "visual_page": 3,
+              "observation": "本頁截圖可見「3. 結果分析」標題與分析文字，但未見「4. 改進方向」標題或具體改進內容。"
+            }
+          ],
+          "verification": "pdf_evidence_only"
+        }
+      ],
+      "checks": [
+        {
+          "requirement": "使用 C++17 撰寫，不得使用第三方統計函式庫",
+          "authority": "explicit_requirement",
+          "teacher_evidence": {
+            "start": "T1L6",
+            "end": "T1L6"
+          },
+          "status": "met",
+          "student_evidence": [
+            {
+              "kind": "text",
+              "text_reference": {
+                "start": "S1L9",
+                "end": "S1L9"
+              },
+              "visual_page": null,
+              "observation": null
+            }
+          ],
+          "reason": "學生正文明確寫出以 C++17 撰寫，且只使用標準函式庫，符合已知 PDF 證據。",
+          "action": "保留此敘述；若有原始碼，確認未引用第三方統計函式庫後一併上傳。",
+          "priority": "medium"
+        },
+        {
+          "requirement": "繳交完整原始碼 stats.cpp，主要函式須附註解",
+          "authority": "explicit_requirement",
+          "teacher_evidence": {
+            "start": "T1L7",
+            "end": "T1L7"
+          },
+          "status": "uncertain",
+          "student_evidence": [
+            {
+              "kind": "text",
+              "text_reference": {
+                "start": "S1L12",
+                "end": "S1L12"
+              },
+              "visual_page": null,
+              "observation": null
+            },
+            {
+              "kind": "visual",
+              "text_reference": null,
+              "visual_page": 2,
+              "observation": "本頁截圖可見 stats.cpp 的部分程式碼，且主要函式前有註解；但僅為局部截圖。"
+            }
+          ],
+          "reason": "PDF 只能證明報告中有部分程式碼截圖，不能證明完整 stats.cpp 已分開上傳；註解似乎存在，但無法檢查全部主要函式。",
+          "action": "確認另行上傳完整 stats.cpp；檢查所有主要函式都有清楚註解，避免只在截圖中呈現部分內容。",
+          "priority": "high"
+        },
+        {
+          "requirement": "程式讀入 scores.csv，輸出平均、中位數與標準差",
+          "authority": "explicit_requirement",
+          "teacher_evidence": {
+            "start": "T1L8",
+            "end": "T1L8"
+          },
+          "status": "partial",
+          "student_evidence": [
+            {
+              "kind": "text",
+              "text_reference": {
+                "start": "S1L10",
+                "end": "S1L11"
+              },
+              "visual_page": null,
+              "observation": null
+            },
+            {
+              "kind": "text",
+              "text_reference": {
+                "start": "S2L3",
+                "end": "S2L5"
+              },
+              "visual_page": null,
+              "observation": null
+            },
+            {
+              "kind": "visual",
+              "text_reference": null,
+              "visual_page": 2,
+              "observation": "本頁截圖可見讀入資料後輸出平均與中位數，但未見標準差。"
+            }
+          ],
+          "reason": "讀入 scores.csv、輸出平均與中位數已有證據；標準差未在文字或截圖中出現。",
+          "action": "補上標準差的計算與輸出，並更新終端機截圖或報告文字，使三項輸出完整可見。",
+          "priority": "high"
+        },
+        {
+          "requirement": "報告附至少 2 張執行截圖：終端機輸出與成績長條圖",
+          "authority": "explicit_requirement",
+          "teacher_evidence": {
+            "start": "T1L9",
+            "end": "T1L9"
+          },
+          "status": "met",
+          "student_evidence": [
+            {
+              "kind": "visual",
+              "text_reference": null,
+              "visual_page": 2,
+              "observation": "本頁截圖可見終端機輸出畫面。"
+            },
+            {
+              "kind": "visual",
+              "text_reference": null,
+              "visual_page": 3,
+              "observation": "本頁截圖可見成績長條圖。"
+            }
+          ],
+          "reason": "兩種指定截圖皆可在 PDF 中看見，且內容對應老師要求。",
+          "action": "維持這兩張截圖清晰度；若重新輸出報告，避免圖像裁切導致數值難辨識。",
+          "priority": "medium"
+        },
+        {
+          "requirement": "報告須包含「結果分析」與「改進方向」兩節",
+          "authority": "explicit_requirement",
+          "teacher_evidence": {
+            "start": "T1L10",
+            "end": "T1L10"
+          },
+          "status": "partial",
+          "student_evidence": [
+            {
+              "kind": "text",
+              "text_reference": {
+                "start": "S1L6",
+                "end": "S1L7"
+              },
+              "visual_page": null,
+              "observation": null
+            },
+            {
+              "kind": "text",
+              "text_reference": {
+                "start": "S3L1",
+                "end": "S3L4"
+              },
+              "visual_page": null,
+              "observation": null
+            },
+            {
+              "kind": "visual",
+              "text_reference": null,
+              "visual_page": 3,
+              "observation": "本頁可見「3. 結果分析」內容，但未見「4. 改進方向」章節正文。"
+            }
+          ],
+          "reason": "目錄列有改進方向，但正文提供的頁面中未見該節實際內容；只有結果分析明確存在。",
+          "action": "新增一節「改進方向」，具體寫出可執行改善，例如補上標準差驗證、處理空檔/格式錯誤、將長條圖自動化輸出等。不要只寫總結。",
+          "priority": "high"
+        },
+        {
+          "requirement": "報告共 3 至 5 頁",
+          "authority": "explicit_requirement",
+          "teacher_evidence": {
+            "start": "T1L10",
+            "end": "T1L10"
+          },
+          "status": "met",
+          "student_evidence": [
+            {
+              "kind": "visual",
+              "text_reference": null,
+              "visual_page": 1,
+              "observation": "本 PDF 為第 1 頁。"
+            },
+            {
+              "kind": "visual",
+              "text_reference": null,
+              "visual_page": 2,
+              "observation": "本 PDF 為第 2 頁。"
+            },
+            {
+              "kind": "visual",
+              "text_reference": null,
+              "visual_page": 3,
+              "observation": "本 PDF 為第 3 頁。"
+            }
+          ],
+          "reason": "學生報告 PDF 共 3 頁，落在要求的 3 至 5 頁範圍內。",
+          "action": "頁數目前符合；補內容時注意不要超過 5 頁。",
+          "priority": "low"
+        },
+        {
+          "requirement": "報告 PDF 與原始碼分開上傳；報告中的截圖不能取代原始碼檔案",
+          "authority": "explicit_requirement",
+          "teacher_evidence": {
+            "start": "T2L7",
+            "end": "T2L8"
+          },
+          "status": "uncertain",
+          "student_evidence": [
+            {
+              "kind": "visual",
+              "text_reference": null,
+              "visual_page": 2,
+              "observation": "本頁可見程式碼截圖，但這只能證明報告內嵌程式畫面。"
+            }
+          ],
+          "reason": "目前只收到 PDF，無法知道是否已另外上傳原始碼；依老師規定，截圖本身不能視為已交原始碼。",
+          "action": "提交前再次確認 stats.cpp 已作為獨立檔案上傳，不要只交報告 PDF。",
+          "priority": "high"
+        }
+      ],
+      "summary": "依目前 PDF 證據，作業主題相符，且存在明確 100 分評分標準。學生已完成 C++17 撰寫說明、讀取 scores.csv 的描述、終端機輸出截圖、成績長條圖與基本結果分析，報告頁數也符合 3 至 5 頁要求。最優先修正有三點：一是補上老師明確要求的「標準差」輸出與相關證據；二是補寫正文中的「改進方向」章節，提出具體可執行改善；三是確認完整 stats.cpp 已分開上傳，因報告內的程式截圖不能取代原始碼。依目前 PDF 保守估分約落在 46 至 70 分區間，正式成績仍取決於原始碼與實際執行結果。",
+      "limitations": [
+        "僅依目前提供的 teacher.pdf 與 student.pdf 內容判斷，未查看任何獨立原始碼檔。",
+        "未實際編譯、執行或測試程式，因此無法驗證功能正確性、例外處理與數值是否正確。",
+        "學生 PDF 的圖像內容以人工視覺判讀為主，可能受截圖清晰度、裁切與版面影響。",
+        "報告中出現的程式碼或輸出截圖，不能證明完整原始碼檔或其他附件已另行繳交。",
+        "本報告為提交前預檢與保守估分，老師正式評分可能因原始檔、執行結果與課堂實際要求而不同。"
+      ]
+    }
+  ],
+  "host_findings_per_draft": null,
+  "body": {
+    "run_id": "pdf-25c814aca36740b8a8f2682b7c861e3f",
+    "kind": "pdf_precheck",
+    "created_at": "2026-10-29T17:19:12.975384+00:00",
+    "session_id": "session-e6474b5290c5470fb3bc9dbf4832f282",
+    "owner_id": "student-a",
+    "confirmed": false,
+    "sources": {
+      "teacher": {
+        "filename": "teacher.pdf",
+        "pages": 2,
+        "bytes": 70188,
+        "sha256": "e344d40c5afe5b1f5a7359724735c8eb72736b1ff536088360492a89326527ee",
+        "text_characters": 346
+      },
+      "student": {
+        "filename": "student.pdf",
+        "pages": 3,
+        "bytes": 176628,
+        "sha256": "9afa83c125342feb9d7f733892107ab8c1bb43000d54a69cf025f813d860b181",
+        "text_characters": 297
+      }
+    },
+    "report": {
+      "document_roles_match": true,
+      "rubric_status": "explicit_100_point_rubric",
+      "criteria": [
+        {
+          "id": "G1",
+          "name": "程式功能正確性",
+          "max_points": 40,
+          "teacher_evidence": {
+            "page": 2,
+            "quote": "程式功能正確性 40%"
+          },
+          "rationale": "依 PDF 可見學生說明程式以 C++17 撰寫，會讀取 scores.csv，並在執行結果中列出平均與中位數；但老師要求輸出「平均、中位數與標準差」，目前報告正文與截圖都未見標準差。且僅有 PDF，未實際編譯與執行，無法驗證功能正確性全貌。",
+          "student_evidence": [
+            {
+              "page": 1,
+              "kind": "text",
+              "quote_or_observation": "本程式以 C++17 撰寫，只使用標準函式庫。\n程式先讀取 scores.csv，把每位學生的成績存入 vector。\ncalcMean 計算平均，calcMedian 先排序再取中位數。"
+            },
+            {
+              "page": 2,
+              "kind": "text",
+              "quote_or_observation": "終端機輸出如下：\n讀入 30 筆成績\n平均：78.4\n中位數：80.0"
+            },
+            {
+              "page": 2,
+              "kind": "visual",
+              "quote_or_observation": "本頁截圖可見終端機輸出包含「讀入 30 筆成績」、「平均：78.4」、「中位數：80.0」，但未見標準差輸出。"
+            }
+          ],
+          "verification": "needs_original_files_or_execution"
+        },
+        {
+          "id": "G2",
+          "name": "程式碼品質與註解",
+          "max_points": 20,
+          "teacher_evidence": {
+            "page": 2,
+            "quote": "程式碼品質與註解 20%"
+          },
+          "rationale": "PDF 中可見部分程式碼截圖，且主要函式前有註解；但老師要求另交完整原始碼 stats.cpp，且報告中的截圖不能取代原始碼檔案。由於目前只看 PDF，無法確認是否有完整原始碼、整體程式結構與所有主要函式註解是否齊全。",
+          "student_evidence": [
+            {
+              "page": 1,
+              "kind": "text",
+              "quote_or_observation": "下一頁為主要函式的程式截圖。"
+            },
+            {
+              "page": 2,
+              "kind": "visual",
+              "quote_or_observation": "本頁截圖可見 stats.cpp 的部分程式碼，包含 calcMean、calcMedian，且上方有中文註解說明函式用途。"
+            }
+          ],
+          "verification": "needs_original_files_or_execution"
+        },
+        {
+          "id": "G3",
+          "name": "執行結果與截圖",
+          "max_points": 20,
+          "teacher_evidence": {
+            "page": 2,
+            "quote": "執行結果與截圖 20%"
+          },
+          "rationale": "老師要求至少 2 張執行截圖：終端機輸出與成績長條圖。PDF 可見終端機輸出內容與長條圖，基本符合截圖項目要求。但仍只能確認報告內嵌截圖存在，不能據此推定其他原始輸出檔另已繳交。",
+          "student_evidence": [
+            {
+              "page": 2,
+              "kind": "text",
+              "quote_or_observation": "2. 執行結果\n終端機輸出如下：\n讀入 30 筆成績\n平均：78.4\n中位數：80.0"
+            },
+            {
+              "page": 2,
+              "kind": "visual",
+              "quote_or_observation": "本頁截圖可見終端機輸出畫面，包含讀入筆數、平均與中位數。"
+            },
+            {
+              "page": 3,
+              "kind": "visual",
+              "quote_or_observation": "本頁截圖可見成績長條圖，標題為「成績分布（30 位學生）」並顯示各分數區間柱狀分布。"
+            }
+          ],
+          "verification": "pdf_evidence_only"
+        },
+        {
+          "id": "G4",
+          "name": "結果分析與改進方向",
+          "max_points": 20,
+          "teacher_evidence": {
+            "page": 2,
+            "quote": "結果分析與改進方向 20%"
+          },
+          "rationale": "結果分析已有具體文字，能解讀長條圖與平均/中位數差異；但老師明確要求報告須包含「結果分析」與「改進方向」兩節，目前目錄雖列出改進方向，正文頁面中未見該節內容，僅有成果總結，不足以視為改進方向完整達成。",
+          "student_evidence": [
+            {
+              "page": 1,
+              "kind": "text",
+              "quote_or_observation": "3. 結果分析\n4. 改進方向"
+            },
+            {
+              "page": 3,
+              "kind": "text",
+              "quote_or_observation": "3. 結果分析\n長條圖顯示多數學生落在 70 到 89 分。\n平均略低於中位數，表示有少數低分拉低平均。\n本次作業完成了成績統計的主要功能。"
+            },
+            {
+              "page": 3,
+              "kind": "visual",
+              "quote_or_observation": "本頁截圖可見「3. 結果分析」標題與分析文字，但未見「4. 改進方向」標題或具體改進內容。"
+            }
+          ],
+          "verification": "pdf_evidence_only"
+        }
+      ],
+      "checks": [
+        {
+          "requirement": "使用 C++17 撰寫，不得使用第三方統計函式庫",
+          "authority": "explicit_requirement",
+          "teacher_evidence": {
+            "page": 1,
+            "quote": "1. 使用 C++17 撰寫，不得使用第三方統計函式庫。"
+          },
+          "status": "met",
+          "student_evidence": [
+            {
+              "page": 1,
+              "kind": "text",
+              "quote_or_observation": "本程式以 C++17 撰寫，只使用標準函式庫。"
+            }
+          ],
+          "reason": "學生正文明確寫出以 C++17 撰寫，且只使用標準函式庫，符合已知 PDF 證據。",
+          "action": "保留此敘述；若有原始碼，確認未引用第三方統計函式庫後一併上傳。",
+          "priority": "medium"
+        },
+        {
+          "requirement": "繳交完整原始碼 stats.cpp，主要函式須附註解",
+          "authority": "explicit_requirement",
+          "teacher_evidence": {
+            "page": 1,
+            "quote": "2. 繳交完整原始碼 stats.cpp，主要函式須附註解。"
+          },
+          "status": "uncertain",
+          "student_evidence": [
+            {
+              "page": 1,
+              "kind": "text",
+              "quote_or_observation": "下一頁為主要函式的程式截圖。"
+            },
+            {
+              "page": 2,
+              "kind": "visual",
+              "quote_or_observation": "本頁截圖可見 stats.cpp 的部分程式碼，且主要函式前有註解；但僅為局部截圖。"
+            }
+          ],
+          "reason": "PDF 只能證明報告中有部分程式碼截圖，不能證明完整 stats.cpp 已分開上傳；註解似乎存在，但無法檢查全部主要函式。",
+          "action": "確認另行上傳完整 stats.cpp；檢查所有主要函式都有清楚註解，避免只在截圖中呈現部分內容。",
+          "priority": "high"
+        },
+        {
+          "requirement": "程式讀入 scores.csv，輸出平均、中位數與標準差",
+          "authority": "explicit_requirement",
+          "teacher_evidence": {
+            "page": 1,
+            "quote": "3. 程式讀入 scores.csv，輸出平均、中位數與標準差。"
+          },
+          "status": "partial",
+          "student_evidence": [
+            {
+              "page": 1,
+              "kind": "text",
+              "quote_or_observation": "程式先讀取 scores.csv，把每位學生的成績存入 vector。\ncalcMean 計算平均，calcMedian 先排序再取中位數。"
+            },
+            {
+              "page": 2,
+              "kind": "text",
+              "quote_or_observation": "讀入 30 筆成績\n平均：78.4\n中位數：80.0"
+            },
+            {
+              "page": 2,
+              "kind": "visual",
+              "quote_or_observation": "本頁截圖可見讀入資料後輸出平均與中位數，但未見標準差。"
+            }
+          ],
+          "reason": "讀入 scores.csv、輸出平均與中位數已有證據；標準差未在文字或截圖中出現。",
+          "action": "補上標準差的計算與輸出，並更新終端機截圖或報告文字，使三項輸出完整可見。",
+          "priority": "high"
+        },
+        {
+          "requirement": "報告附至少 2 張執行截圖：終端機輸出與成績長條圖",
+          "authority": "explicit_requirement",
+          "teacher_evidence": {
+            "page": 1,
+            "quote": "4. 報告附至少 2 張執行截圖：終端機輸出與成績長條圖。"
+          },
+          "status": "met",
+          "student_evidence": [
+            {
+              "page": 2,
+              "kind": "visual",
+              "quote_or_observation": "本頁截圖可見終端機輸出畫面。"
+            },
+            {
+              "page": 3,
+              "kind": "visual",
+              "quote_or_observation": "本頁截圖可見成績長條圖。"
+            }
+          ],
+          "reason": "兩種指定截圖皆可在 PDF 中看見，且內容對應老師要求。",
+          "action": "維持這兩張截圖清晰度；若重新輸出報告，避免圖像裁切導致數值難辨識。",
+          "priority": "medium"
+        },
+        {
+          "requirement": "報告須包含「結果分析」與「改進方向」兩節",
+          "authority": "explicit_requirement",
+          "teacher_evidence": {
+            "page": 1,
+            "quote": "5. 報告須包含「結果分析」與「改進方向」兩節，共 3 至 5 頁。"
+          },
+          "status": "partial",
+          "student_evidence": [
+            {
+              "page": 1,
+              "kind": "text",
+              "quote_or_observation": "3. 結果分析\n4. 改進方向"
+            },
+            {
+              "page": 3,
+              "kind": "text",
+              "quote_or_observation": "3. 結果分析\n長條圖顯示多數學生落在 70 到 89 分。\n平均略低於中位數，表示有少數低分拉低平均。\n本次作業完成了成績統計的主要功能。"
+            },
+            {
+              "page": 3,
+              "kind": "visual",
+              "quote_or_observation": "本頁可見「3. 結果分析」內容，但未見「4. 改進方向」章節正文。"
+            }
+          ],
+          "reason": "目錄列有改進方向，但正文提供的頁面中未見該節實際內容；只有結果分析明確存在。",
+          "action": "新增一節「改進方向」，具體寫出可執行改善，例如補上標準差驗證、處理空檔/格式錯誤、將長條圖自動化輸出等。不要只寫總結。",
+          "priority": "high"
+        },
+        {
+          "requirement": "報告共 3 至 5 頁",
+          "authority": "explicit_requirement",
+          "teacher_evidence": {
+            "page": 1,
+            "quote": "5. 報告須包含「結果分析」與「改進方向」兩節，共 3 至 5 頁。"
+          },
+          "status": "met",
+          "student_evidence": [
+            {
+              "page": 1,
+              "kind": "visual",
+              "quote_or_observation": "本 PDF 為第 1 頁。"
+            },
+            {
+              "page": 2,
+              "kind": "visual",
+              "quote_or_observation": "本 PDF 為第 2 頁。"
+            },
+            {
+              "page": 3,
+              "kind": "visual",
+              "quote_or_observation": "本 PDF 為第 3 頁。"
+            }
+          ],
+          "reason": "學生報告 PDF 共 3 頁，落在要求的 3 至 5 頁範圍內。",
+          "action": "頁數目前符合；補內容時注意不要超過 5 頁。",
+          "priority": "low"
+        },
+        {
+          "requirement": "報告 PDF 與原始碼分開上傳；報告中的截圖不能取代原始碼檔案",
+          "authority": "explicit_requirement",
+          "teacher_evidence": {
+            "page": 2,
+            "quote": "報告 PDF 與原始碼分開上傳。\n報告中的截圖不能取代原始碼檔案。"
+          },
+          "status": "uncertain",
+          "student_evidence": [
+            {
+              "page": 2,
+              "kind": "visual",
+              "quote_or_observation": "本頁可見程式碼截圖，但這只能證明報告內嵌程式畫面。"
+            }
+          ],
+          "reason": "目前只收到 PDF，無法知道是否已另外上傳原始碼；依老師規定，截圖本身不能視為已交原始碼。",
+          "action": "提交前再次確認 stats.cpp 已作為獨立檔案上傳，不要只交報告 PDF。",
+          "priority": "high"
+        }
+      ],
+      "summary": "依目前 PDF 證據，作業主題相符，且存在明確 100 分評分標準。學生已完成 C++17 撰寫說明、讀取 scores.csv 的描述、終端機輸出截圖、成績長條圖與基本結果分析，報告頁數也符合 3 至 5 頁要求。最優先修正有三點：一是補上老師明確要求的「標準差」輸出與相關證據；二是補寫正文中的「改進方向」章節，提出具體可執行改善；三是確認完整 stats.cpp 已分開上傳，因報告內的程式截圖不能取代原始碼。依目前 PDF 保守估分約落在 46 至 70 分區間，正式成績仍取決於原始碼與實際執行結果。",
+      "limitations": [
+        "僅依目前提供的 teacher.pdf 與 student.pdf 內容判斷，未查看任何獨立原始碼檔。",
+        "未實際編譯、執行或測試程式，因此無法驗證功能正確性、例外處理與數值是否正確。",
+        "學生 PDF 的圖像內容以人工視覺判讀為主，可能受截圖清晰度、裁切與版面影響。",
+        "報告中出現的程式碼或輸出截圖，不能證明完整原始碼檔或其他附件已另行繳交。",
+        "本報告為提交前預檢與保守估分，老師正式評分可能因原始檔、執行結果與課堂實際要求而不同。"
+      ]
+    },
+    "provider_metadata": {
+      "model": "gpt-5.4-2026-03-05",
+      "response_id": "resp_0cc6423a32f24568016ae37ff258e887d0b9043d4371e91d71",
+      "prompt_version": "pdf-precheck-v2-source-lines",
+      "latency_seconds": 32.067,
+      "usage": {
+        "input_tokens": 5420,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 3160,
+        "output_tokens_details": {
+          "reasoning_tokens": 243
+        },
+        "total_tokens": 8580
+      },
+      "llm_actually_called": true,
+      "input_type": "pdf_text_and_page_images",
+      "generation_options": {
+        "reasoning": {
+          "effort": "low"
+        }
+      }
+    },
+    "workflow": {
+      "name": "single",
+      "provider_calls": 1,
+      "stop_reason": "PASSED"
+    },
+    "live_status": "LIVE_PASS",
+    "mode": "live",
+    "scope": "PDF_ONLY_NOT_COMPILED",
+    "raw_pdf_retained": false,
+    "grade": null,
+    "visual_evidence_notice": "圖像觀察由模型判讀；頁碼已核對，圖像內容未經程式獨立驗證。"
+  }
+}

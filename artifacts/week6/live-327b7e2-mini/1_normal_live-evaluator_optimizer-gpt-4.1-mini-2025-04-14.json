@@ -1,0 +1,830 @@
+{
+  "tested_commit_sha": "327b7e2cb68c36dc0c327eaf02832ee80260907b",
+  "inputs_uncommitted": [],
+  "input_sha256": {
+    "assignment_checker/pdf_review.py": "87ce8769283701c51291fe05d23fe2228d3bc0bdc98839294e97f8551fda844c",
+    "assignment_checker/pdf_review_prompt.txt": "5e18d87f5c51e6339647e5c9fb5458664b15c7430b1875d4dc4d4042562d49f2",
+    "assignment_checker/week6/workflow.py": "9de833289258ac554a984e744835818a50b54f25128cfbddca8e28ec20af3dcd",
+    "assignment_checker/week6/revision_prompt.txt": "13dfd7bcc471e15bf97f7975b732fbf5a555f2b0e51d9eb0cd8fc192c1382f4e",
+    "assignment_checker/week7/routes.py": "0d1418fa8d000748927399ab34224044391fa5c4bbbb5629433698ba3e1ef665",
+    "assignment_checker/service.py": "175d0211ded17fdfae1844c89fe06432d3d86ceded85e053d57074b6bb5d05f3",
+    "examples/week6/teacher.pdf": "e344d40c5afe5b1f5a7359724735c8eb72736b1ff536088360492a89326527ee",
+    "examples/week6/student.pdf": "9afa83c125342feb9d7f733892107ab8c1bb43000d54a69cf025f813d860b181",
+    "examples/week6/fixture-drafts.json": "50dee43a37cb0c8320962fcd0e521c542378f1dffbf0a2623b870f015dbbd586",
+    "scripts/run_week6_comparison.py": "3048521dbd3518bdd1fc5dfae9aae3adc6516248a7b834b0c86fa4bd51012465"
+  },
+  "captured_at": "2026-10-29T17:23:57.049356+00:00",
+  "provider": "openai",
+  "gemini_status": "LIVE_NOT_RUN",
+  "gemini_reason": "Team chose the existing GPT API; the course Gemini/ADC requirement remains unmet",
+  "data_source": "synthetic_only",
+  "case": "1_normal_live",
+  "workflow": "evaluator_optimizer",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "mode": "live",
+  "live_status": "LIVE_FAIL",
+  "expected": {
+    "http_status": 200,
+    "rubric_status": "explicit_100_point_rubric",
+    "max_points": [
+      20,
+      20,
+      20,
+      40
+    ],
+    "gap_std_dev_flagged": true,
+    "gap_improvement_section_flagged": true,
+    "gap_terminal_screenshot_flagged": true,
+    "grade_after_confirm": true
+  },
+  "actual": {
+    "http_status": 502,
+    "rubric_status": null,
+    "max_points": [],
+    "gap_std_dev_flagged": false,
+    "gap_improvement_section_flagged": false,
+    "gap_terminal_screenshot_flagged": false,
+    "grade_after_confirm": false
+  },
+  "passed": false,
+  "details": {
+    "http_status": 502,
+    "run_id": null,
+    "live_status": null,
+    "error_code": "UNGROUNDED_PDF_REPORT",
+    "error_stage": "grounding",
+    "stop_reason": "MAX_DRAFTS_UNRESOLVED",
+    "draft_results": [
+      {
+        "draft": 1,
+        "passed": false,
+        "issues": 1,
+        "rules": [
+          "points_not_quoted"
+        ],
+        "profile": {
+          "document_roles_match": true,
+          "rubric_status": "explicit_100_point_rubric",
+          "criteria": 4,
+          "checks": 5,
+          "check_status": {
+            "met": 2,
+            "uncertain": 1,
+            "partial": 2
+          },
+          "check_authority": {
+            "explicit_requirement": 5
+          },
+          "student_evidence": {
+            "text": 9,
+            "visual": 6
+          }
+        },
+        "same_as_previous": false
+      },
+      {
+        "draft": 2,
+        "passed": false,
+        "issues": 1,
+        "rules": [
+          "points_not_quoted"
+        ],
+        "profile": {
+          "document_roles_match": true,
+          "rubric_status": "explicit_100_point_rubric",
+          "criteria": 4,
+          "checks": 5,
+          "check_status": {
+            "met": 2,
+            "uncertain": 1,
+            "partial": 2
+          },
+          "check_authority": {
+            "explicit_requirement": 5
+          },
+          "student_evidence": {
+            "text": 9,
+            "visual": 6
+          }
+        },
+        "same_as_previous": true
+      }
+    ],
+    "records_added": 0,
+    "grade_before_confirm": null,
+    "check_status": null,
+    "criteria": null,
+    "provider_calls": 2,
+    "responded_calls": 2,
+    "unmeasured_calls": 0,
+    "latency_seconds": 36.463,
+    "input_tokens": 14407,
+    "output_tokens": 3286,
+    "reasoning_tokens": 0,
+    "total_tokens": 17693
+  },
+  "calls": [
+    {
+      "call": 1,
+      "revision_turns": 0,
+      "responded": true,
+      "error_code": null,
+      "wall_seconds": 20.795,
+      "model": "gpt-4.1-mini-2025-04-14",
+      "response_id": "resp_03468bd8fe3bfbc2016ae38140da8487d08c2df38c5a223e04",
+      "usage": {
+        "input_tokens": 6122,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 1643,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 7765
+      }
+    },
+    {
+      "call": 2,
+      "revision_turns": 2,
+      "responded": true,
+      "error_code": null,
+      "wall_seconds": 15.668,
+      "model": "gpt-4.1-mini-2025-04-14",
+      "response_id": "resp_0f741f2f608ad586016ae38155aa7c87d095b245dd98426c43",
+      "usage": {
+        "input_tokens": 8285,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 1643,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 9928
+      }
+    }
+  ],
+  "drafts": [
+    {
+      "document_roles_match": true,
+      "rubric_status": "explicit_100_point_rubric",
+      "criteria": [
+        {
+          "id": "G1",
+          "name": "程式功能正確性",
+          "max_points": 40,
+          "teacher_evidence": {
+            "start": "T2L2",
+            "end": "T2L2"
+          },
+          "score_low": 20,
+          "score_high": 35,
+          "rationale": "學生程式說明與截圖顯示有讀入成績並計算平均與中位數，但未見標準差計算與輸出，功能不完全。",
+          "student_evidence": [
+            {
+              "kind": "text",
+              "text_reference": {
+                "start": "S1L9",
+                "end": "S1L11"
+              },
+              "visual_page": null,
+              "observation": null
+            },
+            {
+              "kind": "visual",
+              "text_reference": null,
+              "visual_page": 3,
+              "observation": "本頁截圖顯示 calcMean 與 calcMedian 函式程式碼，無標準差計算。"
+            },
+            {
+              "kind": "text",
+              "text_reference": {
+                "start": "S2L3",
+                "end": "S2L5"
+              },
+              "visual_page": null,
+              "observation": null
+            }
+          ],
+          "verification": "needs_original_files_or_execution"
+        },
+        {
+          "id": "G2",
+          "name": "程式碼品質與註解",
+          "max_points": 20,
+          "teacher_evidence": {
+            "start": "T2L3",
+            "end": "T2L3"
+          },
+          "score_low": 10,
+          "score_high": 18,
+          "rationale": "學生程式碼有主要函式截圖並附簡短註解，但註解較簡略，品質中等。",
+          "student_evidence": [
+            {
+              "kind": "visual",
+              "text_reference": null,
+              "visual_page": 3,
+              "observation": "本頁截圖中程式碼有註解說明 calcMean 與 calcMedian 功能。"
+            }
+          ],
+          "verification": "pdf_evidence_only"
+        },
+        {
+          "id": "G3",
+          "name": "執行結果與截圖",
+          "max_points": 20,
+          "teacher_evidence": {
+            "start": "T2L4",
+            "end": "T2L4"
+          },
+          "score_low": 15,
+          "score_high": 20,
+          "rationale": "報告有終端機輸出截圖與成績長條圖截圖，符合要求。",
+          "student_evidence": [
+            {
+              "kind": "text",
+              "text_reference": {
+                "start": "S2L2",
+                "end": "S2L5"
+              },
+              "visual_page": null,
+              "observation": null
+            },
+            {
+              "kind": "visual",
+              "text_reference": null,
+              "visual_page": 3,
+              "observation": "本頁截圖為成績長條圖。"
+            }
+          ],
+          "verification": "pdf_evidence_only"
+        },
+        {
+          "id": "G4",
+          "name": "結果分析與改進方向",
+          "max_points": 20,
+          "teacher_evidence": {
+            "start": "T1L10",
+            "end": "T1L10"
+          },
+          "score_low": 10,
+          "score_high": 15,
+          "rationale": "報告有結果分析章節，內容簡短且缺乏具體改進方向，改進方向章節空白或缺失。",
+          "student_evidence": [
+            {
+              "kind": "text",
+              "text_reference": {
+                "start": "S3L1",
+                "end": "S3L4"
+              },
+              "visual_page": null,
+              "observation": null
+            }
+          ],
+          "verification": "pdf_evidence_only"
+        }
+      ],
+      "checks": [
+        {
+          "requirement": "使用 C++17 撰寫，不得使用第三方統計函式庫。",
+          "authority": "explicit_requirement",
+          "teacher_evidence": {
+            "start": "T1L6",
+            "end": "T1L6"
+          },
+          "status": "met",
+          "student_evidence": [
+            {
+              "kind": "text",
+              "text_reference": {
+                "start": "S1L9",
+                "end": "S1L9"
+              },
+              "visual_page": null,
+              "observation": null
+            }
+          ],
+          "reason": "學生明確說明使用 C++17 且只用標準函式庫。",
+          "action": "無需動作。",
+          "priority": "low"
+        },
+        {
+          "requirement": "繳交完整原始碼 stats.cpp，主要函式須附註解。",
+          "authority": "explicit_requirement",
+          "teacher_evidence": {
+            "start": "T1L7",
+            "end": "T1L7"
+          },
+          "status": "uncertain",
+          "student_evidence": [
+            {
+              "kind": "visual",
+              "text_reference": null,
+              "visual_page": 3,
+              "observation": "本頁截圖為主要函式程式碼，有註解。"
+            }
+          ],
+          "reason": "學生PDF內有主要函式程式碼截圖與註解，但無法確認是否完整原始碼檔案。",
+          "action": "請確認是否另行繳交完整原始碼檔案。",
+          "priority": "high"
+        },
+        {
+          "requirement": "程式讀入 scores.csv，輸出平均、中位數與標準差。",
+          "authority": "explicit_requirement",
+          "teacher_evidence": {
+            "start": "T1L8",
+            "end": "T1L8"
+          },
+          "status": "partial",
+          "student_evidence": [
+            {
+              "kind": "text",
+              "text_reference": {
+                "start": "S1L10",
+                "end": "S1L11"
+              },
+              "visual_page": null,
+              "observation": null
+            },
+            {
+              "kind": "text",
+              "text_reference": {
+                "start": "S2L3",
+                "end": "S2L5"
+              },
+              "visual_page": null,
+              "observation": null
+            },
+            {
+              "kind": "visual",
+              "text_reference": null,
+              "visual_page": 3,
+              "observation": "程式碼截圖無標準差計算函式。"
+            }
+          ],
+          "reason": "學生有讀入 scores.csv 並計算平均與中位數，但未見標準差計算與輸出。",
+          "action": "補充標準差計算與輸出程式碼與結果。",
+          "priority": "high"
+        },
+        {
+          "requirement": "報告附至少 2 張執行截圖：終端機輸出與成績長條圖。",
+          "authority": "explicit_requirement",
+          "teacher_evidence": {
+            "start": "T1L9",
+            "end": "T1L9"
+          },
+          "status": "met",
+          "student_evidence": [
+            {
+              "kind": "text",
+              "text_reference": {
+                "start": "S2L2",
+                "end": "S2L5"
+              },
+              "visual_page": null,
+              "observation": null
+            },
+            {
+              "kind": "visual",
+              "text_reference": null,
+              "visual_page": 3,
+              "observation": "本頁截圖為成績長條圖。"
+            }
+          ],
+          "reason": "學生報告有終端機輸出與長條圖截圖。",
+          "action": "無需動作。",
+          "priority": "low"
+        },
+        {
+          "requirement": "報告須包含「結果分析」與「改進方向」兩節，共 3 至 5 頁。",
+          "authority": "explicit_requirement",
+          "teacher_evidence": {
+            "start": "T1L10",
+            "end": "T1L10"
+          },
+          "status": "partial",
+          "student_evidence": [
+            {
+              "kind": "text",
+              "text_reference": {
+                "start": "S3L1",
+                "end": "S3L4"
+              },
+              "visual_page": null,
+              "observation": null
+            }
+          ],
+          "reason": "報告有結果分析章節，但缺少具體改進方向內容，且頁數不足。",
+          "action": "補充具體改進方向內容並擴充報告頁數。",
+          "priority": "high"
+        }
+      ],
+      "summary": "學生完成了使用 C++17 撰寫程式，讀入 scores.csv 並計算平均與中位數，報告有終端機輸出與長條圖截圖，並包含結果分析章節。缺失為未計算與輸出標準差，原始碼完整性無法確認，且缺少具體改進方向內容與報告頁數不足。建議優先補充標準差功能與改進方向，並確認原始碼完整繳交。",
+      "limitations": [
+        "本評分僅依據提供的兩份PDF文件，不包含原始碼檔案或程式執行結果。",
+        "無法確認原始碼完整性與程式功能正確性，僅依截圖與文字描述保守估分。",
+        "圖片截圖解析可能有誤，實際內容以PDF為準。",
+        "老師正式評分標準可能包含其他未明列細節。"
+      ]
+    },
+    {
+      "document_roles_match": true,
+      "rubric_status": "explicit_100_point_rubric",
+      "criteria": [
+        {
+          "id": "G1",
+          "name": "程式功能正確性",
+          "max_points": 40,
+          "teacher_evidence": {
+            "start": "T2L2",
+            "end": "T2L2"
+          },
+          "score_low": 20,
+          "score_high": 35,
+          "rationale": "學生程式說明與截圖顯示有讀入成績並計算平均與中位數，但未見標準差計算與輸出，功能不完全。",
+          "student_evidence": [
+            {
+              "kind": "text",
+              "text_reference": {
+                "start": "S1L9",
+                "end": "S1L11"
+              },
+              "visual_page": null,
+              "observation": null
+            },
+            {
+              "kind": "visual",
+              "text_reference": null,
+              "visual_page": 3,
+              "observation": "本頁截圖顯示 calcMean 與 calcMedian 函式程式碼，無標準差計算。"
+            },
+            {
+              "kind": "text",
+              "text_reference": {
+                "start": "S2L3",
+                "end": "S2L5"
+              },
+              "visual_page": null,
+              "observation": null
+            }
+          ],
+          "verification": "needs_original_files_or_execution"
+        },
+        {
+          "id": "G2",
+          "name": "程式碼品質與註解",
+          "max_points": 20,
+          "teacher_evidence": {
+            "start": "T2L3",
+            "end": "T2L3"
+          },
+          "score_low": 10,
+          "score_high": 18,
+          "rationale": "學生程式碼有主要函式截圖並附簡短註解，但註解較簡略，品質中等。",
+          "student_evidence": [
+            {
+              "kind": "visual",
+              "text_reference": null,
+              "visual_page": 3,
+              "observation": "本頁截圖中程式碼有註解說明 calcMean 與 calcMedian 功能。"
+            }
+          ],
+          "verification": "pdf_evidence_only"
+        },
+        {
+          "id": "G3",
+          "name": "執行結果與截圖",
+          "max_points": 20,
+          "teacher_evidence": {
+            "start": "T2L4",
+            "end": "T2L4"
+          },
+          "score_low": 15,
+          "score_high": 20,
+          "rationale": "報告有終端機輸出截圖與成績長條圖截圖，符合要求。",
+          "student_evidence": [
+            {
+              "kind": "text",
+              "text_reference": {
+                "start": "S2L2",
+                "end": "S2L5"
+              },
+              "visual_page": null,
+              "observation": null
+            },
+            {
+              "kind": "visual",
+              "text_reference": null,
+              "visual_page": 3,
+              "observation": "本頁截圖為成績長條圖。"
+            }
+          ],
+          "verification": "pdf_evidence_only"
+        },
+        {
+          "id": "G4",
+          "name": "結果分析與改進方向",
+          "max_points": 20,
+          "teacher_evidence": {
+            "start": "T1L10",
+            "end": "T1L10"
+          },
+          "score_low": 10,
+          "score_high": 15,
+          "rationale": "報告有結果分析章節，內容簡短且缺乏具體改進方向，改進方向章節空白或缺失。",
+          "student_evidence": [
+            {
+              "kind": "text",
+              "text_reference": {
+                "start": "S3L1",
+                "end": "S3L4"
+              },
+              "visual_page": null,
+              "observation": null
+            }
+          ],
+          "verification": "pdf_evidence_only"
+        }
+      ],
+      "checks": [
+        {
+          "requirement": "使用 C++17 撰寫，不得使用第三方統計函式庫。",
+          "authority": "explicit_requirement",
+          "teacher_evidence": {
+            "start": "T1L6",
+            "end": "T1L6"
+          },
+          "status": "met",
+          "student_evidence": [
+            {
+              "kind": "text",
+              "text_reference": {
+                "start": "S1L9",
+                "end": "S1L9"
+              },
+              "visual_page": null,
+              "observation": null
+            }
+          ],
+          "reason": "學生明確說明使用 C++17 且只用標準函式庫。",
+          "action": "無需動作。",
+          "priority": "low"
+        },
+        {
+          "requirement": "繳交完整原始碼 stats.cpp，主要函式須附註解。",
+          "authority": "explicit_requirement",
+          "teacher_evidence": {
+            "start": "T1L7",
+            "end": "T1L7"
+          },
+          "status": "uncertain",
+          "student_evidence": [
+            {
+              "kind": "visual",
+              "text_reference": null,
+              "visual_page": 3,
+              "observation": "本頁截圖為主要函式程式碼，有註解。"
+            }
+          ],
+          "reason": "學生PDF內有主要函式程式碼截圖與註解，但無法確認是否完整原始碼檔案。",
+          "action": "請確認是否另行繳交完整原始碼檔案。",
+          "priority": "high"
+        },
+        {
+          "requirement": "程式讀入 scores.csv，輸出平均、中位數與標準差。",
+          "authority": "explicit_requirement",
+          "teacher_evidence": {
+            "start": "T1L8",
+            "end": "T1L8"
+          },
+          "status": "partial",
+          "student_evidence": [
+            {
+              "kind": "text",
+              "text_reference": {
+                "start": "S1L10",
+                "end": "S1L11"
+              },
+              "visual_page": null,
+              "observation": null
+            },
+            {
+              "kind": "text",
+              "text_reference": {
+                "start": "S2L3",
+                "end": "S2L5"
+              },
+              "visual_page": null,
+              "observation": null
+            },
+            {
+              "kind": "visual",
+              "text_reference": null,
+              "visual_page": 3,
+              "observation": "程式碼截圖無標準差計算函式。"
+            }
+          ],
+          "reason": "學生有讀入 scores.csv 並計算平均與中位數，但未見標準差計算與輸出。",
+          "action": "補充標準差計算與輸出程式碼與結果。",
+          "priority": "high"
+        },
+        {
+          "requirement": "報告附至少 2 張執行截圖：終端機輸出與成績長條圖。",
+          "authority": "explicit_requirement",
+          "teacher_evidence": {
+            "start": "T1L9",
+            "end": "T1L9"
+          },
+          "status": "met",
+          "student_evidence": [
+            {
+              "kind": "text",
+              "text_reference": {
+                "start": "S2L2",
+                "end": "S2L5"
+              },
+              "visual_page": null,
+              "observation": null
+            },
+            {
+              "kind": "visual",
+              "text_reference": null,
+              "visual_page": 3,
+              "observation": "本頁截圖為成績長條圖。"
+            }
+          ],
+          "reason": "學生報告有終端機輸出與長條圖截圖。",
+          "action": "無需動作。",
+          "priority": "low"
+        },
+        {
+          "requirement": "報告須包含「結果分析」與「改進方向」兩節，共 3 至 5 頁。",
+          "authority": "explicit_requirement",
+          "teacher_evidence": {
+            "start": "T1L10",
+            "end": "T1L10"
+          },
+          "status": "partial",
+          "student_evidence": [
+            {
+              "kind": "text",
+              "text_reference": {
+                "start": "S3L1",
+                "end": "S3L4"
+              },
+              "visual_page": null,
+              "observation": null
+            }
+          ],
+          "reason": "報告有結果分析章節，但缺少具體改進方向內容，且頁數不足。",
+          "action": "補充具體改進方向內容並擴充報告頁數。",
+          "priority": "high"
+        }
+      ],
+      "summary": "學生完成了使用 C++17 撰寫程式，讀入 scores.csv 並計算平均與中位數，報告有終端機輸出與長條圖截圖，並包含結果分析章節。缺失為未計算與輸出標準差，原始碼完整性無法確認，且缺少具體改進方向內容與報告頁數不足。建議優先補充標準差功能與改進方向，並確認原始碼完整繳交。",
+      "limitations": [
+        "本評分僅依據提供的兩份PDF文件，不包含原始碼檔案或程式執行結果。",
+        "無法確認原始碼完整性與程式功能正確性，僅依截圖與文字描述保守估分。",
+        "圖片截圖解析可能有誤，實際內容以PDF為準。",
+        "老師正式評分標準可能包含其他未明列細節。"
+      ]
+    }
+  ],
+  "host_findings_per_draft": [
+    [
+      {
+        "code": "UNGROUNDED_PDF_REPORT",
+        "where": "criteria[3].max_points",
+        "rule": "points_not_quoted",
+        "message": "配分數字未在老師引用中找到，請人工核對。"
+      }
+    ],
+    [
+      {
+        "code": "UNGROUNDED_PDF_REPORT",
+        "where": "criteria[3].max_points",
+        "rule": "points_not_quoted",
+        "message": "配分數字未在老師引用中找到，請人工核對。"
+      }
+    ]
+  ],
+  "body": {
+    "error": {
+      "code": "UNGROUNDED_PDF_REPORT",
+      "stage": "grounding",
+      "message": "修訂後仍未通過來源與配分核對，已達草稿上限，未提供估分。配分數字未在老師引用中找到，請人工核對。",
+      "workflow": {
+        "name": "evaluator_optimizer",
+        "max_drafts": 2,
+        "revision_prompt_version": "pdf-revision-v2",
+        "provider_calls": 2,
+        "drafts": [
+          {
+            "draft": 1,
+            "call": {
+              "model": "gpt-4.1-mini-2025-04-14",
+              "response_id": "resp_03468bd8fe3bfbc2016ae38140da8487d08c2df38c5a223e04",
+              "latency_seconds": 20.791,
+              "usage": {
+                "input_tokens": 6122,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 1643,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 7765
+              },
+              "llm_actually_called": true
+            },
+            "passed": false,
+            "issues": [
+              {
+                "code": "UNGROUNDED_PDF_REPORT",
+                "where": "criteria[3].max_points",
+                "rule": "points_not_quoted",
+                "message": "配分數字未在老師引用中找到，請人工核對。"
+              }
+            ],
+            "profile": {
+              "document_roles_match": true,
+              "rubric_status": "explicit_100_point_rubric",
+              "criteria": 4,
+              "checks": 5,
+              "check_status": {
+                "met": 2,
+                "uncertain": 1,
+                "partial": 2
+              },
+              "check_authority": {
+                "explicit_requirement": 5
+              },
+              "student_evidence": {
+                "text": 9,
+                "visual": 6
+              }
+            },
+            "sha256": "7b8e17d95bdcb258635f2a761f1798b65d5ddf81b100583327a44705b28032f4",
+            "same_as_previous": false
+          },
+          {
+            "draft": 2,
+            "call": {
+              "model": "gpt-4.1-mini-2025-04-14",
+              "response_id": "resp_0f741f2f608ad586016ae38155aa7c87d095b245dd98426c43",
+              "latency_seconds": 15.657,
+              "usage": {
+                "input_tokens": 8285,
+                "input_tokens_details": {
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0
+                },
+                "output_tokens": 1643,
+                "output_tokens_details": {
+                  "reasoning_tokens": 0
+                },
+                "total_tokens": 9928
+              },
+              "llm_actually_called": true
+            },
+            "passed": false,
+            "issues": [
+              {
+                "code": "UNGROUNDED_PDF_REPORT",
+                "where": "criteria[3].max_points",
+                "rule": "points_not_quoted",
+                "message": "配分數字未在老師引用中找到，請人工核對。"
+              }
+            ],
+            "profile": {
+              "document_roles_match": true,
+              "rubric_status": "explicit_100_point_rubric",
+              "criteria": 4,
+              "checks": 5,
+              "check_status": {
+                "met": 2,
+                "uncertain": 1,
+                "partial": 2
+              },
+              "check_authority": {
+                "explicit_requirement": 5
+              },
+              "student_evidence": {
+                "text": 9,
+                "visual": 6
+              }
+            },
+            "sha256": "7b8e17d95bdcb258635f2a761f1798b65d5ddf81b100583327a44705b28032f4",
+            "same_as_previous": true
+          }
+        ],
+        "stop_reason": "MAX_DRAFTS_UNRESOLVED"
+      }
+    }
+  }
+}

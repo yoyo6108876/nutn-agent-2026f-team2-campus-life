@@ -1,0 +1,82 @@
+{
+  "tested_commit_sha": "c0403a3024a849c7a3c0aa56a75792ede1f44e4c",
+  "inputs_uncommitted": [],
+  "input_sha256": {
+    "assignment_checker/pdf_review.py": "41552a013ed76397bc9ba4aa86ed424844a56b7410de3d0228dd2eebf24aac45",
+    "assignment_checker/pdf_review_prompt.txt": "5e18d87f5c51e6339647e5c9fb5458664b15c7430b1875d4dc4d4042562d49f2",
+    "assignment_checker/week6/workflow.py": "07f4a09e7d39ca0a0644c6f17f19846621ce06c46b1f58ba65d0ce768548827f",
+    "assignment_checker/week6/revision_prompt.txt": "f8556d59ebadbd037295adf226c1ee1e35a6e4eefa4abf66a3be4dbc9702bb89",
+    "assignment_checker/week7/routes.py": "0d1418fa8d000748927399ab34224044391fa5c4bbbb5629433698ba3e1ef665",
+    "assignment_checker/service.py": "175d0211ded17fdfae1844c89fe06432d3d86ceded85e053d57074b6bb5d05f3",
+    "examples/week6/teacher.pdf": "e344d40c5afe5b1f5a7359724735c8eb72736b1ff536088360492a89326527ee",
+    "examples/week6/student.pdf": "9afa83c125342feb9d7f733892107ab8c1bb43000d54a69cf025f813d860b181",
+    "examples/week6/fixture-drafts.json": "50dee43a37cb0c8320962fcd0e521c542378f1dffbf0a2623b870f015dbbd586",
+    "scripts/run_week6_comparison.py": "1d7d0bc6e442653eb18ca0a9b56dddad8cfabbdf1aa7d8c38ed1ece53c0ab93f"
+  },
+  "captured_at": "2026-10-29T17:18:40.842969+00:00",
+  "provider": "openai",
+  "gemini_status": "LIVE_NOT_RUN",
+  "gemini_reason": "Team chose the existing GPT API; the course Gemini/ADC requirement remains unmet",
+  "data_source": "synthetic_only",
+  "case": "3_provider_rejects_live",
+  "workflow": "single",
+  "model": "gpt-week6-model-does-not-exist",
+  "mode": "live",
+  "live_status": "LIVE_FAIL",
+  "note": "Real request with a model name that does not exist: a configuration fault, not an outage.",
+  "expected": {
+    "http_status": 502,
+    "error_code": "PROVIDER_ERROR",
+    "error_stage": "provider",
+    "provider_calls": 1,
+    "records_added": 0
+  },
+  "actual": {
+    "http_status": 502,
+    "error_code": "PROVIDER_ERROR",
+    "error_stage": "provider",
+    "provider_calls": 1,
+    "records_added": 0
+  },
+  "passed": true,
+  "details": {
+    "http_status": 502,
+    "run_id": null,
+    "live_status": null,
+    "error_code": "PROVIDER_ERROR",
+    "error_stage": "provider",
+    "stop_reason": null,
+    "draft_results": [],
+    "records_added": 0,
+    "grade_before_confirm": null,
+    "check_status": null,
+    "criteria": null,
+    "provider_calls": 1,
+    "responded_calls": 0,
+    "unmeasured_calls": 1,
+    "latency_seconds": 0.69,
+    "input_tokens": null,
+    "output_tokens": null,
+    "reasoning_tokens": null,
+    "total_tokens": null
+  },
+  "calls": [
+    {
+      "call": 1,
+      "revision_turns": 0,
+      "responded": false,
+      "error_code": "PROVIDER_ERROR",
+      "wall_seconds": 0.69,
+      "model": null,
+      "response_id": null,
+      "usage": null
+    }
+  ],
+  "body": {
+    "error": {
+      "code": "PROVIDER_ERROR",
+      "stage": "provider",
+      "message": "API 拒絕 PDF 請求，請確認模型與檔案支援。"
+    }
+  }
+}

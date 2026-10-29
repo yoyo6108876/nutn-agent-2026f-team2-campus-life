@@ -15,7 +15,7 @@
 
 ## 重新產生
 
-PDF 由 LibreOffice 7 將 `source/*.html` 轉成 PDF，字型為 PingFang TC；兩張圖由 `sharp` 將 SVG 轉成 PNG。換電腦或換字型後，擷取出的行號可能不同，`fixture-drafts.json` 的行號要一併核對。
+PDF 由 LibreOfficeDev 26.8（PDF 的 Producer 欄位）將 `source/*.html` 轉成 PDF，主要字型為 PingFang TC，另嵌入 HiraMaruPro 與 LiberationSerif 作為缺字替代；兩張圖由 `sharp` 將 SVG 轉成 PNG。換電腦、換版本或換字型後，擷取出的行號可能不同，`fixture-drafts.json` 的行號要一併核對。
 
 ```sh
 cd examples/week6/source

@@ -1,0 +1,90 @@
+{
+  "tested_commit_sha": "327b7e2cb68c36dc0c327eaf02832ee80260907b",
+  "inputs_uncommitted": [],
+  "input_sha256": {
+    "assignment_checker/pdf_review.py": "87ce8769283701c51291fe05d23fe2228d3bc0bdc98839294e97f8551fda844c",
+    "assignment_checker/pdf_review_prompt.txt": "5e18d87f5c51e6339647e5c9fb5458664b15c7430b1875d4dc4d4042562d49f2",
+    "assignment_checker/week6/workflow.py": "9de833289258ac554a984e744835818a50b54f25128cfbddca8e28ec20af3dcd",
+    "assignment_checker/week6/revision_prompt.txt": "13dfd7bcc471e15bf97f7975b732fbf5a555f2b0e51d9eb0cd8fc192c1382f4e",
+    "assignment_checker/week7/routes.py": "0d1418fa8d000748927399ab34224044391fa5c4bbbb5629433698ba3e1ef665",
+    "assignment_checker/service.py": "175d0211ded17fdfae1844c89fe06432d3d86ceded85e053d57074b6bb5d05f3",
+    "examples/week6/teacher.pdf": "e344d40c5afe5b1f5a7359724735c8eb72736b1ff536088360492a89326527ee",
+    "examples/week6/student.pdf": "9afa83c125342feb9d7f733892107ab8c1bb43000d54a69cf025f813d860b181",
+    "examples/week6/fixture-drafts.json": "50dee43a37cb0c8320962fcd0e521c542378f1dffbf0a2623b870f015dbbd586",
+    "scripts/run_week6_comparison.py": "3048521dbd3518bdd1fc5dfae9aae3adc6516248a7b834b0c86fa4bd51012465"
+  },
+  "captured_at": "2026-10-29T17:25:44.399634+00:00",
+  "provider": "openai",
+  "gemini_status": "LIVE_NOT_RUN",
+  "gemini_reason": "Team chose the existing GPT API; the course Gemini/ADC requirement remains unmet",
+  "data_source": "synthetic_only",
+  "case": "3b_timeout_on_revision",
+  "workflow": "evaluator_optimizer",
+  "mode": "fixture",
+  "live_status": "LIVE_NOT_RUN",
+  "note": "Injected SDK timeout on the revision call: stop with the provider error, no third call.",
+  "expected": {
+    "http_status": 504,
+    "error_code": "PROVIDER_UNAVAILABLE",
+    "provider_calls": 2,
+    "records_added": 0,
+    "stop_reason": "PROVIDER_ERROR"
+  },
+  "actual": {
+    "http_status": 504,
+    "error_code": "PROVIDER_UNAVAILABLE",
+    "provider_calls": 2,
+    "records_added": 0,
+    "stop_reason": "PROVIDER_ERROR"
+  },
+  "passed": true,
+  "details": {
+    "http_status": 504,
+    "run_id": null,
+    "live_status": null,
+    "error_code": "PROVIDER_UNAVAILABLE",
+    "error_stage": "provider",
+    "stop_reason": "PROVIDER_ERROR",
+    "draft_results": [
+      {
+        "draft": 1,
+        "passed": false,
+        "issues": 3,
+        "rules": [
+          "source_reference"
+        ],
+        "profile": {
+          "document_roles_match": true,
+          "rubric_status": "explicit_100_point_rubric",
+          "criteria": 4,
+          "checks": 6,
+          "check_status": {
+            "met": 1,
+            "uncertain": 2,
+            "partial": 3
+          },
+          "check_authority": {
+            "explicit_requirement": 6
+          },
+          "student_evidence": {
+            "text": 8,
+            "visual": 5
+          }
+        },
+        "same_as_previous": false
+      }
+    ],
+    "records_added": 0,
+    "grade_before_confirm": null,
+    "check_status": null,
+    "criteria": null,
+    "provider_calls": 2,
+    "responded_calls": 1,
+    "unmeasured_calls": 2,
+    "latency_seconds": null,
+    "input_tokens": null,
+    "output_tokens": null,
+    "reasoning_tokens": null,
+    "total_tokens": null
+  }
+}

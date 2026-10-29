@@ -1,0 +1,411 @@
+{
+  "tested_commit_sha": "c0403a3024a849c7a3c0aa56a75792ede1f44e4c",
+  "inputs_uncommitted": [],
+  "input_sha256": {
+    "assignment_checker/pdf_review.py": "41552a013ed76397bc9ba4aa86ed424844a56b7410de3d0228dd2eebf24aac45",
+    "assignment_checker/pdf_review_prompt.txt": "5e18d87f5c51e6339647e5c9fb5458664b15c7430b1875d4dc4d4042562d49f2",
+    "assignment_checker/week6/workflow.py": "07f4a09e7d39ca0a0644c6f17f19846621ce06c46b1f58ba65d0ce768548827f",
+    "assignment_checker/week6/revision_prompt.txt": "f8556d59ebadbd037295adf226c1ee1e35a6e4eefa4abf66a3be4dbc9702bb89",
+    "assignment_checker/week7/routes.py": "0d1418fa8d000748927399ab34224044391fa5c4bbbb5629433698ba3e1ef665",
+    "assignment_checker/service.py": "175d0211ded17fdfae1844c89fe06432d3d86ceded85e053d57074b6bb5d05f3",
+    "examples/week6/teacher.pdf": "e344d40c5afe5b1f5a7359724735c8eb72736b1ff536088360492a89326527ee",
+    "examples/week6/student.pdf": "9afa83c125342feb9d7f733892107ab8c1bb43000d54a69cf025f813d860b181",
+    "examples/week6/fixture-drafts.json": "50dee43a37cb0c8320962fcd0e521c542378f1dffbf0a2623b870f015dbbd586",
+    "scripts/run_week6_comparison.py": "1d7d0bc6e442653eb18ca0a9b56dddad8cfabbdf1aa7d8c38ed1ece53c0ab93f"
+  },
+  "captured_at": "2026-10-29T17:18:40.842969+00:00",
+  "provider": "openai",
+  "gemini_status": "LIVE_NOT_RUN",
+  "gemini_reason": "Team chose the existing GPT API; the course Gemini/ADC requirement remains unmet",
+  "data_source": "synthetic_only",
+  "case": "1_normal_live",
+  "workflow": "single",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "mode": "live",
+  "live_status": "LIVE_FAIL",
+  "expected": {
+    "http_status": 200,
+    "rubric_status": "explicit_100_point_rubric",
+    "max_points": [
+      20,
+      20,
+      20,
+      40
+    ],
+    "gap_std_dev_flagged": true,
+    "gap_improvement_section_flagged": true,
+    "gap_terminal_screenshot_flagged": true,
+    "grade_after_confirm": true
+  },
+  "actual": {
+    "http_status": 502,
+    "rubric_status": null,
+    "max_points": [],
+    "gap_std_dev_flagged": false,
+    "gap_improvement_section_flagged": false,
+    "gap_terminal_screenshot_flagged": false,
+    "grade_after_confirm": false
+  },
+  "passed": false,
+  "details": {
+    "http_status": 502,
+    "run_id": null,
+    "live_status": null,
+    "error_code": "INVALID_SOURCE_REFERENCE",
+    "error_stage": "grounding",
+    "stop_reason": null,
+    "draft_results": [],
+    "records_added": 0,
+    "grade_before_confirm": null,
+    "check_status": null,
+    "criteria": null,
+    "provider_calls": 1,
+    "responded_calls": 1,
+    "unmeasured_calls": 0,
+    "latency_seconds": 12.753,
+    "input_tokens": 6122,
+    "output_tokens": 1700,
+    "reasoning_tokens": 0,
+    "total_tokens": 7822
+  },
+  "calls": [
+    {
+      "call": 1,
+      "revision_turns": 0,
+      "responded": true,
+      "error_code": null,
+      "wall_seconds": 12.753,
+      "model": "gpt-4.1-mini-2025-04-14",
+      "response_id": "resp_0d0e4bb7169af477016ae380342f9887d09eff00b7c81dd91d",
+      "usage": {
+        "input_tokens": 6122,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 1700,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 7822
+      }
+    }
+  ],
+  "drafts": [
+    {
+      "document_roles_match": true,
+      "rubric_status": "explicit_100_point_rubric",
+      "criteria": [
+        {
+          "id": "G1",
+          "name": "程式功能正確性",
+          "max_points": 40,
+          "teacher_evidence": {
+            "start": "T2L2",
+            "end": "T2L2"
+          },
+          "score_low": 30,
+          "score_high": 40,
+          "rationale": "學生程式截圖顯示有計算平均與中位數函式，且執行結果頁有讀入成績、平均與中位數輸出，但缺少標準差計算與輸出證據，故部分達成。",
+          "student_evidence": [
+            {
+              "kind": "visual",
+              "text_reference": null,
+              "visual_page": 3,
+              "observation": "本頁截圖可見 calcMean 與 calcMedian 函式程式碼。"
+            },
+            {
+              "kind": "text",
+              "text_reference": {
+                "start": "S2L3",
+                "end": "S2L5"
+              },
+              "visual_page": null,
+              "observation": "終端機輸出有讀入筆數、平均與中位數。"
+            }
+          ],
+          "verification": "needs_original_files_or_execution"
+        },
+        {
+          "id": "G2",
+          "name": "程式碼品質與註解",
+          "max_points": 20,
+          "teacher_evidence": {
+            "start": "T1L7",
+            "end": "T1L7"
+          },
+          "score_low": 15,
+          "score_high": 20,
+          "rationale": "學生程式碼截圖中主要函式有註解，且使用 C++17 標準函式庫，符合要求。",
+          "student_evidence": [
+            {
+              "kind": "visual",
+              "text_reference": null,
+              "visual_page": 3,
+              "observation": "程式碼截圖中有註解說明 calcMean 與 calcMedian 函式。"
+            }
+          ],
+          "verification": "pdf_evidence_only"
+        },
+        {
+          "id": "G3",
+          "name": "執行結果與截圖",
+          "max_points": 20,
+          "teacher_evidence": {
+            "start": "T1L9",
+            "end": "T1L9"
+          },
+          "score_low": 15,
+          "score_high": 20,
+          "rationale": "學生報告有終端機輸出截圖與成績長條圖截圖，符合至少兩張截圖要求。",
+          "student_evidence": [
+            {
+              "kind": "visual",
+              "text_reference": null,
+              "visual_page": 2,
+              "observation": "終端機輸出截圖顯示讀入筆數與統計結果。"
+            },
+            {
+              "kind": "visual",
+              "text_reference": null,
+              "visual_page": 3,
+              "observation": "成績長條圖截圖顯示成績分布。"
+            }
+          ],
+          "verification": "pdf_evidence_only"
+        },
+        {
+          "id": "G4",
+          "name": "結果分析與改進方向",
+          "max_points": 20,
+          "teacher_evidence": {
+            "start": "T1L10",
+            "end": "T1L10"
+          },
+          "score_low": 10,
+          "score_high": 15,
+          "rationale": "學生報告有結果分析章節，描述成績分布與平均與中位數差異，但缺少具體改進方向內容，改進方向章節空缺或未見具體措施。",
+          "student_evidence": [
+            {
+              "kind": "text",
+              "text_reference": {
+                "start": "S3L2",
+                "end": "S3L4"
+              },
+              "visual_page": null,
+              "observation": "結果分析章節有成績分布與平均中位數差異說明。"
+            },
+            {
+              "kind": "text",
+              "text_reference": {
+                "start": "S1L7",
+                "end": "S1L7"
+              },
+              "visual_page": null,
+              "observation": "目錄有改進方向章節，但正文未見具體內容。"
+            }
+          ],
+          "verification": "pdf_evidence_only"
+        }
+      ],
+      "checks": [
+        {
+          "requirement": "使用 C++17 撰寫，不得使用第三方統計函式庫。",
+          "authority": "explicit_requirement",
+          "teacher_evidence": {
+            "start": "T1L6",
+            "end": "T1L6"
+          },
+          "status": "met",
+          "student_evidence": [
+            {
+              "kind": "text",
+              "text_reference": {
+                "start": "S1L9",
+                "end": "S1L9"
+              },
+              "visual_page": null,
+              "observation": "說明使用 C++17 且只用標準函式庫。"
+            }
+          ],
+          "reason": "學生明確說明使用 C++17 且未使用第三方函式庫。",
+          "action": "無需改進。",
+          "priority": "low"
+        },
+        {
+          "requirement": "繳交完整原始碼 stats.cpp，主要函式須附註解。",
+          "authority": "explicit_requirement",
+          "teacher_evidence": {
+            "start": "T1L7",
+            "end": "T1L7"
+          },
+          "status": "partial",
+          "student_evidence": [
+            {
+              "kind": "visual",
+              "text_reference": null,
+              "visual_page": 3,
+              "observation": "程式碼截圖有主要函式與註解，但無法確認是否完整原始碼。"
+            }
+          ],
+          "reason": "PDF中有主要函式截圖與註解，但無法確認完整原始碼是否繳交。",
+          "action": "請確認完整原始碼是否已繳交。",
+          "priority": "high"
+        },
+        {
+          "requirement": "程式讀入 scores.csv，輸出平均、中位數與標準差。",
+          "authority": "explicit_requirement",
+          "teacher_evidence": {
+            "start": "T1L8",
+            "end": "T1L8"
+          },
+          "status": "partial",
+          "student_evidence": [
+            {
+              "kind": "text",
+              "text_reference": {
+                "start": "S2L3",
+                "end": "S2L5"
+              },
+              "visual_page": null,
+              "observation": "終端機輸出有讀入筆數、平均與中位數，但無標準差輸出。"
+            },
+            {
+              "kind": "visual",
+              "text_reference": null,
+              "visual_page": 3,
+              "observation": "程式碼截圖無標準差計算函式。"
+            }
+          ],
+          "reason": "缺少標準差計算與輸出證據。",
+          "action": "請補充標準差計算與輸出程式碼及結果。",
+          "priority": "high"
+        },
+        {
+          "requirement": "報告附至少 2 張執行截圖：終端機輸出與成績長條圖。",
+          "authority": "explicit_requirement",
+          "teacher_evidence": {
+            "start": "T1L9",
+            "end": "T1L9"
+          },
+          "status": "met",
+          "student_evidence": [
+            {
+              "kind": "visual",
+              "text_reference": null,
+              "visual_page": 2,
+              "observation": "終端機輸出截圖。"
+            },
+            {
+              "kind": "visual",
+              "text_reference": null,
+              "visual_page": 3,
+              "observation": "成績長條圖截圖。"
+            }
+          ],
+          "reason": "兩張截圖皆有，符合要求。",
+          "action": "無需改進。",
+          "priority": "low"
+        },
+        {
+          "requirement": "報告須包含「結果分析」與「改進方向」兩節，共 3 至 5 頁。",
+          "authority": "explicit_requirement",
+          "teacher_evidence": {
+            "start": "T1L10",
+            "end": "T1L10"
+          },
+          "status": "partial",
+          "student_evidence": [
+            {
+              "kind": "text",
+              "text_reference": {
+                "start": "S3L1",
+                "end": "S3L4"
+              },
+              "visual_page": null,
+              "observation": "結果分析章節有內容。"
+            },
+            {
+              "kind": "text",
+              "text_reference": {
+                "start": "S1L7",
+                "end": "S1L7"
+              },
+              "visual_page": null,
+              "observation": "目錄有改進方向章節，但正文未見具體內容。"
+            }
+          ],
+          "reason": "結果分析有，但改進方向章節缺乏具體內容。",
+          "action": "請補充具體改進方向內容。",
+          "priority": "medium"
+        }
+      ],
+      "summary": "學生完成了C++17程式撰寫，並提供主要函式程式碼截圖與註解，報告有終端機輸出與長條圖截圖，並包含結果分析章節。缺失為未見標準差計算與輸出，且改進方向章節無具體內容，原始碼完整性無法確認。建議優先補充標準差功能與改進方向內容，並確認完整原始碼繳交。",
+      "limitations": [
+        "僅依據PDF內容判斷，無法執行程式或檢查原始碼完整性。",
+        "圖片截圖解析可能有誤差。",
+        "最終成績以老師評分為準。"
+      ]
+    }
+  ],
+  "host_findings_per_draft": [
+    [
+      {
+        "code": "INVALID_SOURCE_REFERENCE",
+        "where": "criteria[0].student_evidence[1]",
+        "rule": "source_reference",
+        "reference": "S2L3–S2L5",
+        "message": "文字引用與圖像觀察的欄位不可混用。"
+      },
+      {
+        "code": "INVALID_SOURCE_REFERENCE",
+        "where": "criteria[3].student_evidence[0]",
+        "rule": "source_reference",
+        "reference": "S3L2–S3L4",
+        "message": "文字引用與圖像觀察的欄位不可混用。"
+      },
+      {
+        "code": "INVALID_SOURCE_REFERENCE",
+        "where": "criteria[3].student_evidence[1]",
+        "rule": "source_reference",
+        "reference": "S1L7–S1L7",
+        "message": "文字引用與圖像觀察的欄位不可混用。"
+      },
+      {
+        "code": "INVALID_SOURCE_REFERENCE",
+        "where": "checks[0].student_evidence[0]",
+        "rule": "source_reference",
+        "reference": "S1L9–S1L9",
+        "message": "文字引用與圖像觀察的欄位不可混用。"
+      },
+      {
+        "code": "INVALID_SOURCE_REFERENCE",
+        "where": "checks[2].student_evidence[0]",
+        "rule": "source_reference",
+        "reference": "S2L3–S2L5",
+        "message": "文字引用與圖像觀察的欄位不可混用。"
+      },
+      {
+        "code": "INVALID_SOURCE_REFERENCE",
+        "where": "checks[4].student_evidence[0]",
+        "rule": "source_reference",
+        "reference": "S3L1–S3L4",
+        "message": "文字引用與圖像觀察的欄位不可混用。"
+      },
+      {
+        "code": "INVALID_SOURCE_REFERENCE",
+        "where": "checks[4].student_evidence[1]",
+        "rule": "source_reference",
+        "reference": "S1L7–S1L7",
+        "message": "文字引用與圖像觀察的欄位不可混用。"
+      }
+    ]
+  ],
+  "body": {
+    "error": {
+      "code": "INVALID_SOURCE_REFERENCE",
+      "stage": "grounding",
+      "message": "文字引用與圖像觀察的欄位不可混用。"
+    }
+  }
+}

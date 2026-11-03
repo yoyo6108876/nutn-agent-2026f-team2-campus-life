@@ -32,7 +32,7 @@ Week 3 新增 `/assistant/week3/queries` 與 `/assistant/week3/query`；預設 `
 
 **Week 7 提交入口：[Session 清除與來源更新](docs/week7/README.md)。** 新增隔離的 Session、清除控制、來源版本排除與文字比對工作台。148 項測試通過；候選主流程、同 Session 續問、清除後查詢與文字比對均有 OpenAI `LIVE_PASS`。原版／候選的真實比較包含原版 `LIVE_FAIL`，保留失敗證據，不宣稱全面通過或提升成功率。
 
-依組員選擇繼續使用 GPT。課程要求的 **Google Cloud／ADC Gemini 為 `LIVE_NOT_RUN`，尚未符合該項規定**；Week 6 已於 Week 7 之後補交，見上方入口。分工為建議，實際貢獻待組員確認。
+依組員選擇繼續使用 GPT。課程要求的 **Google Cloud／ADC Gemini 為 `LIVE_NOT_RUN`，尚未符合該項規定**；Week 6 已於 Week 7 之後補交，見上方入口。分工見下方團隊表。
 
 在根目錄 `.env` 填入 `OPENAI_API_KEY` 後執行：
 
@@ -57,7 +57,7 @@ Week 3 新增 `/assistant/week3/queries` 與 `/assistant/week3/query`；預設 `
 | Repository URL | https://github.com/yoyo6108876/nutn-agent-2026f-team2-campus-life |
 | Week 2 Driver | 建議由陳冠友擔任，待團隊確認 |
 
-| 姓名 | 學號 | 初步分工 |
+| 姓名 | 學號 | 分工 |
 | --- | --- | --- |
-| 陳冠友 | S11259039 | 隊長；建議負責環境、程式與 Git 操作 |
-| 林崇瑋 | S11259031 | 隊員；建議負責需求、資料來源、測試與文件審查 |
+| 陳冠友 | S11259039 | 隊長；提出想法、系統實作 |
+| 林崇瑋 | S11259031 | 隊員；系統實作、簡報與報告 |

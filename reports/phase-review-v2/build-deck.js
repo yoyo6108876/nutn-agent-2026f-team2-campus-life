@@ -615,17 +615,17 @@ async function build() {
   // ===== 16. Team & Q&A =====
   pres.addSection({ title: '結尾' });
   s = slide('CLOSING_DARK', '結尾', '團隊與後續', '分工與問答');
-  const team = [['陳冠友', 'S11259039 · 隊長', '後端、工具確認、Session 記憶與 PDF 預檢示範'], ['林崇瑋', 'S11259031 · 隊員', '使用情境、來源引用、測試與失敗分析']];
+  const team = [['陳冠友', 'S11259039 · 隊長', '提出想法、系統實作'], ['林崇瑋', 'S11259031 · 隊員', '系統實作、簡報與報告']];
   for (let i = 0; i < 2; i++) {
     const x = 0.6 + i * 6.23;
     s.addShape(pres.shapes.ROUNDED_RECTANGLE, { x, y: 1.8, w: 5.9, h: 2.25, rectRadius: 0.1, fill: { color: C.background1, transparency: 90 }, line: { color: C.background1, width: 1, transparency: 70 }, objectName: nm('member-card') });
     await iconCircle(s, 'User', x + 0.35, 2.1, 0.66, C.accent1, HEX.dk2);
     text(s, team[i][0], x + 1.25, 2.08, 3, 0.44, { fontSize: 24, bold: true, color: C.background1, valign: 'middle' });
     text(s, team[i][1], x + 1.25, 2.52, 3, 0.3, { fontSize: 13, color: C.background2 });
-    text(s, '建議主講', x + 0.35, 3.05, 2, 0.3, { fontSize: 13, bold: true, color: C.accent1 });
+    text(s, '實際分工', x + 0.35, 3.05, 2, 0.3, { fontSize: 13, bold: true, color: C.accent1 });
     text(s, team[i][2], x + 0.35, 3.36, 5.3, 0.5, { fontSize: 16, color: C.background1 });
   }
-  text(s, '以上是建議分工，實際貢獻待兩位確認；開發、測試與簡報製作有使用 AI 工具（Codex、Claude）協助。', 0.6, 4.3, 12.1, 0.36, { fontSize: 14, color: C.accent1 });
+  text(s, '開發、測試與簡報製作有使用 AI 工具（Codex、Claude）協助。', 0.6, 4.3, 12.1, 0.36, { fontSize: 14, color: C.accent1 });
   const total = 12.13, segs = [[14, '簡報＋示範 14 分鐘', C.accent1, C.text2], [5, '問答 5 分鐘', C.background1, C.text2], [1, '緩衝', C.accent6, C.background1]];
   let bx = 0.6;
   for (const [min, lab, fill, ink] of segs) {

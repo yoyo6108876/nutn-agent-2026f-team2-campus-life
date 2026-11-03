@@ -5,12 +5,13 @@
 - [phase-review-v2.pptx](phase-review-v2.pptx)：16 張可編輯簡報，講者備註裡附逐頁講稿
 - [phase-review-v2.pdf](phase-review-v2.pdf)：同內容的 PDF
 - [speaker-script.md](speaker-script.md)：逐頁講稿、時間分配與問答準備（約 13.9 分鐘，另留問答 5 分鐘、緩衝 1 分鐘）
+- [demo-runbook.md](demo-runbook.md)：現場操作步驟、每一步怎樣才正常、出狀況時怎麼辦
 
 ## 與舊版的差異
 
 - 版面改為狀態標籤（已完成／需補件／待確認）貫穿全份，架構、流程、時程都改用原生圖形，測試數改用原生圖表。
-- PDF 預檢三頁：處理流程與估分條件；兩次真實 `LIVE_FAIL` 與改用 gpt-5.4 後的結果；Week 6 的 Evaluator–optimizer 與真實比較。
-- PDF 預檢的 gpt-5.4 結果取自 Week 6 的合成 PDF 實測（兩輪皆 `LIVE_PASS`，但 7 項業務預期只符合 6 項），只代表這組案例，不是準確率。Week 6 結論為尚未證明改善，見 [docs/week06](../../docs/week06/README.md)。
+- PDF 預檢三頁：處理流程與估分條件；前兩版（`ae1a441`、`a9010bf`）的真實 `LIVE_FAIL`，與改用 gpt-5.4 後仍會失敗、誤判的結果；Week 6 的 Evaluator–optimizer 與真實比較。
+- PDF 預檢的 gpt-5.4 結果：比較腳本用合成 PDF 四次 `LIVE_PASS`，但 7 項業務預期只符合 6 項。另有 11/4 彩排手動兩次 `LIVE_FAIL`：第 1 次使用者回報為同組 PDF（未核對 sha256），第 2 次輸入未確認。只代表這些案例，不是準確率。Week 6 結論為尚未證明改善，見 [docs/week06](../../docs/week06/README.md)。
 
 ## 重新產生
 

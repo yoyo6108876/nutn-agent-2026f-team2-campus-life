@@ -13,7 +13,8 @@
 
 | 項目 | 實際狀態 |
 | --- | --- |
-| 正常主流程（gpt-5.4，`c0403a3` 與 `327b7e2` 各一輪） | 原版、候選四次皆 `LIVE_PASS`（HTTP 200、通過 Host 核對），候選都是第一份就通過、呼叫次數相同；但預先寫定的 7 項業務預期四次都只符合 6 項（腳本 `passed=false`），都把「終端機輸出不是截圖」誤判為已完成 |
+| 正常主流程（gpt-5.4，腳本 `c0403a3` 與 `327b7e2` 各一輪） | 原版、候選四次皆 `LIVE_PASS`（HTTP 200、通過 Host 核對），候選都是第一份就通過、呼叫次數相同；但預先寫定的 7 項業務預期四次都只符合 6 項（腳本 `passed=false`），都把「終端機輸出不是截圖」誤判為已完成 |
+| 正常主流程（gpt-5.4，11/4 彩排手動兩次） | 兩次都是 502 `LIVE_FAIL`。第 1 次原版、`INVALID_SOURCE_REFERENCE`；第 2 次流程、輸入與錯誤碼未取得。與腳本結果不同的原因尚未查明 |
 | 輕量模型（gpt-4.1-mini，兩輪） | 兩版皆 `LIVE_FAIL`；候選的真實修訂兩次都與草稿 A 逐字相同，到上限停止，tokens 約為原版 2.3 倍 |
 | 服務拒絕 | 真實請求（不存在的模型名稱）三輪與注入逾時皆有限停止、如實回報錯誤 |
 | 離線案例 | 15 個全部符合預期；213 項測試通過（本週 35 項） |
@@ -24,7 +25,7 @@
 
 | 欄位 | 內容 |
 | --- | --- |
-| 原流程與缺口 | [`pdf_review.py`](../../assignment_checker/pdf_review.py) 的 `PDFReviewProvider.generate` 呼叫模型一次，接著 `resolve_draft` → `validate_report` 核對，遇到第一個錯誤就丟出 `CheckFailure`，API 回 502、不給分。固定輸入為 [examples/week6](../../examples/week6/) 的老師／學生 PDF。原結果（`workflow=single`）：gpt-5.4 回 200，業務預期 6／7；gpt-4.1-mini 回 502 `INVALID_SOURCE_REFERENCE`，7 項文字證據的 `observation` 也填了說明。背景：v0.8 開發期間以 gpt-4.1-mini 與非公開 PDF 的真實執行也是 `LIVE_FAIL`（`ae1a441` 模型自寫引文 `UNGROUNDED_PDF_REPORT`；`a9010bf` 跨頁或過長的行號範圍 `INVALID_SOURCE_REFERENCE`）。錯在模型輸出的證據欄位，Host 只回報第一個錯，模型沒有機會依錯誤位置修正。 |
+| 原流程與缺口 | [`pdf_review.py`](../../assignment_checker/pdf_review.py) 的 `PDFReviewProvider.generate` 呼叫模型一次，接著 `resolve_draft` → `validate_report` 核對，遇到第一個錯誤就丟出 `CheckFailure`，API 回 502、不給分。固定輸入為 [examples/week6](../../examples/week6/) 的老師／學生 PDF。原結果（`workflow=single`）：gpt-5.4 腳本兩次回 200，業務預期 6／7，彩排手動一次（使用者回報為此輸入，未核對 sha256）回 502 `INVALID_SOURCE_REFERENCE`；gpt-4.1-mini 回 502 `INVALID_SOURCE_REFERENCE`，7 項文字證據的 `observation` 也填了說明。背景：v0.8 開發期間以 gpt-4.1-mini 與非公開 PDF 的真實執行也是 `LIVE_FAIL`（`ae1a441` 模型自寫引文 `UNGROUNDED_PDF_REPORT`；`a9010bf` 跨頁或過長的行號範圍 `INVALID_SOURCE_REFERENCE`）。錯在模型輸出的證據欄位，Host 只回報第一個錯，模型沒有機會依錯誤位置修正。 |
 | 選定 workflow | Evaluator–optimizer。Host 能精確指出哪一項、哪條規則、哪個行號範圍錯，模型能據此重選，符合「評估回饋後修訂」。本週只改「模型草稿 → Host 核對」這一段；上傳、擷取、配分確認、Session 與儲存都不變。 |
 | 執行與資訊契約 | 輸入 state：兩份已解析 PDF（原文行 ID + 頁面圖片）。草稿 A → `evaluate_draft(A)` 得到 `issues`（`code`、`rule`、`where`、`reference`、`message`，欄位混用時另有 `fix`）；先列出全部行號問題，行號全部正確後再列配分與證據規則。下一步條件：`issues` 為空就採用；有 `document_roles` 就停；其餘情況把 A 與 `issues` 送回模型得到 B，B 用同一套規則加「不得把範例推測改成明確要求」重評。修訂呼叫需要：同一份系統提示、原文行、兩份 PDF、A、`issues`。不需要也不送：Session 記憶、身分、其他 run、評估程式、PDF 文字以外的使用者資料。輸出 state：`workflow` trace（每份草稿的評估結果、狀態統計、呼叫紀錄、停止原因）。 |
 | Scaffold 與停止 | 由後端 [`week6/workflow.py`](../../assignment_checker/week6/workflow.py) 的 `revise_until_valid` 執行，`PDFPrechecks.start` 依 `PDFPair.workflow` 選擇。上限 `MAX_DRAFTS=2`。停止原因：`PASSED_FIRST_DRAFT`、`PASSED_AFTER_REVISION`、`MAX_DRAFTS_UNRESOLVED`、`NOT_REVISABLE`（檔案角色不符）、`PROVIDER_ERROR`、`DRAFT_UNUSABLE`、`CONFIGURATION_ERROR`。草稿拒絕碼沿用原本的 `INVALID_SOURCE_REFERENCE`、`UNGROUNDED_PDF_REPORT`、`PROVIDER_*`；新增 `WORKFLOW_UNAVAILABLE`（422），未知的 `workflow` 值在呼叫模型前以 422 拒絕。未通過不寫入紀錄、不給分。配分仍須使用者勾選確認才顯示區間。 |
@@ -75,7 +76,7 @@ git diff 33b948f 327b7e2 -- assignment_checker tests scripts examples/week6
 
 | 案例 | 預期（先寫） | 實際 | 證據 |
 | --- | --- | --- | --- |
-| 1 正常主流程（真實） | 200；辨識 100 分配分 40／20／20／20；標出缺標準差、缺改進方向、終端機輸出非截圖三處；確認後有區間 | 候選 SHA `327b7e2`、gpt-5.4：原版 200 `LIVE_PASS`，業務預期 6／7，run `pdf-2c528c53…`，區間 50–72；候選 200 `LIVE_PASS`，第一份即通過，6／7，run `pdf-8d2295b9…`，區間 46–73。`c0403a3` 結果相同（6／7）。四次都把終端機截圖誤判為已完成，腳本記為 `passed=false`。提示 `pdf-precheck-v2-source-lines`。課程要求的真實 Gemini：`LIVE_NOT_RUN` | [原版](../../artifacts/week6/live-327b7e2-gpt54/1_normal_live-single-gpt-5.4-2026-03-05.json)、[候選](../../artifacts/week6/live-327b7e2-gpt54/1_normal_live-evaluator_optimizer-gpt-5.4-2026-03-05.json)、[第 1 輪](../../artifacts/week6/live-c0403a3/) |
+| 1 正常主流程（真實） | 200；辨識 100 分配分 40／20／20／20；標出缺標準差、缺改進方向、終端機輸出非截圖三處；確認後有區間 | 候選 SHA `327b7e2`、gpt-5.4：原版 200 `LIVE_PASS`，業務預期 6／7，run `pdf-2c528c53…`，區間 50–72；候選 200 `LIVE_PASS`，第一份即通過，6／7，run `pdf-8d2295b9…`，區間 46–73。`c0403a3` 結果相同（6／7）。四次都把終端機截圖誤判為已完成，腳本記為 `passed=false`。提示 `pdf-precheck-v2-source-lines`。11/4 彩排手動兩次都回 502 `LIVE_FAIL`：第 1 次使用者回報為此輸入（未核對 sha256），0／7；第 2 次輸入未確認，未評。課程要求的真實 Gemini：`LIVE_NOT_RUN` | [原版](../../artifacts/week6/live-327b7e2-gpt54/1_normal_live-single-gpt-5.4-2026-03-05.json)、[候選](../../artifacts/week6/live-327b7e2-gpt54/1_normal_live-evaluator_optimizer-gpt-5.4-2026-03-05.json)、[第 1 輪](../../artifacts/week6/live-c0403a3/)、[手動](../../artifacts/week6/manual-2026-11-04/README.md) |
 | 1 正常主流程（離線） | 200、1 次呼叫、寫入 1 筆、確認前不顯示分數 | 兩版皆符合 | [原版](../../artifacts/week6/fixture/1_normal-single.json)、[候選](../../artifacts/week6/fixture/1_normal-evaluator_optimizer.json) |
 | 2 非法輸入 | 同一 Session 先成功一次，再送非 PDF 內容：422 `INVALID_PDF`，拒絕點 `pdf_input`，下游模型 0 次、寫入 0 筆，不回傳上一次的 run | 兩版皆符合 | [原版](../../artifacts/week6/fixture/2_invalid_input-single.json)、[候選](../../artifacts/week6/fixture/2_invalid_input-evaluator_optimizer.json) |
 | 3 Provider 失敗（注入） | 第 1 次呼叫逾時：504 `PROVIDER_UNAVAILABLE`，1 次即停，排隊中的正確草稿不使用；候選在修訂呼叫逾時：504，2 次，`PROVIDER_ERROR` | 皆符合 | [原版](../../artifacts/week6/fixture/3_provider_timeout-single.json)、[候選](../../artifacts/week6/fixture/3_provider_timeout-evaluator_optimizer.json)、[修訂逾時](../../artifacts/week6/fixture/3b_timeout_on_revision-evaluator_optimizer.json) |
@@ -93,21 +94,22 @@ git diff 33b948f 327b7e2 -- assignment_checker tests scripts examples/week6
 | 檢查／確認 | `details.draft_results`（每份草稿的通過與否、問題數、規則、狀態統計、是否與上一份相同）；確認配分見案例 5 |
 | 結果 | `body`（API 回應原文，合成資料）與 `drafts`（模型草稿原文） |
 | 回送 | 離線案例 [4a](../../artifacts/week6/fixture/4a_revision_recovers-evaluator_optimizer.json) 的 `revision_request`：回合順序、重送的 PDF、草稿 A 是否原樣送回、送出的問題清單。真實修訂只記錄 `calls[1].revision_turns` 與錯誤回應中的 `workflow.drafts[0].issues`，完整請求未擷取 |
-| 摘要 | [fixture/summary.json](../../artifacts/week6/fixture/summary.json)、[live-c0403a3/summary.json](../../artifacts/week6/live-c0403a3/summary.json)、[live-327b7e2-mini/summary.json](../../artifacts/week6/live-327b7e2-mini/summary.json)、[live-327b7e2-gpt54/summary.json](../../artifacts/week6/live-327b7e2-gpt54/summary.json)、[pytest.txt](../../artifacts/week6/pytest.txt)（含受測 SHA） |
+| 摘要 | [fixture/summary.json](../../artifacts/week6/fixture/summary.json)、[live-c0403a3/summary.json](../../artifacts/week6/live-c0403a3/summary.json)、[live-327b7e2-mini/summary.json](../../artifacts/week6/live-327b7e2-mini/summary.json)、[live-327b7e2-gpt54/summary.json](../../artifacts/week6/live-327b7e2-gpt54/summary.json)、[手動失敗紀錄](../../artifacts/week6/manual-2026-11-04/README.md)、[pytest.txt](../../artifacts/week6/pytest.txt)（含受測 SHA） |
 
-真實紀錄以腳本產生後直接保存，沒有編修內容；每個檔案記錄受測 SHA、相關檔案 sha256 與未提交清單。腳本在相關檔案未提交時拒絕執行真實比較。各輪 `summary.json` 的 `passed` 是 7 項業務預期是否全部符合，`live_status` 是真實請求是否成功。離線案例 2 的 `responded_calls`／`unmeasured_calls` 是同一 Session 先前成功那次的累計值，這次請求的下游呼叫數以 `provider_calls: 0` 為準。
+腳本的真實紀錄產生後直接保存，沒有編修內容；每個檔案記錄受測 SHA、相關檔案 sha256 與未提交清單。腳本在相關檔案未提交時拒絕執行真實比較。11/4 的手動失敗不是腳本產生：第 1 次的錯誤回應與兩次的伺服器紀錄行由人工抄錄，沒有原始 JSON；第 2 次只有伺服器紀錄。`a9057cf` 的 `assignment_checker` 與 `examples/week6` 的 PDF 與 `327b7e2` 相同。各輪 `summary.json` 的 `passed` 是 7 項業務預期是否全部符合，`live_status` 是真實請求是否成功。離線案例 2 的 `responded_calls`／`unmeasured_calls` 是同一 Session 先前成功那次的累計值，這次請求的下游呼叫數以 `provider_calls: 0` 為準。
 
 ## 已知問題與補驗證
 
 | 狀態 | 範圍 |
 | --- | --- |
 | `LIVE_PASS` | gpt-5.4 正常主流程的真實請求，原版與候選在 `c0403a3`、`327b7e2` 各一次；只有一組合成 PDF，且 7 項業務預期四次都只符合 6 項 |
-| `LIVE_FAIL` | gpt-4.1-mini 正常主流程，原版與候選各兩次（`c0403a3`、`327b7e2`）；其中候選的真實修訂路徑兩次（修訂稿與 A 相同）；不存在模型名稱的服務拒絕三輪（刻意製造） |
-| `LIVE_NOT_RUN` | 欄位層級 `fix` 實際送出的修訂（第 2 輪草稿 A 沒有欄位混用）；真實學生 PDF；Google Cloud／ADC Gemini |
+| `LIVE_FAIL` | gpt-5.4 彩排手動兩次（11/4，第 2 次流程與輸入未取得）；gpt-4.1-mini 正常主流程，原版與候選各兩次（`c0403a3`、`327b7e2`），其中候選的真實修訂路徑兩次（修訂稿與 A 相同）；不存在模型名稱的服務拒絕三輪（刻意製造） |
+| `LIVE_NOT_RUN` | 欄位層級 `fix` 實際送出的修訂（第 2 輪草稿 A 沒有欄位混用）；比較腳本未跑真實學生 PDF（手動第 2 次輸入未確認）；Google Cloud／ADC Gemini |
 
 「修訂後通過」目前只在離線案例出現，真實環境尚未觀察到。
 
-- **語意錯誤擋不住。** 學生 PDF 第 2 頁只有程式截圖與文字形式的終端機輸出，gpt-5.4 四次都寫出不存在的終端機截圖（例如原版「本頁截圖可見終端機輸出畫面」、候選「本頁截圖可見執行結果/終端機輸出內容」）。Host 只核對頁碼，圖像觀察的內容無法驗證，兩種流程都放行。
+- **gpt-5.4 也會失敗。** 腳本四次通過，但 11/4 彩排手動兩次都回 502。原版失敗時不保留草稿，第 1 次不知道是哪一項引用出錯，第 2 次連錯誤碼都沒留下，手動與腳本結果不同的原因尚未查明。
+- **語意錯誤擋不住。** 學生 PDF 第 2 頁只有程式截圖與文字形式的終端機輸出，gpt-5.4 腳本四次都寫出不存在的終端機截圖（例如原版「本頁截圖可見終端機輸出畫面」、候選「本頁截圖可見執行結果/終端機輸出內容」）。Host 只核對頁碼，圖像觀察的內容無法驗證，兩種流程都放行。
 - **輕量模型原樣重送。** 兩輪修訂稿都與草稿 A 相同。第 2 輪草稿 A 只有 1 項配分引用錯誤，送出的是一般訊息，欄位層級的 `fix` 沒有送出，所以它的效果尚未取得。
 - **回饋只到第一層。** 行號錯誤與其他規則分兩階段檢查：行號全部正確後，才會檢查配分與證據規則。若草稿兩種錯誤都有，一次修訂只會看到行號問題。
 - **候選的失敗代價較高。** 失敗時重送兩份 PDF 的頁面圖片，tokens 約為原版 2.3 倍。
@@ -115,9 +117,10 @@ git diff 33b948f 327b7e2 -- assignment_checker tests scripts examples/week6
 
 補驗證步驟：
 
-1. 把草稿 A 改放在 user 訊息中當作待修正資料，以 gpt-4.1-mini 重跑本頁的真實比較，看修訂稿是否仍與 A 相同；遇到欄位混用時記錄 `fix` 是否送出、是否被採納。
-2. 準備 3 組以上合成 PDF（含會讓模型選錯行號的版面），兩版每組各跑 5 次，比較通過率、tokens 與耗時。
-3. 取得課程 Google Cloud／ADC 設定後，以 Gemini 重跑案例 1 與案例 3。
+1. 用比較腳本以 gpt-5.4 重跑 `examples/week6` 多次（原版與候選），保留失敗草稿與 response ID，查明行號錯誤的來源，並取得 gpt-5.4 真實修訂的結果。
+2. 把草稿 A 改放在 user 訊息中當作待修正資料，以 gpt-4.1-mini 重跑本頁的真實比較，看修訂稿是否仍與 A 相同；遇到欄位混用時記錄 `fix` 是否送出、是否被採納。
+3. 準備 3 組以上合成 PDF（含會讓模型選錯行號的版面），兩版每組各跑 5 次，比較通過率、tokens 與耗時。
+4. 取得課程 Google Cloud／ADC 設定後，以 Gemini 重跑案例 1 與案例 3。
 
 ## 離堂檢查
 
@@ -126,7 +129,7 @@ git diff 33b948f 327b7e2 -- assignment_checker tests scripts examples/week6
 | 原題目延續 | 原使用者故事與 repo 見本頁開頭，PDF 預檢端點與確認流程不變。 |
 | Workflow 增量 | Evaluator–optimizer。真正改變執行的是 [`week6/workflow.py`](../../assignment_checker/week6/workflow.py) 與 [`pdf_review.py`](../../assignment_checker/pdf_review.py) 的 `evaluate_draft`／`PDFPrechecks.start`。 |
 | 證據足夠 | 四條案例與第 5 條見上表，比較表見 [comparison.md](comparison.md)，ADR 見 [adr.md](adr.md)，原始 JSON 見 [artifacts/week6](../../artifacts/week6/)。提交連結：[分支](https://github.com/yoyo6108876/nutn-agent-2026f-team2-campus-life/tree/codex/week6-evaluator-optimizer)、[候選 commit](https://github.com/yoyo6108876/nutn-agent-2026f-team2-campus-life/commit/327b7e2cb68c36dc0c327eaf02832ee80260907b)、[程式差異](https://github.com/yoyo6108876/nutn-agent-2026f-team2-campus-life/compare/33b948fc51066cdcf570184067f1a498ba313a28...327b7e2cb68c36dc0c327eaf02832ee80260907b)。 |
-| 狀態誠實 | 離線案例一律 `LIVE_NOT_RUN`；真實失敗保留為 `LIVE_FAIL`，沒有重跑挑選結果；`LIVE_PASS` 一律附上業務預期 6／7。Gemini／ADC 為 `LIVE_NOT_RUN`。 |
-| 安全與後續 | 只用合成 PDF，證據中沒有金鑰、`.env`、真實學生資料或本機絕對路徑。補驗證步驟見上一節。 |
+| 狀態誠實 | 離線案例一律 `LIVE_NOT_RUN`；真實失敗保留為 `LIVE_FAIL`（含 11/4 彩排的手動失敗），沒有重跑挑選結果；`LIVE_PASS` 一律附上業務預期 6／7。Gemini／ADC 為 `LIVE_NOT_RUN`。 |
+| 安全與後續 | 比較腳本只用合成 PDF；11/4 手動第 1 次為使用者回報的 `examples/week6`（未核對 sha256），第 2 次輸入未確認。留存的證據中沒有金鑰、`.env`、真實學生資料或本機絕對路徑。補驗證步驟見上一節。 |
 
 來源：課程 Lecture06（Week 06 各組原期末專案 workflow 增量，投影片 60–68）。程式與文件由 Claude Code 協助實作，團隊須自行核對評閱結果與理解系統邊界。

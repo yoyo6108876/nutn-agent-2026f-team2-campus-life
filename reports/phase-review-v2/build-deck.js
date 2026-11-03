@@ -636,7 +636,6 @@ async function build() {
     bx += w + 0.05;
   }
   text(s, '共 20 分鐘', 10.73, 5.75, 2.0, 0.3, { fontSize: 12, color: C.background2, align: 'right' });
-  text(s, '謝謝，歡迎提問', 0.6, 5.95, 8, 0.6, { fontSize: 26, bold: true, color: C.background1, valign: 'middle' });
 
   await pres.writeFile({ fileName: OUT });
   await applyTheme(OUT, THEME);
